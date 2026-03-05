@@ -38,6 +38,21 @@ python data/download.py --check
 - Dataset DOI: `PLACEHOLDER`
 - Record URL: `https://doi.org/PLACEHOLDER`
 
+## Build Upload Bundles (Maintainers)
+
+From the private workspace root, generate Zenodo-ready archives and checksums:
+
+```bash
+./atlas-public/scripts/prepare_zenodo_export.sh /home/sandesh/Documents/Global_Project
+```
+
+This creates `zenodo_exports/atlas_v31_<timestamp>/` with:
+
+- `atlas_v31_data_bundle.tar.gz`
+- `atlas_v31_precomputed_bundle.tar.gz`
+- `atlas_sample_bundle.zip`
+- `SHA256SUMS.txt` and size manifests
+
 After upload, update the placeholders in:
 
 - `data/download.py`
