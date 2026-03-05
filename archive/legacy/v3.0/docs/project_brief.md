@@ -2003,7 +2003,7 @@ Create `documentation/API_SPEC.md`:
 
 ## Base URL
 - Development: `http://localhost:8000`
-- Production: `https://api.argonanalytics.com` (to be deployed)
+- Production: `https://atlas.argonanalytics.org/api` (to be deployed)
 
 ## Authentication
 None required for MVP. Add API keys later for rate limiting.

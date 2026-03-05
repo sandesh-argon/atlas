@@ -9,7 +9,7 @@
 ## 1. Clone and Setup
 
 ```bash
-git clone https://github.com/[org]/atlas.git
+git clone https://github.com/sandesh-argon/atlas.git
 cd atlas
 ./scripts/setup.sh
 ```

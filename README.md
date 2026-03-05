@@ -2,10 +2,10 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18879061.svg)](https://doi.org/10.5281/zenodo.18879061)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Website](https://img.shields.io/badge/Website-argonanalytics.com-blue)](https://argonanalytics.com)
-[![Paper](https://img.shields.io/badge/Paper-Research%20Paper-green)](https://argonanalytics.com/research/paper)
+[![Website](https://img.shields.io/badge/Website-atlas.argonanalytics.org-blue)](https://atlas.argonanalytics.org)
+[![Paper](https://img.shields.io/badge/Paper-Research%20Paper-green)](https://atlas.argonanalytics.org/research/paper)
 
-Atlas is a research-grade causal discovery and policy simulation system for development economics. The current v31 corpus covers **3,122 indicators**, **178 countries**, and **1990–2024 (35 years)** with a validated panel of 18.3M observations. Atlas uses staged temporal filtering, structural pruning, and bootstrap validation to surface robust mechanism classes such as reversals, thresholds, and mediation pathways. The platform powers interactive scenario simulation at [argonanalytics.com](https://argonanalytics.com), with explicit uncertainty framing and evidence-linked outputs suitable for academic review and policy use.
+Atlas is a research-grade causal discovery and policy simulation system for development economics. The current v31 corpus covers **3,122 indicators**, **178 countries**, and **1990–2024 (35 years)** with a validated panel of 18.3M observations. Atlas uses staged temporal filtering, structural pruning, and bootstrap validation to surface robust mechanism classes such as reversals, thresholds, and mediation pathways. The platform powers interactive scenario simulation at [atlas.argonanalytics.org](https://atlas.argonanalytics.org), with explicit uncertainty framing and evidence-linked outputs suitable for academic review and policy use.
 
 ## Key Numbers
 
@@ -24,7 +24,7 @@ Full details: [docs/research/RESEARCH_PAPER.md](docs/research/RESEARCH_PAPER.md)
 
 ## Live Demo
 
-- Production app: [argonanalytics.com](https://argonanalytics.com)
+- Production app: [atlas.argonanalytics.org](https://atlas.argonanalytics.org)
 - Example research UI screenshot: [docs/figures/research-hub-final-desktop.png](docs/figures/research-hub-final-desktop.png)
 
 ## Quick Start
@@ -72,8 +72,8 @@ The `data/sample/` directory contains a tiny sample for smoke testing and tutori
 - Findings package JSON: [docs/research/atlas_findings_package.json](docs/research/atlas_findings_package.json)
 
 Rendered web versions:
-- [https://argonanalytics.com/research/paper](https://argonanalytics.com/research/paper)
-- [https://argonanalytics.com/research/methodology](https://argonanalytics.com/research/methodology)
+- [https://atlas.argonanalytics.org/research/paper](https://atlas.argonanalytics.org/research/paper)
+- [https://atlas.argonanalytics.org/research/methodology](https://atlas.argonanalytics.org/research/methodology)
 
 ## Reproducibility
 
@@ -86,9 +86,9 @@ If you use Atlas in research, please cite:
 ```bibtex
 @article{atlas2026,
   title={Atlas: Causal Discovery and Scenario Simulation for Development Policy Under Mechanism Heterogeneity},
-  author={[Author(s)]},
+  author={Atlas Project Contributors},
   year={2026},
-  url={https://argonanalytics.com/research},
+  url={https://atlas.argonanalytics.org/research},
   doi={10.5281/zenodo.18879061}
 }
 ```

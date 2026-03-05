@@ -3,12 +3,10 @@ message: "If you use this software, please cite it as below."
 type: software
 title: "Atlas: Causal Discovery and Scenario Simulation for Development Economics"
 authors:
-  - family-names: "[PLACEHOLDER]"
-    given-names: "[PLACEHOLDER]"
-    orcid: "[PLACEHOLDER if available]"
+  - name: "Atlas Project Contributors"
 version: "3.1"
 date-released: "2026-03-01"
-url: "https://argonanalytics.com"
+url: "https://atlas.argonanalytics.org"
 repository-code: "https://github.com/sandesh-argon/atlas"
 license: MIT
 keywords:

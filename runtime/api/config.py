@@ -111,8 +111,8 @@ Country-specific causal simulation for policy analysis.
 - Temporal simulation: 15 seconds
 
 ### Support
-- Documentation: https://docs.argonanalytics.com
-- Issues: https://github.com/argonanalytics/v3-api/issues
+- Documentation: https://atlas.argonanalytics.org
+- Issues: https://github.com/sandesh-argon/atlas/issues
 """
 
 # CORS settings
@@ -240,5 +240,5 @@ LOG_DIR = VIZ_ROOT / "api" / "logs"
 
 # Contact info
 CONTACT_NAME = "Argon Analytics"
-CONTACT_URL = "https://argonanalytics.com"
+CONTACT_URL = "https://atlas.argonanalytics.org"
 CONTACT_EMAIL = "support@argonanalytics.com"

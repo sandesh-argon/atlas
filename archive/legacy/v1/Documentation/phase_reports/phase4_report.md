@@ -2327,7 +2327,7 @@ These represent genuine new insights rather than errors:
 - Week 3: Policy simulator integration (use `/policy_simulators.pkl`)
 - Week 4: Per-metric drill-down pages (8 metrics × detailed driver rankings)
 - Week 5: Feedback loop animator + spillover visualizer
-- Week 6: Testing, optimization, deployment to argonanalytics.com
+- Week 6: Testing, optimization, deployment to atlas.argonanalytics.org
 
 **Data Pipeline**:
 ```
@@ -2683,5 +2683,4 @@ Document Version: 3.0 (Comprehensive Research Log)
  Replaces: phase4_report.md, phase4_three_model_methodology.md
  Author: Claude (Anthropic)
  Principal Investigator: Sandesh Rao
-
 
