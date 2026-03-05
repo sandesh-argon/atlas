@@ -1,6 +1,6 @@
 # Atlas: Causal Discovery and Scenario Simulation for Development Economics
 
-[![DOI](https://zenodo.org/badge/DOI/PLACEHOLDER.svg)](https://doi.org/PLACEHOLDER)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18879061.svg)](https://doi.org/10.5281/zenodo.18879061)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Website](https://img.shields.io/badge/Website-argonanalytics.com-blue)](https://argonanalytics.com)
 [![Paper](https://img.shields.io/badge/Paper-Research%20Paper-green)](https://argonanalytics.com/research/paper)
@@ -30,7 +30,7 @@ Full details: [docs/research/RESEARCH_PAPER.md](docs/research/RESEARCH_PAPER.md)
 ## Quick Start
 
 ```bash
-git clone https://github.com/[org]/atlas.git
+git clone https://github.com/sandesh-argon/atlas.git
 cd atlas
 ./scripts/setup.sh
 python data/download.py --sample-only
@@ -58,7 +58,7 @@ atlas/
 
 Large datasets and precomputed artifacts are hosted on Zenodo, not in this repository.
 
-- Zenodo DOI: `PLACEHOLDER`
+- Zenodo DOI: `10.5281/zenodo.18879061`
 - Download script: `python data/download.py`
 - Data access guide: [data/README.md](data/README.md)
 
@@ -89,7 +89,7 @@ If you use Atlas in research, please cite:
   author={[Author(s)]},
   year={2026},
   url={https://argonanalytics.com/research},
-  doi={PLACEHOLDER}
+  doi={10.5281/zenodo.18879061}
 }
 ```
 

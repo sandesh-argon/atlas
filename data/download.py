@@ -27,31 +27,34 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 
 CONFIG = {
-    "zenodo_doi": "PLACEHOLDER",
-    "zenodo_record_url": "https://doi.org/PLACEHOLDER",
+    "zenodo_doi": "10.5281/zenodo.18879061",
+    "zenodo_record_url": "https://doi.org/10.5281/zenodo.18879061",
     "datasets": {
         "full": [
             {
                 "name": "atlas_v31_data_bundle.tar.gz",
-                "url": "https://zenodo.org/records/PLACEHOLDER/files/atlas_v31_data_bundle.tar.gz?download=1",
-                "sha256": "PLACEHOLDER",
-                "target_subdir": "raw",
+                "url": "https://zenodo.org/records/18879061/files/atlas_v31_data_bundle.tar.gz?download=1",
+                "sha256": "664fcd02b2e27589062472161a33efe6001d71fa164f4924ebf57ad14ea159e0",
+                "target_subdir": "",
+                "marker_path": "raw/v21_panel_data_for_v3.parquet",
                 "extract": True,
             },
             {
                 "name": "atlas_v31_precomputed_bundle.tar.gz",
-                "url": "https://zenodo.org/records/PLACEHOLDER/files/atlas_v31_precomputed_bundle.tar.gz?download=1",
-                "sha256": "PLACEHOLDER",
-                "target_subdir": "processed",
+                "url": "https://zenodo.org/records/18879061/files/atlas_v31_precomputed_bundle.tar.gz?download=1",
+                "sha256": "b4a46cf20e568b284628ace7d6b40c682ef865f210510d0abbddb9b14e0c3db1",
+                "target_subdir": "",
+                "marker_path": "v31/metadata/income_classifications.json",
                 "extract": True,
             },
         ],
         "sample": [
             {
                 "name": "atlas_sample_bundle.zip",
-                "url": "https://zenodo.org/records/PLACEHOLDER/files/atlas_sample_bundle.zip?download=1",
-                "sha256": "PLACEHOLDER",
+                "url": "https://zenodo.org/records/18879061/files/atlas_sample_bundle.zip?download=1",
+                "sha256": "cf08d4de07ca00060376585c6a5ea0615a811a395bbffbc5627050c1aadfb328",
                 "target_subdir": "sample",
+                "marker_path": "sample/sample_panel_long.csv",
                 "extract": True,
             }
         ],
@@ -117,8 +120,13 @@ def _verify_existing(entries: list[dict]) -> tuple[int, int]:
         total += 1
         target_dir = DATA_DIR / e["target_subdir"]
         marker = target_dir / e["name"]
+        marker_path = e.get("marker_path")
+        marker_file = (DATA_DIR / marker_path) if marker_path else None
         if e.get("extract"):
-            # For extracted content we verify by presence of target directory and optional checksum marker file.
+            if marker_file and marker_file.exists():
+                ok += 1
+                continue
+            # Fallback for legacy bundles without marker path.
             if target_dir.exists() and any(target_dir.iterdir()):
                 ok += 1
             continue
@@ -159,12 +167,19 @@ def run_download(mode: str) -> int:
     for e in entries:
         target_dir = DATA_DIR / e["target_subdir"]
         target_dir.mkdir(parents=True, exist_ok=True)
+        marker_path = e.get("marker_path")
+        marker_file = (DATA_DIR / marker_path) if marker_path else None
 
         # Skip if extraction directory already populated
-        if e.get("extract") and target_dir.exists() and any(target_dir.iterdir()):
-            print(f"[skip] {e['name']} -> {target_dir} already populated")
-            skipped += 1
-            continue
+        if e.get("extract"):
+            if marker_file and marker_file.exists():
+                print(f"[skip] {e['name']} -> marker exists: {marker_file}")
+                skipped += 1
+                continue
+            if not marker_file and target_dir.exists() and any(target_dir.iterdir()):
+                print(f"[skip] {e['name']} -> {target_dir} already populated")
+                skipped += 1
+                continue
 
         with tempfile.TemporaryDirectory(prefix="atlas_dl_") as td:
             tmp_archive = Path(td) / e["name"]

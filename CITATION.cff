@@ -9,7 +9,7 @@ authors:
 version: "3.1"
 date-released: "2026-03-01"
 url: "https://argonanalytics.com"
-repository-code: "https://github.com/[org]/atlas"
+repository-code: "https://github.com/sandesh-argon/atlas"
 license: MIT
 keywords:
   - causal-discovery

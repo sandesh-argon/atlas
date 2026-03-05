@@ -35,15 +35,15 @@ python data/download.py --check
 
 ## Zenodo DOI
 
-- Dataset DOI: `PLACEHOLDER`
-- Record URL: `https://doi.org/PLACEHOLDER`
+- Dataset DOI: `10.5281/zenodo.18879061`
+- Record URL: `https://doi.org/10.5281/zenodo.18879061`
 
 ## Build Upload Bundles (Maintainers)
 
 From the private workspace root, generate Zenodo-ready archives and checksums:
 
 ```bash
-./atlas-public/scripts/prepare_zenodo_export.sh /home/sandesh/Documents/Global_Project
+./scripts/prepare_zenodo_export.sh <private-workspace-root>
 ```
 
 This creates `zenodo_exports/atlas_v31_<timestamp>/` with:
