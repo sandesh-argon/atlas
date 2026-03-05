@@ -80,4 +80,4 @@ LOG_DIR = PROJECT_ROOT / "logs"
 # Contact info
 CONTACT_NAME = "Argon Analytics"
 CONTACT_URL = "https://atlas.argonanalytics.org"
-CONTACT_EMAIL = "support@argonanalytics.com"
+CONTACT_EMAIL = "sandesh@argonanalytics.org"
