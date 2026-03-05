@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Atlas pre-commit security gate
+# Blocks commits that contain obvious secret/key patterns.
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+mapfile -t STAGED < <(git diff --cached --name-only --diff-filter=ACMR)
+if [[ ${#STAGED[@]} -eq 0 ]]; then
+  exit 0
+fi
+
+# Allowlist files that intentionally contain regex examples.
+allowlist_regex='^(\.github/workflows/release-safety\.yml|PUBLIC_RELEASE_CHECKLIST\.md)$'
+
+secret_rx='AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{35}|ghp_[0-9A-Za-z]{36}|github_pat_[0-9A-Za-z_]{40,}|sk-ant-[A-Za-z0-9_-]{20,}|xox[baprs]-[A-Za-z0-9-]{10,}|-----BEGIN (RSA|OPENSSH|EC|DSA|PGP) PRIVATE KEY-----'
+
+hits=0
+for f in "${STAGED[@]}"; do
+  [[ -f "$f" ]] || continue
+
+  if [[ "$f" =~ $allowlist_regex ]]; then
+    continue
+  fi
+
+  # Skip obvious binary files
+  case "$f" in
+    *.png|*.jpg|*.jpeg|*.gif|*.ico|*.pdf|*.parquet|*.zip|*.tar|*.gz|*.woff|*.woff2|*.ttf|*.pkl|*.bin)
+      continue
+      ;;
+  esac
+
+  if rg -n -e "$secret_rx" "$f" >/tmp/atlas_precommit_hits.txt 2>/dev/null; then
+    echo "[pre-commit] Secret-like content detected in: $f"
+    sed -n '1,5p' /tmp/atlas_precommit_hits.txt
+    hits=1
+  fi
+
+  # Prevent committing personal absolute paths
+  if rg -n -e '/h[o]me/[A-Za-z0-9._-]+/|/U[s]ers/[A-Za-z0-9._-]+/|C:\\\\Users\\\\[A-Za-z0-9._-]+' "$f" >/tmp/atlas_precommit_paths.txt 2>/dev/null; then
+    echo "[pre-commit] Personal absolute path detected in: $f"
+    sed -n '1,5p' /tmp/atlas_precommit_paths.txt
+    hits=1
+  fi
+
+  # Prevent tracked files >10MB
+  size=$(wc -c <"$f" | tr -d ' ')
+  if [[ "$size" -gt 10485760 ]]; then
+    echo "[pre-commit] File exceeds 10MB and should not be committed: $f ($size bytes)"
+    hits=1
+  fi
+
+done
+
+if [[ "$hits" -ne 0 ]]; then
+  echo
+  echo "Commit blocked by Atlas security pre-commit checks."
+  echo "If this is a false positive, fix file content or update allowlist intentionally."
+  exit 1
+fi
+
+exit 0

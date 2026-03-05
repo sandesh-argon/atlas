@@ -19,6 +19,16 @@ Use `.github/ISSUE_TEMPLATE/feature_request.md` with a clear use case and propos
 
 Use `.github/ISSUE_TEMPLATE/research_question.md` for findings/methodology questions. Include the finding ID or section reference, your research context, and what you already checked.
 
+## 3.5 Local Security Hooks
+
+Before your first commit, install local hooks:
+
+```bash
+./scripts/install_hooks.sh
+```
+
+This enables pre-commit checks for secret-like tokens, personal absolute paths, and oversized files.
+
 ## 4. Pull Requests
 
 - Fork and create a branch from `main`.
