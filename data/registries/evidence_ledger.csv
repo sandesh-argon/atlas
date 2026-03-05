@@ -1,0 +1,134 @@
+evidence_id,source_id,section_anchor,verbatim_excerpt,paraphrase,claim_type,confidence,worker_id,created_at_utc,status
+E-DRV-00027,DRV-00027,drive_ingest,,Queued for extraction: feature_pipeline_gdp_per_capita,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00029,DRV-00029,drive_ingest,,Queued for extraction: feature_pipeline_homicide,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00030,DRV-00030,drive_ingest,,Queued for extraction: feature_pipeline_infant_mortality,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00035,DRV-00035,drive_ingest,,Queued for extraction: feature_pipeline_undernourishment,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00032,DRV-00032,drive_ingest,,Queued for extraction: feature_pipeline_life_expectancy,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00033,DRV-00033,drive_ingest,,Queued for extraction: feature_pipeline_mean_years_schooling,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00028,DRV-00028,drive_ingest,,Queued for extraction: feature_pipeline_gini,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00031,DRV-00031,drive_ingest,,Queued for extraction: feature_pipeline_internet_users,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00034,DRV-00034,drive_ingest,,Queued for extraction: feature_pipeline_undernourishment,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00007,DRV-00007,drive_ingest,,Queued for extraction: Phase 4 Findings - Learning Doc,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00046,DRV-00046,drive_ingest,,Queued for extraction: A0_UPDATED_STATS,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00005,DRV-00005,drive_ingest,,Queued for extraction: Findings,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00006,DRV-00006,drive_ingest,,Queued for extraction: Findings Narrative,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00011,DRV-00011,drive_ingest,,Queued for extraction: HumanDevReportIndicators,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00042,DRV-00042,drive_ingest,,Queued for extraction: Phase_0-3_Master_Verification_Checklist,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00043,DRV-00043,drive_ingest,,Queued for extraction: Phase_4_Quality_Assurance_Checklist,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00039,DRV-00039,drive_ingest,,Queued for extraction: Research Log: Phase 4,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00023,DRV-00023,drive_ingest,,Queued for extraction: Research Log: Phase 1 - Temporal Feature Engineering & Train-Test Split,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00026,DRV-00026,drive_ingest,,Queued for extraction: Research Log: Phase 2,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00037,DRV-00037,drive_ingest,,Queued for extraction: Research Log: Phase 3,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00022,DRV-00022,drive_ingest,,Queued for extraction: Research Log: Phase 0,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00009,DRV-00009,drive_ingest,,Queued for extraction: Datasources,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00016,DRV-00016,drive_ingest,,Queued for extraction: UISIndicators,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00020,DRV-00020,drive_ingest,,Queued for extraction: WHO Global Health Observatory (GHO),ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00018,DRV-00018,drive_ingest,,Queued for extraction: UnicefIndicators,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00013,DRV-00013,drive_ingest,,Queued for extraction: IMFIndicators,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00024,DRV-00024,drive_ingest,,Queued for extraction: Phase 2 Data Human Report,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00010,DRV-00010,drive_ingest,,Queued for extraction: HumanDevReportIndicators,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00021,DRV-00021,drive_ingest,,Queued for extraction: worldBankIndicators,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-DRV-00041,DRV-00041,drive_ingest,,Queued for extraction: Training,ingest_queue,low,F,2026-03-05T03:26:29.726938Z,queued
+E-CLM-0001,SRC-V31-CERT,v31.validation.status,,V3.1 validation status is CERTIFIED.,fact_status,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0002,SRC-V31-CERT,v31.validation.certification_level,,V3.1 certification level is PRODUCTION_READY.,fact_status,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0003,SRC-V31-CERT,v31.validation.phase2a.valid_files,,"Phase 2A valid file count is 4,749 of 4,767.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0004,SRC-V31-CERT,v31.validation.phase2b.valid_files,,"Phase 2B valid file count is 4,680 of 4,768.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0005,SRC-V31-PANEL,v31.panel.total_rows,,"Panel validation total rows are 18,296,578.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0006,SRC-V31-PANEL,v31.panel.n_countries,,Panel validation country count is 893.,fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0007,SRC-V31-PANEL,v31.panel.n_indicators,,"Panel validation indicator count is 3,122.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0008,SRC-V21-A2-FDR,v21.a2.n_tests,,"A2 Granger tested 2,159,672 pairs.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0009,SRC-V21-A2-FDR,v21.a2.n_significant_fdr_005,,"A2 FDR q<0.05 significant edges are 564,545.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0010,SRC-V21-A2-FDR,v21.a2.maxlag,,A2 Granger max lag is 5.,fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0011,SRC-V21-A3-EDGECSV,v21.a3.final_edges,,"A3 final DAG edge list has 58,837 edges.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0012,SRC-V21-A4-LASSO,v21.a4.n_validated,,"A4 bootstrap validation retained 4,976 edges.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0013,SRC-V21-A4-LASSO,v21.a4.bootstrap_n,,A4 bootstrap iteration count is 100.,fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0014,SRC-V31-DATA-ROOT,v31.files.temporal_graphs_total,,"Current v31 temporal graph files total 5,054.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0015,SRC-V31-DATA-ROOT,v31.files.temporal_shap_total,,"Current v31 temporal SHAP files total 5,053.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0016,SRC-V31-DATA-ROOT,v31.files.baselines_total,,"Current v31 baseline files total 5,026.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0017,SRC-V31-DATA-ROOT,v31.files.temporal_graphs_regional,,Current v31 regional temporal graph files total 286.,fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0018,SRC-V31-DATA-ROOT,v31.files.temporal_shap_regional,,Current v31 regional temporal SHAP files total 286.,fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0019,SRC-V31-DATA-ROOT,v31.files.regional_indicator_stats,,Current v31 regional indicator stats files total 11.,fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0020,SRC-V31-METHVAL,v31.methodology.population_coverage_total_millions,,"Methodology failure-bias test reports 7,477.1 million population coverage audited.",fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0021,SRC-V31-PROGRESS,v31.progress.header_total_output_files,,"Progress header states total output files 9,926.",fact_numeric,medium,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0022,SRC-V31-PROGRESS,v31.progress.table_total_output_files,,"Progress table states total output files 9,928.",fact_numeric,medium,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0023,SRC-V1-README,v1.scope.statement,,"V1 README states 174 countries x 65 years x 2,480 indicators scope.",fact_status,medium,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0024,SRC-V1-P4-README,v1.phase4.graph_nodes_edges,,V1 phase 4 export documents 162 nodes and 204 edges in combined graph.,fact_status,medium,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0025,SRC-V21-SOURCES,v21.sources.group_count,,V2.1 source registry includes 49 source groups.,fact_numeric,high,A-E,2026-03-05T03:48:03.228141Z,ready
+E-CLM-0026,SRC-FINDINGS-PKG,findings.coverage.total_graphs_seen,,Findings package coverage total_graphs_seen is 140.,fact_numeric,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0027,SRC-FINDINGS-PKG,findings.coverage.expected_graphs,,Findings package expected_graphs is 140.,fact_numeric,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0028,SRC-FINDINGS-PKG,findings.coverage.years_expected,,Findings package years_expected is 35.,fact_numeric,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0029,SRC-FINDINGS-PKG,findings.candidates.total,,"Findings candidate pool has 11,632 candidates.",fact_numeric,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0030,SRC-FINDINGS-PKG,findings.top10.class_mix,,"Top-10 findings class mix is 4 reversal, 3 mediation, 2 threshold, 1 outcome_surprise.",fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0031,SRC-FINDINGS-PKG,findings.top4.class_mix,,"Top-4 public findings preserve class diversity (one each: reversal, mediation, threshold, outcome_surprise).",fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0032,SRC-FINDINGS-PKG,findings.top4.ids,,"Top-4 public finding IDs are F02,F08,F06,F01.",fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0033,SRC-FINDINGS-PKG,findings.F02.availability,,F02 availability is 140/140 graphs and 35/35 years.,fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0034,SRC-FINDINGS-PKG,findings.F08.direct_edge_availability,,F08 direct edge availability is 0/140.,fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0035,SRC-FINDINGS-PKG,findings.F08.indirect_path_availability,,F08 indirect path availability is 140/140.,fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0036,SRC-FINDINGS-PKG,findings.F06.threshold_latest,,F06 threshold value is 3.0 in the latest year.,fact_numeric,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0037,SRC-FINDINGS-PKG,findings.F06.threshold_latest_year,,F06 threshold latest year is 2024.,fact_numeric,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0038,SRC-FINDINGS-PKG,findings.F06.country_split_2024,,F06 latest country split has 66 below and 108 above threshold.,fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0039,SRC-API-SIM-ROUTER,api.routes.routers.total,,Routers expose 45 HTTP endpoints.,fact_numeric,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0040,SRC-API-MAIN,api.routes.main.total,,Application-level endpoints expose 2 GET routes in main.py.,fact_numeric,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0041,SRC-API-MAIN,api.routes.total,,Total declared API endpoints are 47 across routers plus app-level routes.,fact_numeric,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0042,SRC-API-MAIN,api.contract.instant.canonical,,Canonical instant simulation endpoint is /api/simulate/v31.,fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0043,SRC-API-MAIN,api.contract.temporal.canonical,,Canonical temporal simulation endpoint is /api/simulate/v31/temporal.,fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0044,SRC-API-REQ,api.request.view_type.includes_regional,,Simulation request view_type enum includes regional.,fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0045,SRC-API-REQ,api.request.regional_validation,,Regional request validation requires region or country.,fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0046,SRC-API-CONFIG,api.config.enable_regional_view.default,,ENABLE_REGIONAL_VIEW defaults to true when env var is unset.,fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0047,SRC-API-CONFIG,api.config.simulation_timeout.default,,Simulation timeout default is 10 seconds.,fact_numeric,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0048,SRC-API-CONFIG,api.config.temporal_timeout.default,,Temporal timeout default is 60 seconds.,fact_numeric,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0049,SRC-API-CONFIG,api.config.rate_limits.default,,Rate limit defaults are 100 requests/minute and 1000 requests/hour.,fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0050,SRC-FINDINGS-PKG,findings.F01.availability,,F01 edge agmxhoi992->accmhoi999 is available in 140/140 graphs and 35/35 years.,fact_status,high,G-H,2026-03-05T03:56:17.327586Z,ready
+E-CLM-0051,SRC-W5-HARDENING,week5.unresolved_contradictions,,Unresolved contradictions count is 0.,fact_numeric,high,Week5,2026-03-05T04:14:22.560189Z,ready
+E-CLM-0052,SRC-W5-HARDENING,week5.tasks.closed_count,,All 8 orchestrated tasks are closed.,fact_numeric,high,Week5,2026-03-05T04:14:22.560189Z,ready
+E-CLM-0053,SRC-W5-HARDENING,week5.open_questions.pre_triage,,Open questions count is 4 before Week 5 triage updates.,fact_numeric,high,Week5,2026-03-05T04:14:22.560189Z,ready
+E-CLM-0054,SRC-W5-HARDENING,week5.citations.link_integrity,,Citation audit reports zero missing and zero unknown evidence links.,fact_status,high,Week5,2026-03-05T04:14:22.560189Z,ready
+E-CLM-0055,SRC-W5-HARDENING,week5.regional.graph_files,,Regional graph corpus has 286 files.,fact_numeric,high,Week5,2026-03-05T04:14:22.560189Z,ready
+E-CLM-0056,SRC-W5-HARDENING,week5.regional.edges_total,,"Regional edge count audited is 1,093,922.",fact_numeric,high,Week5,2026-03-05T04:14:22.560189Z,ready
+E-CLM-0057,SRC-W5-HARDENING,week5.region_mapping.coverage,,Regional mapping coverage is 178/178 canonical countries.,fact_status,high,Week5,2026-03-05T04:14:22.560189Z,ready
+E-CLM-0058,SRC-W5-HARDENING,week5.region_mapping.north_america,,North America mapping members are Canada and United States; Mexico maps to latin_america_caribbean.,fact_status,high,Week5,2026-03-05T04:14:22.560189Z,ready
+E-CLM-0059,SRC-W5-HARDENING,week5.prefilter.artifact_gap,,v2.1 prefiltered_pairs artifact is absent while legacy v2.0 artifact exists.,fact_status,high,Week5,2026-03-05T04:14:22.560189Z,ready
+E-CLM-0060,SRC-W5-HARDENING,week5.api.route_counts,,API surface count remains 47 endpoints (45 router + 2 app-level).,fact_status,high,Week5,2026-03-05T04:14:22.560189Z,ready
+E-DRV-00038,DRV-00038,drive_ingest,,Queued for extraction: feature_pipeline_undernourishment,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00036,DRV-00036,drive_ingest,,Queued for extraction: feature_pipeline_mean_years_schooling,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00049,DRV-00049,drive_ingest,,Queued for extraction: A0_UPDATED_STATS,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00008,DRV-00008,drive_ingest,,Queued for extraction: Findings,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00014,DRV-00014,drive_ingest,,Queued for extraction: HumanDevReportIndicators,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00045,DRV-00045,drive_ingest,,Queued for extraction: Phase_0-3_Master_Verification_Checklist,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00040,DRV-00040,drive_ingest,,Queued for extraction: Research Log: Phase 3,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00025,DRV-00025,drive_ingest,,Queued for extraction: Research Log: Phase 0,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00012,DRV-00012,drive_ingest,,Queued for extraction: Datasources,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00019,DRV-00019,drive_ingest,,Queued for extraction: UISIndicators,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00062,DRV-00062,drive_ingest,,Queued for extraction: Research Brief,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00059,DRV-00059,drive_ingest,,Queued for extraction: AI Generated Research Brief,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00068,DRV-00068,drive_ingest,,Queued for extraction: Radial Causal Gravity Visualization System,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00044,DRV-00044,drive_ingest,,Queued for extraction: Training,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00072,DRV-00072,drive_ingest,,Queued for extraction: The Mixed Blessings of Material Progress_ Diminishing Returns in the Pursuit of Happiness__1NiahVGZAjPFh1BVo13QjU5wyCoxqN2nt-glptRHS7Vw,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00015,DRV-00015,drive_ingest,,Queued for extraction: IMFIndicators,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00001,DRV-00001,drive_ingest,,Queued for extraction: Comparing to Other Research,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00017,DRV-00017,drive_ingest,,Queued for extraction: Indicator to Data,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00073,DRV-00073,drive_ingest,,Queued for extraction: schedule,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00057,DRV-00057,drive_ingest,,Queued for extraction: Global Progress: an Empirical Analysis and an Evolutionary Framework,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00058,DRV-00058,drive_ingest,,Queued for extraction: The Mixed Blessings of Material Progress: Diminishing Returns in the Pursuit of Happiness,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00056,DRV-00056,drive_ingest,,Queued for extraction: Evolutionary Progress: Conceptual Issues,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00067,DRV-00067,drive_ingest,,Queued for extraction: Phase 1 MVP Expanded Plan,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00048,DRV-00048,drive_ingest,,Queued for extraction: Full Results,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00052,DRV-00052,drive_ingest,,Queued for extraction: v2 Plan,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00050,DRV-00050,drive_ingest,,Queued for extraction: Story of the Data v2,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00047,DRV-00047,drive_ingest,,Queued for extraction: Executive Summary Results,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00055,DRV-00055,drive_ingest,,Queued for extraction: Are Evolutionists Still Hooked on Progress,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00051,DRV-00051,drive_ingest,,Queued for extraction: v2 Considerations,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00070,DRV-00070,drive_ingest,,Queued for extraction: Updated Checklist,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00066,DRV-00066,drive_ingest,,Queued for extraction: Implementation Plan,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00004,DRV-00004,drive_ingest,,Queued for extraction: Tech Stack,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00071,DRV-00071,drive_ingest,,Queued for extraction: User Journey Narratives,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00063,DRV-00063,drive_ingest,,Queued for extraction: Tech,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00061,DRV-00061,drive_ingest,,Queued for extraction: Professors,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00003,DRV-00003,drive_ingest,,Queued for extraction: Spec Sheet,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00002,DRV-00002,drive_ingest,,Queued for extraction: Project Definition,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00069,DRV-00069,drive_ingest,,Queued for extraction: Temp,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00053,DRV-00053,drive_ingest,,Queued for extraction: Notes,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00064,DRV-00064,drive_ingest,,Queued for extraction: The Plan,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00060,DRV-00060,drive_ingest,,Queued for extraction: Email Outreach,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00054,DRV-00054,drive_ingest,,Queued for extraction: Systems Architecture,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued
+E-DRV-00065,DRV-00065,drive_ingest,,Queued for extraction: 3d_test,ingest_queue,low,F,2026-03-05T04:13:44.438637Z,queued

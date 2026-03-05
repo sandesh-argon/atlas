@@ -1,0 +1,100 @@
+.globe-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.globe-background canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Animated gradient orbs */
+.globe-orbs {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+@keyframes float-orb-1 {
+  0%, 100% {
+    transform: translate(-20%, -20%) scale(1);
+  }
+  50% {
+    transform: translate(-10%, -30%) scale(1.1);
+  }
+}
+
+@keyframes float-orb-2 {
+  0%, 100% {
+    transform: translate(20%, 20%) scale(1);
+  }
+  50% {
+    transform: translate(30%, 10%) scale(1.2);
+  }
+}
+
+@keyframes float-orb-3 {
+  0%, 100% {
+    transform: translate(-30%, 30%) scale(1);
+  }
+  50% {
+    transform: translate(-20%, 40%) scale(1.15);
+  }
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+}
+
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #667eea 0%, transparent 70%);
+  top: 10%;
+  left: 10%;
+  animation: float-orb-1 20s ease-in-out infinite;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #764ba2 0%, transparent 70%);
+  bottom: 10%;
+  right: 10%;
+  animation: float-orb-2 25s ease-in-out infinite;
+}
+
+.orb-3 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, #f093fb 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  animation: float-orb-3 30s ease-in-out infinite;
+}
+
+/* Grid overlay for futuristic effect */
+.grid-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(102, 126, 234, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(102, 126, 234, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: pulse 4s ease-in-out infinite;
+}

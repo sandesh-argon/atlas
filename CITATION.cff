@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Atlas: Causal Discovery and Scenario Simulation for Development Economics"
+authors:
+  - family-names: "[PLACEHOLDER]"
+    given-names: "[PLACEHOLDER]"
+    orcid: "[PLACEHOLDER if available]"
+version: "3.1"
+date-released: "2026-03-01"
+url: "https://argonanalytics.com"
+repository-code: "https://github.com/[org]/atlas"
+license: MIT
+keywords:
+  - causal-discovery
+  - development-economics
+  - granger-causality
+  - directed-acyclic-graphs
+  - policy-simulation
+  - shap
+abstract: "Atlas analyzes 3,122 development indicators across 178 countries (1990-2024) using a three-stage causal discovery pipeline to identify mechanism heterogeneity in development policy."

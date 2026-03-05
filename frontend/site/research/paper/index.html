@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Research Paper — Causal Discovery and Scenario Simulation for Development Policy</title>
+<meta name="description" content="Full research paper: causal discovery methodology, four anchor findings with stratum-level evidence, and policy implications. 18M observations, 3,122 indicators, 35 years.">
+<meta property="og:title" content="Atlas Research Paper — Causal Discovery Under Mechanism Heterogeneity">
+<meta property="og:description" content="Full research paper with four anchor findings across four mechanism classes. Tables, references, and complete methodology.">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://atlas.argonanalytics.org/research/paper">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../research-base.css">
+<style>
+  /* ── Paper-specific styles ── */
+
+  /* Reading progress bar is in research-base.css */
+
+  /* Failure list items */
+  .failure-list {
+    list-style: none; padding: 0; margin: 0 0 20px;
+  }
+  .failure-list li {
+    border-left: 3px solid var(--red);
+    background: var(--navy-2);
+    padding: 14px 20px;
+    margin-bottom: 10px;
+    border-radius: 0 3px 3px 0;
+    font-size: 15px; line-height: 1.7; color: var(--text-muted);
+  }
+  .failure-list li strong {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--red); letter-spacing: 0.06em;
+  }
+
+  /* Section dividers inside article */
+  .article-body hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 56px 0;
+  }
+
+  /* Back to hub link */
+  .back-link {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em;
+    color: var(--text-subtle); text-decoration: none; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-bottom: 24px; transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--cyan); }
+
+  /* Section number labels */
+  .section-num {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--cyan); margin-right: 8px; letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<a href="#abstract" class="skip-link">Skip to abstract</a>
+
+<!-- READING PROGRESS BAR -->
+<div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="36" height="36" aria-label="Atlas logo" style="margin-right:6px;flex-shrink:0;"><line x1="8" y1="8" x2="8" y2="2.5" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round"/><line x1="8" y1="8" x2="2.8" y2="11.5" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round"/><line x1="8" y1="8" x2="13.2" y2="11.5" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round"/><circle cx="8" cy="2.5" r="1.5" fill="#00E5FF"/><circle cx="2.8" cy="11.5" r="1.5" fill="#00E5FF"/><circle cx="13.2" cy="11.5" r="1.5" fill="#00E5FF"/><circle cx="8" cy="8" r="2" fill="none" stroke="#00E5FF" stroke-width="1.2"/><circle cx="8" cy="8" r="0.8" fill="#00E5FF"/></svg>Atlas &nbsp;<span>by Argon Analytics</span></a>
+  <div class="nav-links">
+    <a href="/#what">What It Does</a>
+    <a href="/#method">Methodology</a>
+    <a href="/#findings">Findings</a>
+    <a href="/research" class="active">Research</a>
+  </div>
+  <a href="/explore" class="nav-cta">Launch Atlas &rarr;</a>
+</nav>
+
+<!-- MOBILE TOC TOGGLE -->
+<button class="mobile-toc-toggle" id="mobile-toc-btn" aria-expanded="false" aria-controls="mobile-toc">Table of Contents</button>
+<div class="mobile-toc-dropdown" id="mobile-toc" role="navigation" aria-label="Table of contents (mobile)">
+  <ol>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#introduction">1. Introduction</a></li>
+    <li><a href="#related-work">2. Related Work</a></li>
+    <li><a href="#data-methods">3. Data and Methods</a></li>
+    <li><a href="#findings">4. Findings</a></li>
+    <li><a href="#f02">4.1 Education&ndash;Fertility Reversal</a></li>
+    <li><a href="#f06">4.2 Governance Threshold Dynamics</a></li>
+    <li><a href="#f08">4.3 Fiscal Mediation Pathway</a></li>
+    <li><a href="#f01">4.4 Stable Upstream Predictor</a></li>
+    <li><a href="#cross-finding">4.5 Cross-Finding Synthesis</a></li>
+    <li><a href="#discussion">5. Discussion</a></li>
+    <li><a href="#conclusion">6. Conclusion</a></li>
+    <li><a href="#appendices">Appendices</a></li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</div>
+
+<main>
+<div class="article-layout">
+
+  <!-- ══════════════════ SIDEBAR TOC ══════════════════ -->
+  <aside class="sidebar-toc" role="navigation" aria-label="Table of contents">
+    <h4>Contents</h4>
+    <ol>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#introduction">1. Introduction</a>
+        <ol class="toc-sub">
+          <li><a href="#contributions">1.1 Contributions</a></li>
+          <li><a href="#paper-structure">1.2 Paper Structure</a></li>
+        </ol>
+      </li>
+      <li><a href="#related-work">2. Related Work</a>
+        <ol class="toc-sub">
+          <li><a href="#causal-discovery-obs">2.1 Causal Discovery</a></li>
+          <li><a href="#dev-econ-heterogeneity">2.2 Dev. Econ &amp; Heterogeneity</a></li>
+          <li><a href="#interpretability">2.3 Interpretability</a></li>
+          <li><a href="#positioning">2.4 Positioning</a></li>
+        </ol>
+      </li>
+      <li><a href="#data-methods">3. Data and Methods</a>
+        <ol class="toc-sub">
+          <li><a href="#data-sources">3.1 Data Sources</a></li>
+          <li><a href="#pipeline">3.2 Pipeline</a></li>
+          <li><a href="#shap">3.3 SHAP Analysis</a></li>
+          <li><a href="#simulation">3.4 Simulation Engine</a></li>
+          <li><a href="#validation">3.5 Validation</a></li>
+          <li><a href="#failure-aware">3.6 Failure-Aware Framing</a></li>
+          <li><a href="#extraction-governance">3.7 Extraction Governance</a></li>
+          <li><a href="#interpretation-rules">3.8 Interpretation Rules</a></li>
+        </ol>
+      </li>
+      <li><a href="#findings">4. Findings</a>
+        <ol class="toc-sub">
+          <li><a href="#f02">4.1 F02 Reversal</a></li>
+          <li><a href="#f06">4.2 F06 Threshold</a></li>
+          <li><a href="#f08">4.3 F08 Mediation</a></li>
+          <li><a href="#f01">4.4 F01 Stable</a></li>
+          <li><a href="#cross-finding">4.5 Synthesis</a></li>
+          <li><a href="#non-claims">4.6 Non-Claims</a></li>
+        </ol>
+      </li>
+      <li><a href="#discussion">5. Discussion</a></li>
+      <li><a href="#conclusion">6. Conclusion</a></li>
+      <li><a href="#appendices">Appendices</a></li>
+      <li><a href="#references">References</a></li>
+    </ol>
+    <div class="toc-pdf">
+      <a href="/research">&#8592; Research Hub</a>
+    </div>
+  </aside>
+
+  <!-- ══════════════════ ARTICLE BODY ══════════════════ -->
+  <article class="article-body">
+
+    <!-- TOP MATTER -->
+    <div class="article-top">
+      <a href="/research" class="back-link">&#8592; Research Hub</a>
+      <div class="eyebrow">Research Paper</div>
+      <h1>Atlas: Causal Discovery and Scenario Simulation for Development Policy Under Mechanism Heterogeneity</h1>
+      <p class="meta">Argon Analytics Research Team</p>
+      <p class="meta">March 2026</p>
+      <div class="keywords">
+        <span>causal discovery</span>
+        <span>development economics</span>
+        <span>Granger causality</span>
+        <span>directed acyclic graphs</span>
+        <span>mechanism heterogeneity</span>
+        <span>policy simulation</span>
+      </div>
+    </div>
+
+    <!-- ══════════════════ ABSTRACT ══════════════════ -->
+    <section class="abstract" id="abstract">
+      <h2>Abstract</h2>
+      <p>Atlas presents a claim-traceable causal discovery and scenario simulation framework for development analysis. The current release analyzes 18,296,578 panel observations across 893 country entities and 3,122 indicators from 1990 to 2024. The discovery pipeline proceeds in three stages: 2,159,672 pairwise Granger causality tests yield 564,545 FDR-corrected candidates; PC-Stable structure learning reduces these to 58,837 directed edges; and bootstrap validation (100 iterations) retains 4,976 robust edges. Runtime assets include 5,054 temporal graphs and 5,053 SHAP importance files served through a multi-scope simulation engine.</p>
+      <p>We report four anchor findings from the full 140-graph, 35-year corpus, each representing a distinct mechanism class: a development-stage reversal in education&ndash;fertility linkage (F02), a governance threshold dynamic for local election quality (F06), a complete mediation pathway from spending to agricultural income distribution (F08), and a stable upstream predictor for income accumulation (F01). Each finding is documented with stratum-level effect sizes, confidence intervals, and explicit uncertainty flags.</p>
+      <p>The main contribution is twofold. Methodologically, Atlas integrates evidence-governed narrative synthesis so that every published claim traces to a registered evidence anchor. Substantively, the findings demonstrate that mechanism heterogeneity&mdash;sign reversals, threshold effects, and mediated transmission&mdash;materially changes policy interpretation and renders one-size-fits-all intervention design unreliable.</p>
+    </section>
+
+    <!-- ══════════════════ 1. INTRODUCTION ══════════════════ -->
+    <h2 id="introduction"><span class="section-num">1</span>Introduction</h2>
+
+    <p>Development economics routinely faces causal questions under sparse interventions and noisy observational data. Standard panel methods provide useful estimates but can obscure mechanism heterogeneity when treatment effects vary by institutional context, income structure, or governance regime. Atlas addresses this by combining staged causal discovery with graph-based simulation and explicit uncertainty governance.</p>
+
+    <p>The central argument of this paper is that methodological rigor in discovery is necessary but not sufficient for policy impact. Public and policy value depends equally on how findings are translated: whether caveats survive narrative compression, whether evidence remains traceable, and whether contradictory artifacts are resolved before publication. Atlas was designed around that full-stack requirement, linking discovery outputs, serving artifacts, and narrative claims through registries and audit checks so that each policy-facing statement traces to an evidence anchor.</p>
+
+    <h3 id="contributions">1.1 Contributions</h3>
+
+    <p>First, Atlas demonstrates a scalable staged pipeline for temporal precedence screening, structural pruning, and bootstrap retention, with explicit artifact counts and validation checkpoints at each stage. Second, it produces a class-diverse findings set from complete 140-graph, 35-year coverage rather than a single-class leaderboard. Third, it operationalizes AI-assisted narrative synthesis with quantitative guardrails, making prose outputs auditable rather than purely generative. The contribution is therefore methodological and translational: Atlas provides a reproducible path from high-dimensional causal discovery to public-facing documents without dropping uncertainty or provenance.</p>
+
+    <h3 id="paper-structure">1.2 Paper Structure</h3>
+
+    <p>Section 2 positions Atlas within the causal discovery and development economics literature. Section 3 describes data sources, the three-stage pipeline, and validation architecture. Section 4 presents four anchor findings with full evidence and uncertainty structure. Section 5 discusses implications for research practice, policy design, and AI-assisted reporting. Section 6 concludes with deployment guidance and limitations.</p>
+
+    <hr>
+
+    <!-- ══════════════════ 2. RELATED WORK ══════════════════ -->
+    <h2 id="related-work"><span class="section-num">2</span>Related Work</h2>
+
+    <p>Atlas sits at the intersection of three research streams: causal discovery in observational settings, mechanism heterogeneity in development economics, and interpretability governance in policy-facing models. This section positions the Atlas pipeline against each stream and identifies the integration gap that motivates the present contribution.</p>
+
+    <h3 id="causal-discovery-obs">2.1 Causal Discovery in Observational Settings</h3>
+
+    <p>The temporal precedence framework introduced by Granger (1969) remains the most widely deployed screening test for directed relationships in panel data. By conditioning on lagged values, Granger tests establish whether past values of one series improve prediction of another&mdash;a necessary but insufficient condition for causality. Atlas uses Granger tests as the first-stage filter precisely because they scale to millions of pairwise comparisons while providing a defensible temporal ordering prior.</p>
+
+    <p>Structural approaches emerged to recover richer causal graphs from conditional independence patterns. Spirtes, Glymour, and Scheines (2000) formalized constraint-based structure learning through the PC algorithm, and Pearl (2009) provided the theoretical foundation linking directed acyclic graphs to interventional reasoning. A practical limitation of the original PC algorithm is its sensitivity to variable ordering in high-dimensional settings. Colombo and Maathuis (2014) resolved this with the PC-Stable modification, which produces order-independent adjacency searches and orientation rules. Atlas adopts PC-Stable for its second-stage structural pruning because order-independence is essential when processing thousands of candidate edges derived from heterogeneous indicator sets.</p>
+
+    <p>Recent work has extended causal discovery to large-scale time series applications. Runge, Nowack, Kretschmer, Flaxman, and Sejdinovic (2019) introduced the PCMCI algorithm, which combines a modified PC adjacency search with momentary conditional independence tests to handle autocorrelation&mdash;a pervasive feature of climate and geophysical data. PCMCI demonstrated that staged discovery (condition selection followed by causal testing) outperforms full-conditioning approaches in detection power across hundreds of variables. Atlas shares this staged design philosophy but addresses a different domain: country-level socioeconomic panels where the number of entities (893) and indicators (3,122) is large, time horizons are short (35 years), and mechanism heterogeneity is the primary analytical concern rather than autocorrelation alone.</p>
+
+    <p>The distinctive feature of the Atlas pipeline relative to these methods is not a new estimator but a governed integration: Granger prefiltering controls the candidate space, PC-Stable provides structural pruning, and bootstrap retention (100 iterations) imposes stability requirements. Each stage produces auditable artifact counts, making the reduction from 2.1 million candidates to 4,976 retained edges transparent and reproducible.</p>
+
+    <h3 id="dev-econ-heterogeneity">2.2 Development Economics and Mechanism Heterogeneity</h3>
+
+    <p>Development economics has a long tradition of seeking credible identification in observational data. Angrist and Pischke (2009) codified the modern identification toolkit&mdash;instrumental variables, regression discontinuity, and difference-in-differences&mdash;establishing standards for isolating causal effects from cross-sectional and panel variation. A foundational application is Acemoglu, Johnson, and Robinson (2001), who used historical settler mortality as an instrument for institutional quality, demonstrating that institutional differences account for large cross-country income gaps even after controlling for geography. This work established institutional context as a first-order determinant of development outcomes, a finding that Atlas corroborates structurally through governance-related edges in its causal graphs.</p>
+
+    <p>A central challenge these methods share is that estimated effects often assume homogeneity across units or strata. Vogl (2016) documented a striking reversal in the relationship between income and fertility across the demographic transition: before 1960, children from larger families in developing countries had richer, more educated parents; by century&rsquo;s end, the pattern had inverted. Roughly half of this reversal was attributable to rising aggregate parental education. This finding&mdash;that the sign of a fundamental development relationship depends on the stage of transition&mdash;directly parallels the education&ndash;fertility reversal that Atlas identifies as anchor finding F02, where the direction of the education&ndash;fertility linkage flips between income strata.</p>
+
+    <p>More recently, Chernozhukov, Demirer, Duflo, and Fern&aacute;ndez-Val (2025) developed a generic framework for detecting heterogeneous treatment effects in randomized experiments using machine learning proxies. Their approach post-processes ML predictions into group-level average effects and best linear predictors without requiring consistency of the underlying ML method. The framework demonstrates that treatment effect heterogeneity is not a nuisance parameter but an object of primary scientific interest&mdash;a principle Atlas operationalizes by classifying findings into mechanism types (reversal, threshold, mediation, stable-upstream) rather than reporting pooled averages.</p>
+
+    <p>Atlas extends this heterogeneity concern from experimental to observational discovery settings. Where Vogl (2016) documents reversal in a single variable pair and Chernozhukov et al. (2025) provide inference tools for known treatments, Atlas applies stratified causal discovery across the full indicator space to identify which mechanism class governs each pathway. The finding that mechanism class varies systematically by development stratum&mdash;not just effect magnitude&mdash;has direct implications for policy transfer: interventions designed from pooled coefficients risk sign errors when transported across income regimes.</p>
+
+    <h3 id="interpretability">2.3 Interpretability and Evidence Governance in Policy-Facing Models</h3>
+
+    <p>Translating complex model outputs into actionable policy guidance requires interpretability infrastructure. Lundberg and Lee (2017) introduced SHAP (SHapley Additive exPlanations), which assigns each feature a contribution value for individual predictions grounded in cooperative game theory. Atlas generates SHAP importance files at runtime for each of its 5,053 scope-specific models, enabling decomposition of scenario simulations into driver-level contributions.</p>
+
+    <p>However, interpretability at the feature level does not address a more fundamental governance problem: whether published claims faithfully represent the underlying evidence. Kapoor and Narayanan (2023) documented a systemic reproducibility crisis in ML-based science, finding data leakage and methodological errors across 294 papers in 17 fields. Their proposed solution&mdash;model info sheets that make analytical choices auditable&mdash;shares the same design principle as Atlas&rsquo;s claim registry: every published statement should trace to a verifiable evidence anchor, and the path from data to claim should be inspectable by third parties.</p>
+
+    <p>Atlas operationalizes this principle through a claim-registry and human-gate system. AI-assisted narrative synthesis accelerates prose generation, but registered evidence anchors hold authority on quantitative truth. Contradiction closure is required before publication, and quality-control reports accompany all narrative outputs. This approach treats evidence governance not as an afterthought but as a structural requirement of the research-production pipeline.</p>
+
+    <h3 id="positioning">2.4 Positioning</h3>
+
+    <p>Atlas occupies the intersection of these three streams. Its causal discovery layer draws on Granger screening, PC-Stable structure learning, and bootstrap stability&mdash;established methods combined in a staged pipeline. Its findings contribute to the development economics literature on mechanism heterogeneity by demonstrating that sign reversals, threshold effects, and mediated transmission systematically vary by development context. Its evidence governance layer addresses the reproducibility concerns raised by Kapoor and Narayanan (2023) through claim-level traceability and uncertainty-preserving narrative rules. The novelty is not a new estimator but a disciplined, full-stack integration: from staged discovery through runtime serving to auditable, policy-facing narrative synthesis.</p>
+
+    <hr>
+
+    <!-- ══════════════════ 3. DATA AND METHODS ══════════════════ -->
+    <h2 id="data-methods"><span class="section-num">3</span>Data and Methods</h2>
+
+    <h3 id="data-sources">3.1 Data Sources and Integration</h3>
+
+    <p>The validated corpus contains 18,296,578 panel rows across 893 country entities and 3,122 indicators, spanning 1990&ndash;2024. Atlas integrates nine institutional source families and two internal classification datasets, summarized in Table 1.</p>
+
+    <div class="table-caption">Table 1: Active Data Sources</div>
+    <div class="table-wrapper">
+      <table class="research-table" id="table-1">
+        <thead>
+          <tr>
+            <th class="sortable">Source</th>
+            <th class="sortable">Provider</th>
+            <th class="sortable num">Indicators</th>
+            <th class="sortable">Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>World Development Indicators</td><td>World Bank</td><td class="num">169</td><td>Global panel</td></tr>
+          <tr><td>V-Dem Dataset</td><td>V-Dem Institute</td><td class="num">456</td><td>Political institutions</td></tr>
+          <tr><td>UNESCO Institute for Statistics</td><td>UNESCO</td><td class="num">446</td><td>Education</td></tr>
+          <tr><td>World Inequality Database</td><td>WID</td><td class="num">296</td><td>Income distribution</td></tr>
+          <tr><td>Quality of Government</td><td>QoG Institute</td><td class="num">85</td><td>Governance</td></tr>
+          <tr><td>International Comparison Program</td><td>World Bank</td><td class="num">91</td><td>Price levels</td></tr>
+          <tr><td>World Bank Open Data</td><td>World Bank</td><td class="num">68</td><td>Development</td></tr>
+          <tr><td>Penn World Table 10.0</td><td>U. of Groningen</td><td class="num">10</td><td>National accounts</td></tr>
+          <tr><td>Global Health Observatory</td><td>WHO</td><td class="num">2</td><td>Health</td></tr>
+          <tr><td>Atlas Income Classifications</td><td>Atlas (internal)</td><td class="num">&mdash;</td><td>Stratum assignment</td></tr>
+          <tr><td>Atlas Regional Groups</td><td>Atlas (internal)</td><td class="num">&mdash;</td><td>Region mapping</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Integration proceeds in four passes: structural normalization to a common schema; semantic reconciliation of indicator identities; temporal-completeness filtering with explicit exclusion logging; and registry synchronization linking ingest outputs to dataset and evidence registries. Atlas treats missingness handling as a causal-risk control: naive handling can overrepresent well-observed country-year pockets while suppressing structurally important low-coverage signals.</p>
+
+    <p>All active sources carry canonical and archival URLs in the dataset registry, and narrative claims are permitted only for sources with complete provenance fields.</p>
+
+    <h3 id="pipeline">3.2 Causal Discovery Pipeline</h3>
+
+    <p>Atlas uses a three-stage pipeline because each stage answers a different statistical question and addresses a different failure mode. Table 2 summarizes the progressive contraction.</p>
+
+    <div class="table-caption">Table 2: Pipeline Funnel &mdash; Progressive Edge Contraction</div>
+    <div class="table-wrapper">
+      <table class="research-table" id="table-2">
+        <thead>
+          <tr>
+            <th class="sortable">Stage</th>
+            <th class="sortable">Method</th>
+            <th class="sortable num">Edges</th>
+            <th class="sortable num">Retention</th>
+            <th class="sortable">Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>A2</td><td>Granger causality (lag 5, FDR q&lt;0.05)</td><td class="num">564,545 of 2,159,672 tested</td><td class="num">26.1%</td><td>Temporal precedence screening</td></tr>
+          <tr><td>A3</td><td>PC-Stable conditional independence</td><td class="num">58,837</td><td class="num">10.4% of A2</td><td>Structural pruning</td></tr>
+          <tr><td>A4</td><td>Bootstrap retention (100 iterations)</td><td class="num">4,976</td><td class="num">8.5% of A3</td><td>Stability validation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Stage A2: Granger Causality Prefiltering</h4>
+
+    <p>Stage A2 tests whether lagged history of a candidate source variable X improves prediction of target Y beyond Y&rsquo;s own history. This is a temporal precedence filter&mdash;necessary evidence for directional plausibility, not sufficient evidence for causal identification. The 73.9% pruning rate is expected in high-dimensional observational settings where many pairwise correlations are weak or temporally non-predictive. A2 is intentionally permissive: the goal is to avoid discarding plausible temporal candidates before structural testing.</p>
+
+    <h4>Stage A3: PC-Stable Structure Learning</h4>
+
+    <p>Stage A3 applies conditional-independence logic to remove edges explainable by confounder structures. Where A2 asks whether X temporally precedes Y, A3 asks whether X still contributes when candidate confounders are conditioned on. The key limitation is that conditional-independence decisions depend on observed variables; unmeasured confounding can still distort orientation and adjacency.</p>
+
+    <h4>Stage A4: Bootstrap Effect Estimation</h4>
+
+    <p>Stage A4 estimates edge effect sizes and stability using 100 bootstrap iterations, retaining edges that satisfy retention and interval-sign coherence criteria. The 8.5% retention rate relative to A3 reflects a conservative reliability posture that favors persistent edges over edges that appear strong in a single fit but are unstable under perturbation. Bootstrap output is treated as a robustness filter and uncertainty proxy, not complete uncertainty characterization&mdash;Atlas documents known CI miscalibration risks from earlier phases.</p>
+
+    <h4>Why Three Stages</h4>
+
+    <p>A single-stage approach at this dimensionality tends to produce either dense and uninterpretable or sparse and brittle graphs. The staged design allows A2 to be broad, A3 to be structurally selective, and A4 to be reliability-selective. For policy audiences, the practical benefit is that each finding can be framed with both a mechanism class and an uncertainty class. For replication, each stage produces independent diagnostics.</p>
+
+    <h3 id="shap">3.3 SHAP Importance Analysis</h3>
+
+    <p>Atlas uses TreeSHAP feature attribution (Lundberg &amp; Lee, 2017<sup class="cite-note">CITE</sup>) as a contribution diagnostic alongside causal edges. The serving corpus includes 5,053 temporal SHAP files and 286 regional SHAP files. SHAP and causal edges are interpreted jointly: when SHAP concentration and edge stability align, confidence in mechanism framing improves; when they diverge, Atlas elevates uncertainty language. SHAP-based statements are always paired with causal-stage context to prevent misrepresentation of feature importance as intervention effect size.</p>
+
+    <h3 id="simulation">3.4 Simulation Engine</h3>
+
+    <p>The simulation engine propagates user-defined interventions through validated directed graphs with damping, horizon control, and optional nonlinear handling. Output is interpreted as comparative scenario movement, not absolute point forecasts. This distinction was learned through failure: V3.0 attempts to use propagation as an absolute forecaster were documented as a failure (FAIL-0001) and replaced with comparative framing.</p>
+
+    <p>The runtime supports unified, stratified (by income tier), country, and regional scopes, with 178/178 canonical countries mapped to regions. Regional analysis introduces aggregation risk from edge-union density inflation, which Atlas mitigates with explicit warnings, year-scope fallbacks, and contributor coverage reporting.</p>
+
+    <h3 id="validation">3.5 Validation Architecture</h3>
+
+    <p>System validation is anchored to certified production status, with Phase 2A passing 4,749/4,767 files (99.6%) and Phase 2B passing 4,680/4,768 files (98.2%). Validation operates at four levels: panel integrity (row/entity/indicator counts), runtime coherence (graph/SHAP/baseline alignment by scope), findings robustness (coverage across years and strata), and contradiction closure (zero unresolved conflicts at package freeze). Citation-link audits report zero missing and zero unknown evidence links.</p>
+
+    <h3 id="failure-aware">3.6 Failure-Aware Framing</h3>
+
+    <p>Atlas carries four documented failures into current methodology:</p>
+
+    <ul class="failure-list">
+      <li><strong>FAIL-0001:</strong> Absolute forecasting framing failed validation; replaced by comparative scenario framing.</li>
+      <li><strong>FAIL-0002:</strong> Direction-only claims were unstable under resampling; now require corroboration.</li>
+      <li><strong>FAIL-0003:</strong> Confidence intervals showed miscalibration risk; conservative caveat policy adopted.</li>
+      <li><strong>FAIL-0004:</strong> V1 coverage handling caused sample-dropout cascades; stricter panel-density filtering implemented.</li>
+    </ul>
+
+    <p>These failures are not rhetorical disclaimers&mdash;they change what Atlas considers publishable and how policy implications are phrased.</p>
+
+    <h3 id="extraction-governance">3.7 Findings Extraction Governance</h3>
+
+    <p>The extraction pipeline evaluated 11,632 candidates across the 140-graph, 35-year frame. The ranked top-10 was diversified by mechanism class: 4 reversals, 3 mediations, 2 thresholds, and 1 outcome-surprise. The public top-4 preserves one finding from each class to communicate the true mechanism heterogeneity in the corpus and prevent readers from overgeneralizing a single pattern. Each public finding carries four minimum evidence fields: availability, effect summary, uncertainty flags, and caveat language.</p>
+
+    <h3 id="interpretation-rules">3.8 Statistical Interpretation Rules</h3>
+
+    <p>This paper applies four interpretation rules. First, availability precedes novelty: a surprising claim with weak coverage is treated as exploratory, not anchor-grade. Second, mechanism class precedes policy implication: recommendations differ by finding type. Third, uncertainty flags are mandatory narrative elements, not optional footnotes. Fourth, policy language cannot exceed method framing: comparative scenario framing is preserved throughout.</p>
+
+    <hr>
+
+    <!-- ══════════════════ 4. FINDINGS ══════════════════ -->
+    <h2 id="findings"><span class="section-num">4</span>Findings</h2>
+
+    <!-- F02 -->
+    <h3 id="f02">4.1 Education&ndash;Fertility Reversal (F02)</h3>
+
+    <h4>What we found</h4>
+
+    <p>The edge from College Enrollment Gender Gap to Birth Rate is active in all 140 graphs and all 35 years, but its direction reverses by development stratum. In unified, developing, and emerging strata the relationship is negative; in the advanced stratum it is positive. This is a full-coverage heterogeneity signal, not a sparse anomaly.</p>
+
+    <div class="table-caption">Table 3: F02 &mdash; Stratum-Level Effect Sizes</div>
+    <div class="table-wrapper">
+      <table class="research-table" id="table-3">
+        <thead>
+          <tr>
+            <th class="sortable">Stratum</th>
+            <th class="sortable num">&beta;</th>
+            <th class="sortable ci">95% CI</th>
+            <th class="sortable num">Positive Years</th>
+            <th class="sortable num">Negative Years</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Unified</td><td class="num">&minus;0.674</td><td class="ci">[&minus;0.704, &minus;0.643]</td><td class="num">0</td><td class="num">35</td></tr>
+          <tr><td>Developing</td><td class="num">&minus;0.665</td><td class="ci">[&minus;0.712, &minus;0.616]</td><td class="num">0</td><td class="num">35</td></tr>
+          <tr><td>Emerging</td><td class="num">&minus;0.554</td><td class="ci">[&minus;0.649, &minus;0.459]</td><td class="num">0</td><td class="num">35</td></tr>
+          <tr><td>Advanced</td><td class="num">+0.255</td><td class="ci">[+0.128, +0.361]</td><td class="num">34</td><td class="num">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The directional reversal does not depend on missing years because availability is complete. This shifts interpretation toward genuine heterogeneity in mechanism structure across development regimes rather than artifact of data gaps.</p>
+
+    <h4>Mechanistic interpretation</h4>
+
+    <p>F02 challenges pooled-effect reasoning. A pooled model would compress this edge into one average sign and suppress the policy-relevant fact that direction inverts by stratum. A plausible interpretation is that the indicator reflects different social processes across development stages&mdash;educational access expansion associated with lower fertility in one regime, and labor-market or demographic structures producing a different association in another. Atlas does not claim unique mechanism identification; it claims the reversal is empirically robust and policy-relevant.</p>
+
+    <h4>Policy implications</h4>
+
+    <p>Interventions should be scoped with stratum diagnostics and tested under local scenario runs before scale-up. Evaluation design should use stratified impact reporting rather than pooled headline averages. Comparative pilots should include explicit directional checks before national rollout.</p>
+
+    <h4>Uncertainty</h4>
+
+    <p>F02 carries the flag <code>cross_strata_sign_instability</code>. The finding is strong on coverage but still requires local validation because stratum-level averages do not capture all within-stratum heterogeneity.</p>
+
+    <hr>
+
+    <!-- F06 -->
+    <h3 id="f06">4.2 Governance Threshold Dynamics (F06)</h3>
+
+    <h4>What we found</h4>
+
+    <p>The edge from Local Government Power to Local Election Quality exhibits threshold behavior at score 3.0, active in 140/140 graphs and 35/35 years. Below and above threshold, countries show different response profiles.</p>
+
+    <div class="table-caption">Table 4: F06 &mdash; Threshold Slopes by Stratum</div>
+    <div class="table-wrapper">
+      <table class="research-table" id="table-4">
+        <thead>
+          <tr>
+            <th class="sortable">Stratum</th>
+            <th class="sortable num">&beta; below</th>
+            <th class="sortable num">&beta; above</th>
+            <th class="sortable num">Threshold Years Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Unified</td><td class="num">0.219</td><td class="num">0.087</td><td class="num">35/35</td></tr>
+          <tr><td>Developing</td><td class="num">0.224</td><td class="num">0.085</td><td class="num">14/35</td></tr>
+          <tr><td>Emerging</td><td class="num">0.254</td><td class="num">0.077</td><td class="num">26/35</td></tr>
+          <tr><td>Advanced</td><td class="num">0.059</td><td class="num">0.013</td><td class="num">35/35</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>In 2024, 66 countries fall below the threshold and 108 above (174 total with coverage; 4 missing).</p>
+
+    <h4>Mechanistic interpretation</h4>
+
+    <p>F06 suggests regime-dependent marginal returns. Below the threshold, increments in local government power are associated with larger election-quality gains; above threshold, incremental response is smaller. The key policy insight is sequencing: below-threshold countries may unlock larger gains from capacity investments, while above-threshold countries may need complementary quality and enforcement reforms.</p>
+
+    <h4>Policy implications</h4>
+
+    <p>Governance programs should classify current threshold position before setting implementation sequence. Monitoring plans should include threshold position and transition metrics as primary indicators, not only outcome-level scores.</p>
+
+    <h4>Uncertainty</h4>
+
+    <p>F06 carries <code>ci_missing_or_sparse</code>. Note that all stratum-level CIs are null in the findings package. Atlas treats threshold topology as high-confidence but avoids over-precision in magnitude statements.</p>
+
+    <hr>
+
+    <!-- F08 -->
+    <h3 id="f08">4.3 Fiscal Mediation Pathway (F08)</h3>
+
+    <h4>What we found</h4>
+
+    <p>The directed path from Average Spending per Person through Average Pre-tax Government Income to Agricultural Income Distribution is active in all 140 graphs and all 35 years. The direct edge (spending &rarr; agricultural income) is absent in all 140 graphs. This satisfies Atlas mediation criteria with clean topology: transmission runs entirely through the fiscal mediator.</p>
+
+    <div class="table-caption">Table 5: F08 &mdash; Mediation Hop Coefficients by Stratum</div>
+    <div class="table-wrapper">
+      <table class="research-table" id="table-5">
+        <thead>
+          <tr>
+            <th class="sortable">Stratum</th>
+            <th class="sortable num">&beta;<sub>ab</sub> (Source&rarr;Mediator)</th>
+            <th class="sortable num">&beta;<sub>bc</sub> (Mediator&rarr;Target)</th>
+            <th class="sortable num">Indirect Product</th>
+            <th class="sortable">Direct &beta;<sub>ac</sub></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Unified</td><td class="num">0.819</td><td class="num">0.706</td><td class="num">0.578</td><td>absent</td></tr>
+          <tr><td>Developing</td><td class="num">0.835</td><td class="num">0.826</td><td class="num">0.689</td><td>absent</td></tr>
+          <tr><td>Emerging</td><td class="num">0.821</td><td class="num">0.739</td><td class="num">0.607</td><td>absent</td></tr>
+          <tr><td>Advanced</td><td class="num">0.922</td><td class="num">0.977</td><td class="num">0.900</td><td>absent</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Mechanistic interpretation</h4>
+
+    <p>F08 implies that spending-side changes transmit through fiscal income structure before affecting agricultural distribution outcomes. This is stronger than a &ldquo;both direct and indirect&rdquo; finding&mdash;the direct edge is structurally absent, making this a mediated-channel finding by construction. Endpoint-only interventions can underperform when mediator dynamics are not addressed.</p>
+
+    <h4>Policy implications</h4>
+
+    <p>Programs targeting agricultural distribution should track the fiscal-income mediator explicitly. Dashboards should include hop-level metrics. If the source-to-mediator hop fails to move, endpoint expectations should be revised before scaling. Funding architecture should consider tranche release conditions tied to mediator movement rather than endpoint-only thresholds.</p>
+
+    <h4>Uncertainty</h4>
+
+    <p>F08 carries <code>ci_missing_or_sparse</code>. Topology confidence is high (complete coverage); magnitude confidence is moderate.</p>
+
+    <hr>
+
+    <!-- F01 -->
+    <h3 id="f01">4.4 Stable Upstream Predictor (F01)</h3>
+
+    <h4>What we found</h4>
+
+    <p>The edge from Average Adult Government Benefits to Average Accumulated Income Per Person is one of the most stable links in the corpus: active in 140/140 graphs and 35/35 years with strongly positive coefficients across all strata.</p>
+
+    <div class="table-caption">Table 6: F01 &mdash; Stratum-Level Stability</div>
+    <div class="table-wrapper">
+      <table class="research-table" id="table-6">
+        <thead>
+          <tr>
+            <th class="sortable">Stratum</th>
+            <th class="sortable num">&beta;</th>
+            <th class="sortable ci">95% CI</th>
+            <th class="sortable">Decade Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Unified</td><td class="num">0.984</td><td class="ci">[0.920, 1.055]</td><td>1990s: 0.977, 2000s: 0.959, 2010s: 0.969, 2020s: 0.933</td></tr>
+          <tr><td>Developing</td><td class="num">0.984</td><td class="ci">[0.931, 1.042]</td><td>&mdash;</td></tr>
+          <tr><td>Emerging</td><td class="num">0.945</td><td class="ci">[0.847, 1.050]</td><td>&mdash;</td></tr>
+          <tr><td>Advanced</td><td class="num">0.940</td><td class="ci">[0.843, 1.035]</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Mechanistic interpretation</h4>
+
+    <p>F01 is an outcome-surprise finding: it ranks highest on stability and effect-size composite for income accumulation. Its value is less about novelty and more about reliability as a benchmark edge. When scenario settings or preprocessing choices materially alter this edge, analysts have a clear diagnostic signal that something in the pipeline changed.</p>
+
+    <h4>Policy implications</h4>
+
+    <p>F01 can serve as a baseline lever in early scenario design because of its cross-strata stability. Stable does not mean universal&mdash;administrative feasibility, transfer design quality, and governance constraints still determine real-world performance.</p>
+
+    <h4>Uncertainty</h4>
+
+    <p>F01 has no explicit uncertainty flag, but Atlas still applies conservative interpretation: even highly stable edges do not justify deterministic point forecasting.</p>
+
+    <hr>
+
+    <!-- 4.5 Cross-Finding Synthesis -->
+    <h3 id="cross-finding">4.5 Cross-Finding Synthesis</h3>
+
+    <p>The four anchor findings provide the mechanism classes needed for policy-grade interpretation: reversal, threshold, mediation, and stable-upstream. The combination matters because each class carries a different failure mode and demands a different policy response.</p>
+
+    <div class="table-caption">Table 7: Mechanism Class Comparison</div>
+    <div class="table-wrapper">
+      <table class="research-table" id="table-7">
+        <thead>
+          <tr>
+            <th class="sortable">Finding</th>
+            <th class="sortable">Class</th>
+            <th class="sortable">Primary Failure Mode</th>
+            <th class="sortable">Policy Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>F02</td><td>Reversal</td><td>Pooled-sign transfer error</td><td>Stratified design, directional pilots</td></tr>
+          <tr><td>F06</td><td>Threshold</td><td>Bad sequencing / regime mismatch</td><td>Classify position before intervention</td></tr>
+          <tr><td>F08</td><td>Mediation</td><td>Endpoint-only targeting</td><td>Track mediator, gate on intermediate movement</td></tr>
+          <tr><td>F01</td><td>Stable upstream</td><td>Transportability overconfidence</td><td>Use for baseline calibration, validate locally</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Six additional shortlisted findings (F03&ndash;F05, F07, F09&ndash;F10) reinforce this diversity: three additional reversals confirm that sign inversion is not unique to one variable pair; one additional threshold finding shows regime-dependent behavior is not limited to governance variables; and two additional mediation pathways into income accumulation strengthen the view that mediated transmission is a recurring structural pattern.</p>
+
+    <!-- 4.6 Non-Claims -->
+    <h3 id="non-claims">4.6 What the Findings Do Not Prove</h3>
+
+    <p>Atlas findings are directional and structural signals in observational data, not proofs of intervention invariance. F08 shows a persistent mediated path topology but does not prove that any spending intervention will reproduce the same effect under all implementation designs. F06 identifies threshold behavior but does not guarantee that crossing the threshold by policy design yields specific gains without complementary institutional factors. F02 demonstrates sign reversal but does not imply every country within a stratum follows the same sign at all times. F01 demonstrates stable association but does not guarantee deterministic response to policy changes.</p>
+
+    <p>These non-claims are necessary boundaries for honest use. Atlas is most valuable when these boundaries are explicit because they help teams avoid policy overconfidence while still making evidence-informed decisions.</p>
+
+    <hr>
+
+    <!-- ══════════════════ 5. DISCUSSION ══════════════════ -->
+    <h2 id="discussion"><span class="section-num">5</span>Discussion</h2>
+
+    <h3>5.1 Mechanism Heterogeneity as a First-Order Concern</h3>
+
+    <p>The anchor findings support a broad conclusion: mechanism heterogeneity is not a peripheral detail in development analysis&mdash;it directly changes intervention strategy. F02 shows that directional assumptions can reverse by stratum. F06 shows that regime position determines marginal returns. F08 shows that endpoint effects operate through intermediaries even when direct edges are absent. F01 shows that some edges remain stable enough to anchor scenario baselines.</p>
+
+    <p>For development research, this implies that evaluation design should avoid overreliance on pooled coefficients and report mechanism class explicitly. For policy practice, it implies staged planning: diagnose stratum and threshold position, validate mediator movement, and prioritize robust edges for early scenario exploration.</p>
+
+    <h3>5.2 Implications for Development-Economics Practice</h3>
+
+    <p>Three operational shifts follow from these findings. The first is stratified design by default: if sign reversal is common among high-coverage findings, pooled-effect policy transfer should be treated as risky unless validated locally. The second is mechanism-aware sequencing: threshold and mediation findings indicate that policy order can matter as much as policy content. The third is uncertainty-forward publication: decision memos should include caveats as standard fields, not appendices.</p>
+
+    <h3>5.3 What Atlas Does Not Claim</h3>
+
+    <p>Atlas does not claim experimental identification for all pathways. Mediation findings are path-persistence findings under observational structure, not randomized causal proofs. Threshold values are empirical regime markers, not universal constants. Stable edges are robust in this dataset, not guaranteed across all future data-generating processes. These limits define appropriate use: comparative scenario design with explicit local validation and transparent uncertainty handling.</p>
+
+    <h3>5.4 Implications for AI-Assisted Research Reporting</h3>
+
+    <p>Atlas offers a template for AI-assisted reporting under high-accuracy requirements. Three rules govern the approach: separate generation from validation (AI accelerates drafting but registries hold authority on quantitative truth); require contradiction closure before publication (AI can produce internally coherent text that conflicts with source artifacts); and publish quality-control reports alongside narratives so readers can inspect whether constraints were enforced.</p>
+
+    <h3>5.5 Future Work</h3>
+
+    <p>Within current evidence constraints, next steps include deeper finding-level diagnostics, expanded mediator robustness checks, clearer reporting of year-specific regime shifts, and improved mapping between legacy v2/v2.1 artifacts and v31 identifiers. Systematic falsification tests&mdash;defining one plausible null pathway per anchor finding and testing whether it remains absent&mdash;would further strengthen confidence. Any extension should preserve the same governance principle: no numeric claim without traceable evidence linkage and no confidence framing without uncertainty disclosure.</p>
+
+    <hr>
+
+    <!-- ══════════════════ 6. CONCLUSION ══════════════════ -->
+    <h2 id="conclusion"><span class="section-num">6</span>Conclusion</h2>
+
+    <p>Atlas demonstrates that research-grade synthesis of large causal corpora requires evidence governance, failure transparency, and uncertainty-preserving writing rules alongside statistical methodology. The current release provides all three while maintaining full-coverage anchor findings across four mechanism classes.</p>
+
+    <p>For researchers, the result is a reproducible and auditable findings package where every narrative claim traces to a registered evidence anchor. For policymakers, it is a structured scenario tool with explicit limits and actionable interpretation guidance. The central credibility claim is procedural: Atlas makes evidence traceability and uncertainty transparency operational requirements rather than optional annotations.</p>
+
+    <p>The practical recommendation for teams applying these findings is a five-step checklist: identify mechanism class before interpreting magnitude; verify availability and uncertainty flags; map findings to local policy levers; run local validation before scaling; and document one explicit caveat in every recommendation memo.</p>
+
+    <p>Atlas is positioned as a comparative decision-support system, not an absolute forecaster. That positioning reflects both the statistical limitations of observational causal analysis and the documented failures that shaped current methodology. The framework is most effective when teams treat it as a structured hypothesis engine&mdash;narrowing intervention search spaces and improving monitoring design&mdash;while preserving the institutional judgment and field evidence needed for durable outcomes.</p>
+
+    <hr>
+
+    <!-- ══════════════════ APPENDICES ══════════════════ -->
+    <h2 id="appendices"><span class="section-num">A</span>Appendices</h2>
+
+    <h3>Appendix A: Practical Guidance for Applied Researchers</h3>
+
+    <p>Applied researchers should treat Atlas findings as hypothesis accelerators. For behavior-change interventions where context heterogeneity is suspected, begin with reversal findings. For institutional sequencing questions, begin with threshold findings. For complex systems where endpoint outcomes lag, begin with mediation findings. For baseline sensitivity analysis, begin with stable-upstream findings.</p>
+
+    <p>To build a replicable case study: select one anchor finding, choose two comparator countries with different mechanism risk profiles, define the same intervention scenario for both, run scope-consistent simulations, and record divergence in pathway behavior mapped to mechanism class assumptions. Publishing this structure alongside findings improves external trust.</p>
+
+    <h3>Appendix B: AI-Assisted Workflow Disclosure</h3>
+
+    <p>This paper used AI assistance for prose drafting, restructuring, and readability editing. AI was not used to rerun discovery stages, compute new coefficients, or modify the underlying causal corpus. All quantitative statements originate from registered claims and findings artifacts. AI use is bounded by evidence-linkage checks, numeric integrity checks, uncertainty-caveat checks, failure-transparency checks, and cross-document consistency checks. Human review gates (H1 findings-strength, H2 scientific framing, H3 publication-readiness) retain final authority.</p>
+
+    <hr>
+
+    <!-- ══════════════════ REFERENCES ══════════════════ -->
+    <h2 id="references"><span class="section-num">R</span>References</h2>
+
+    <ul class="references-list">
+      <li>Acemoglu, D., Johnson, S., &amp; Robinson, J. A. (2001). The colonial origins of comparative development: An empirical investigation. <em>American Economic Review</em>, 91(5), 1369&ndash;1401.</li>
+      <li>Angrist, J. D., &amp; Pischke, J.-S. (2009). <em>Mostly Harmless Econometrics: An Empiricist&rsquo;s Companion</em>. Princeton University Press.</li>
+      <li>Chernozhukov, V., Demirer, M., Duflo, E., &amp; Fern&aacute;ndez-Val, I. (2025). Generic machine learning inference on heterogeneous treatment effects in randomized experiments, with an application to immunization in India. <em>Econometrica</em>, 93(4), 1103&ndash;1164.</li>
+      <li>Colombo, D., &amp; Maathuis, M. H. (2014). Order-independent constraint-based causal structure learning. <em>Journal of Machine Learning Research</em>, 15(116), 3921&ndash;3962.</li>
+      <li>Granger, C. W. J. (1969). Investigating causal relations by econometric models and cross-spectral methods. <em>Econometrica</em>, 37(3), 424&ndash;438.</li>
+      <li>Kapoor, S., &amp; Narayanan, A. (2023). Leakage and the reproducibility crisis in machine-learning-based science. <em>Patterns</em>, 4(9), 100804.</li>
+      <li>Lundberg, S. M., &amp; Lee, S.-I. (2017). A unified approach to interpreting model predictions. In <em>Advances in Neural Information Processing Systems 30</em> (pp. 4766&ndash;4777).</li>
+      <li>Pearl, J. (2009). <em>Causality: Models, Reasoning, and Inference</em> (2nd ed.). Cambridge University Press.</li>
+      <li>Runge, J., Nowack, P., Kretschmer, M., Flaxman, S., &amp; Sejdinovic, D. (2019). Detecting and quantifying causal associations in large nonlinear time series datasets. <em>Science Advances</em>, 5(11), eaau4996.</li>
+      <li>Spirtes, P., Glymour, C., &amp; Scheines, R. (2000). <em>Causation, Prediction, and Search</em> (2nd ed.). MIT Press.</li>
+      <li>Vogl, T. S. (2016). Differential fertility, human capital, and development. <em>Review of Economic Studies</em>, 83(1), 365&ndash;401.</li>
+    </ul>
+
+  </article>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>Atlas</span> &middot; Argon Analytics</div>
+  <div class="footer-links">
+    <a href="/explore">Launch Tool</a>
+    <a href="/research">Research</a>
+    <a href="mailto:sandesh@argonanalytics.org">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 Argon Analytics</div>
+</footer>
+
+<script>
+// ── Reading progress bar ──
+(function() {
+  const bar = document.getElementById('reading-progress');
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+})();
+
+// ── TOC scroll spy ──
+(function() {
+  const headings = document.querySelectorAll('.article-body h2[id], .article-body h3[id], .article-body .abstract[id]');
+  const tocLinks = document.querySelectorAll('.sidebar-toc a, .mobile-toc-dropdown a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        tocLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, {
+    rootMargin: '-80px 0px -70% 0px',
+    threshold: 0
+  });
+
+  headings.forEach(h => observer.observe(h));
+
+  // Smooth scroll on TOC click
+  tocLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Close mobile TOC if open
+        const mobileToc = document.getElementById('mobile-toc');
+        const mobileBtn = document.getElementById('mobile-toc-btn');
+        if (mobileToc.classList.contains('open')) {
+          mobileToc.classList.remove('open');
+          mobileBtn.classList.remove('open');
+          mobileBtn.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  });
+})();
+
+// ── Mobile TOC toggle ──
+(function() {
+  const btn = document.getElementById('mobile-toc-btn');
+  const dropdown = document.getElementById('mobile-toc');
+  btn.addEventListener('click', function() {
+    const isOpen = dropdown.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+})();
+
+// ── Table sort (same as hub) ──
+function initSortableTables() {
+  document.querySelectorAll('.research-table').forEach(table => {
+    const headers = table.querySelectorAll('thead th.sortable');
+    headers.forEach((th, colIdx) => {
+      th.addEventListener('click', () => {
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const isAsc = th.classList.contains('sort-asc');
+
+        // Clear other sort indicators
+        headers.forEach(h => { h.classList.remove('sort-asc', 'sort-desc'); });
+
+        const dir = isAsc ? -1 : 1;
+        th.classList.add(isAsc ? 'sort-desc' : 'sort-asc');
+
+        rows.sort((a, b) => {
+          const aVal = a.cells[colIdx].textContent.trim();
+          const bVal = b.cells[colIdx].textContent.trim();
+          const aNum = parseFloat(aVal.replace(/[,\u2212]/g, '-').replace(/[^0-9.\-]/g, ''));
+          const bNum = parseFloat(bVal.replace(/[,\u2212]/g, '-').replace(/[^0-9.\-]/g, ''));
+          if (!isNaN(aNum) && !isNaN(bNum)) return (aNum - bNum) * dir;
+          return aVal.localeCompare(bVal) * dir;
+        });
+
+        rows.forEach(row => tbody.appendChild(row));
+      });
+    });
+  });
+}
+initSortableTables();
+
+// ── Scroll reveal ──
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+</script>
+</body>
+</html>

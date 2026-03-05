@@ -1,0 +1,1116 @@
+{
+  "version": 1,
+  "templates": [
+    {
+      "id": "brazil-bolsa-familia-cct",
+      "name": "Brazil Bolsa Fam\u00edlia Conditional Cash Transfers",
+      "short_name": "Bolsa Fam\u00edlia",
+      "description": "Scale targeted conditional cash transfers tied to school attendance and preventive care, with focus on the poorest households.",
+      "category": "economy",
+      "source": "World Bank / The Lancet / IMF",
+      "year": 2008,
+      "target_audience": "Social protection ministries and fiscal policy teams",
+      "interventions": [
+        {
+          "indicator_id": "aceuhni992",
+          "indicator_name": "Average Income After Taxes and Benefits",
+          "change_percent": 12,
+          "change_absolute": null,
+          "justification": "Higher disposable income through transfers improves consumption smoothing and service uptake.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "ascgrxi992",
+          "indicator_name": "Average Social Income for Adults",
+          "change_percent": 18,
+          "change_absolute": null,
+          "justification": "Expanded social transfer channels mirror CCT program scale-up.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "OE.5T8.40520.M",
+          "indicator_name": "Out-of-School Boys - Lower Secondary Age",
+          "change_percent": -12,
+          "change_absolute": null,
+          "justification": "Conditionality tied to attendance is designed to reduce out-of-school children.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Poverty and inequality decline while household resilience improves.",
+        "secondary": [
+          "Higher school continuation rates for adolescents",
+          "Lower extreme poverty incidence",
+          "Stronger local demand multipliers in poor municipalities"
+        ],
+        "time_horizon_years": 8
+      },
+      "evidence": {
+        "source": "The Lancet (2013); World Bank (2013); IMF WP/17/225",
+        "case_study": "Brazil expanded Bolsa Fam\u00edlia to ~14 million households and observed large reductions in extreme poverty and measurable mortality improvements in high-coverage areas.",
+        "citations": [
+          "Rasella et al. (2013). The Lancet. DOI: 10.1016/S0140-6736(13)60715-1",
+          "World Bank (2013). Bolsa Fam\u00edlia: Brazil\u2019s Quiet Revolution.",
+          "IMF Working Paper 17/225 (2017). Inequality in Brazil."
+        ]
+      },
+      "tags": [
+        "social-protection",
+        "conditional-cash-transfer",
+        "poverty-reduction",
+        "inequality",
+        "latin-america"
+      ],
+      "difficulty": "moderate",
+      "cost_estimate_usd": "0.3-0.6% of GDP annually",
+      "political_feasibility": "high"
+    },
+    {
+      "id": "nordic-social-welfare-model",
+      "name": "Nordic Comprehensive Social Welfare Model",
+      "short_name": "Nordic Welfare",
+      "description": "Expand universal social spending, redistribution, and labor-market institutions to reduce disposable-income inequality while maintaining productivity.",
+      "category": "economy",
+      "source": "OECD / NBER",
+      "year": 2020,
+      "target_audience": "Advanced-economy finance ministries and social policy agencies",
+      "interventions": [
+        {
+          "indicator_id": "XGOVEXP.IMF",
+          "indicator_name": "Total Government Spending",
+          "change_percent": 15,
+          "change_absolute": null,
+          "justification": "Higher social expenditure is a core mechanism in Nordic redistribution systems.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "aceuhni992",
+          "indicator_name": "Average Income After Taxes and Benefits",
+          "change_percent": 10,
+          "change_absolute": null,
+          "justification": "Tax-transfer design lifts disposable income for lower and middle deciles.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "v2jucomp_mean",
+          "indicator_name": "Judicial Compensation Adequacy",
+          "change_percent": 8,
+          "change_absolute": null,
+          "justification": "Institutional quality support improves policy implementation credibility.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Lower disposable-income inequality with stronger social mobility outcomes.",
+        "secondary": [
+          "Reduced relative poverty rates",
+          "Higher labor force attachment including women",
+          "Improved intergenerational earnings mobility"
+        ],
+        "time_horizon_years": 10
+      },
+      "evidence": {
+        "source": "NBER Working Paper 33444; OECD Society at a Glance 2024",
+        "case_study": "Nordic economies sustain low Gini levels and high mobility through large social spending, universal services, and broad redistribution.",
+        "citations": [
+          "Mogstad, Salvanes, Torsvik (2025). NBER WP 33444.",
+          "OECD (2024). Society at a Glance: Social Spending.",
+          "Corak (2013). Journal of Economic Perspectives."
+        ]
+      },
+      "tags": [
+        "welfare-state",
+        "inequality-reduction",
+        "social-mobility",
+        "redistribution"
+      ],
+      "difficulty": "hard",
+      "cost_estimate_usd": "25-30% of GDP social spending envelope",
+      "political_feasibility": "medium"
+    },
+    {
+      "id": "bangladesh-pluralistic-health-system",
+      "name": "Bangladesh Pluralistic Health System Transformation",
+      "short_name": "Bangladesh Health",
+      "description": "Scale community-based outreach, targeted subsidies, and primary-level delivery capacity to improve maternal and child health outcomes.",
+      "category": "health",
+      "source": "The Lancet / WHO / NIPORT",
+      "year": 2010,
+      "target_audience": "Health ministries and NGO delivery networks",
+      "interventions": [
+        {
+          "indicator_id": "ascgrxi992",
+          "indicator_name": "Average Social Income for Adults",
+          "change_percent": 14,
+          "change_absolute": null,
+          "justification": "Social support improves care-seeking and continuity for vulnerable households.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "ascrnxi999",
+          "indicator_name": "Average Social Insurance and Transfer Income",
+          "change_percent": 16,
+          "change_absolute": null,
+          "justification": "Transfer and insurance income reduces financial barriers to utilization.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "aceuhni992",
+          "indicator_name": "Average Income After Taxes and Benefits",
+          "change_percent": 8,
+          "change_absolute": null,
+          "justification": "Improved disposable income supports nutrition and preventive care uptake.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Maternal and under-5 mortality trends improve through community-based delivery and financial access.",
+        "secondary": [
+          "Higher preventive service utilization",
+          "Faster fertility transition via women-focused outreach",
+          "Lower catastrophic household health spending"
+        ],
+        "time_horizon_years": 8
+      },
+      "evidence": {
+        "source": "The Lancet Bangladesh Series (2013)",
+        "case_study": "Bangladesh reduced maternal and child mortality substantially through pluralistic delivery (government + NGOs + CHWs) despite low per-capita spending.",
+        "citations": [
+          "Chowdhury et al. (2013). The Lancet. DOI: 10.1016/S0140-6736(13)62148-0",
+          "El Arifeen et al. (2013). The Lancet. DOI: 10.1016/S0140-6736(13)62149-2",
+          "NIPORT et al. (2012). Bangladesh Maternal Mortality Survey 2010."
+        ]
+      },
+      "tags": [
+        "health-system",
+        "community-health-workers",
+        "maternal-health",
+        "immunization"
+      ],
+      "difficulty": "moderate",
+      "cost_estimate_usd": "$20-40 per capita annually",
+      "political_feasibility": "high"
+    },
+    {
+      "id": "thailand-universal-coverage-scheme",
+      "name": "Thailand Universal Coverage Scheme Expansion",
+      "short_name": "Thailand UCS",
+      "description": "Tax-financed universal coverage with low point-of-service charges and strategic purchasing to reduce catastrophic expenditure.",
+      "category": "health",
+      "source": "The Lancet / IJEH / World Bank",
+      "year": 2002,
+      "target_audience": "Health financing agencies and ministries of finance",
+      "interventions": [
+        {
+          "indicator_id": "XGOVEXP.IMF",
+          "indicator_name": "Total Government Spending",
+          "change_percent": 9,
+          "change_absolute": null,
+          "justification": "General-revenue financing is central to UCS sustainability.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "ascrnxi999",
+          "indicator_name": "Average Social Insurance and Transfer Income",
+          "change_percent": 15,
+          "change_absolute": null,
+          "justification": "Insurance and transfer channels reduce out-of-pocket exposure.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "aceuhni992",
+          "indicator_name": "Average Income After Taxes and Benefits",
+          "change_percent": 7,
+          "change_absolute": null,
+          "justification": "Disposable-income support improves treatment adherence and access.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Catastrophic health expenditure and medical impoverishment decline materially.",
+        "secondary": [
+          "Higher effective service coverage",
+          "Reduced urban-rural financial protection gaps",
+          "Improved continuity of care for informal workers"
+        ],
+        "time_horizon_years": 7
+      },
+      "evidence": {
+        "source": "Thailand UHC evaluations and synthetic control studies",
+        "case_study": "Thailand reached full population coverage quickly and sharply reduced catastrophic spending and medical impoverishment under UCS.",
+        "citations": [
+          "Tangcharoensathien et al. (2020). International Journal for Equity in Health.",
+          "Tangcharoensathien et al. (2018). The Lancet.",
+          "World Bank UNICO Series No. 20 (2012). Thailand UCS."
+        ]
+      },
+      "tags": [
+        "universal-health-coverage",
+        "financial-risk-protection",
+        "tax-financed"
+      ],
+      "difficulty": "hard",
+      "cost_estimate_usd": "$40-70 per capita annually",
+      "political_feasibility": "medium"
+    },
+    {
+      "id": "rwanda-digital-transformation",
+      "name": "Rwanda National Digital Transformation",
+      "short_name": "Rwanda Digital",
+      "description": "Expand broadband backbone, digital public services, and digital skills to increase service delivery and export-oriented ICT activity.",
+      "category": "infrastructure",
+      "source": "World Bank / ITU",
+      "year": 2018,
+      "target_audience": "ICT ministries and digital transformation units",
+      "interventions": [
+        {
+          "indicator_id": "NV.SRV.TOTL.KD",
+          "indicator_name": "Service Industry Value (constant 2015 US$)",
+          "change_percent": 16,
+          "change_absolute": null,
+          "justification": "Digital service adoption increases value added in services.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "NW.HCA.TO.CD",
+          "indicator_name": "Human capital value (billions US$)",
+          "change_percent": 12,
+          "change_absolute": null,
+          "justification": "Digital literacy and training raise human-capital stock.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "X.USCONST.4.FSGOV",
+          "indicator_name": "Government Services Cost Component (US Constant Prices)",
+          "change_percent": 10,
+          "change_absolute": null,
+          "justification": "Digitized government workflows improve service throughput and cost efficiency.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Public service delivery digitizes while ICT-enabled sectors expand.",
+        "secondary": [
+          "Lower transaction costs for citizens and firms",
+          "Higher broadband utilization rates",
+          "Improved export competitiveness in ICT-enabled services"
+        ],
+        "time_horizon_years": 6
+      },
+      "evidence": {
+        "source": "World Bank Rwanda Digital Acceleration documentation",
+        "case_study": "Rwanda combined backbone rollout with e-government services and digital-skills investments to accelerate inclusion and service access.",
+        "citations": [
+          "World Bank (2020). Rwanda Economic Update: Digital Transformation.",
+          "World Bank (2021). Rwanda Digital Acceleration Project PAD.",
+          "WTO/World Bank (2024). Digital Trade for Africa: Rwanda."
+        ]
+      },
+      "tags": [
+        "digital-transformation",
+        "broadband",
+        "e-governance",
+        "ict4d"
+      ],
+      "difficulty": "moderate",
+      "cost_estimate_usd": "$300-600 million multi-year national program",
+      "political_feasibility": "high"
+    },
+    {
+      "id": "estonia-e-governance-ecosystem",
+      "name": "Estonia End-to-End E-Governance Ecosystem",
+      "short_name": "Estonia eGov",
+      "description": "Implement interoperable digital identity, once-only data rules, and secure government data exchange for full-service digitization.",
+      "category": "governance",
+      "source": "World Bank / OECD",
+      "year": 2015,
+      "target_audience": "Public administration and digital identity authorities",
+      "interventions": [
+        {
+          "indicator_id": "v2medentrain",
+          "indicator_name": "Media Journalist Training and Professionalism",
+          "change_percent": 14,
+          "change_absolute": null,
+          "justification": "Information ecosystem quality supports digital trust and adoption.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "v2jucomp_mean",
+          "indicator_name": "Judicial Compensation Adequacy",
+          "change_percent": 15,
+          "change_absolute": null,
+          "justification": "Judicial/institutional capacity supports rule enforcement in digital state operations.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "v2exembez",
+          "indicator_name": "Executive Branch: Embezzlement and Theft",
+          "change_percent": -20,
+          "change_absolute": null,
+          "justification": "Lower embezzlement risk reflects stronger digital controls and traceability.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "X.USCONST.4.FSGOV",
+          "indicator_name": "Government Services Cost Component (US Constant Prices)",
+          "change_percent": 9,
+          "change_absolute": null,
+          "justification": "Digitized workflows reduce admin frictions in service delivery.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Higher state capability with faster, lower-friction public services.",
+        "secondary": [
+          "Reduced administrative burden for citizens",
+          "Improved transparency and auditability",
+          "Higher business formation speed"
+        ],
+        "time_horizon_years": 6
+      },
+      "evidence": {
+        "source": "Estonia digital government case literature",
+        "case_study": "Estonia scaled national e-ID and interoperable data exchange to make nearly all public services digitally accessible.",
+        "citations": [
+          "Vassil (2016). Estonian e-Government Ecosystem. World Bank background paper.",
+          "OECD (2015). Estonia and Finland digital services review.",
+          "Kattel & Mergel (2019). Estonia\u2019s Digital Transformation."
+        ]
+      },
+      "tags": [
+        "e-governance",
+        "digital-id",
+        "interoperability",
+        "state-capacity"
+      ],
+      "difficulty": "hard",
+      "cost_estimate_usd": "~1% of GDP sustained IT investment",
+      "political_feasibility": "medium"
+    },
+    {
+      "id": "kenya-mobile-money-inclusion",
+      "name": "Kenya Mobile Money Financial Inclusion",
+      "short_name": "Kenya M-Pesa",
+      "description": "Scale mobile-money infrastructure and agent ecosystems to improve household resilience, inclusion, and small-enterprise activity.",
+      "category": "economy",
+      "source": "Science / FinAccess / World Bank",
+      "year": 2014,
+      "target_audience": "Central banks, telecom regulators, and financial inclusion units",
+      "interventions": [
+        {
+          "indicator_id": "NV.SRV.TOTL.KD",
+          "indicator_name": "Service Industry Value (constant 2015 US$)",
+          "change_percent": 14,
+          "change_absolute": null,
+          "justification": "Mobile financial services increase service-sector activity and formalization.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "acomhni999",
+          "indicator_name": "Average Worker Pay",
+          "change_percent": 9,
+          "change_absolute": null,
+          "justification": "Improved liquidity and payments channels support labor income stabilization.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "NW.HCA.FEMA.TO.CD",
+          "indicator_name": "Economic value of women's skills and education (current US$)",
+          "change_percent": 12,
+          "change_absolute": null,
+          "justification": "Women\u2019s financial inclusion raises productive human-capital returns.",
+          "confidence": "high"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Financial inclusion expands while household shock resilience improves.",
+        "secondary": [
+          "Lower extreme-poverty exposure",
+          "Higher women-led enterprise participation",
+          "Lower payment frictions in domestic transfers"
+        ],
+        "time_horizon_years": 7
+      },
+      "evidence": {
+        "source": "Suri & Jack and FinAccess surveys",
+        "case_study": "Kenya\u2019s mobile-money expansion lifted large numbers of households from extreme poverty and supported women\u2019s transition into business activity.",
+        "citations": [
+          "Suri & Jack (2016). Science. DOI: 10.1126/science.aah5309",
+          "FinAccess Household Survey (2019). CBK/KNBS/FSD Kenya.",
+          "Jack & Suri (2014). American Economic Review."
+        ]
+      },
+      "tags": [
+        "financial-inclusion",
+        "mobile-money",
+        "poverty-reduction",
+        "gender"
+      ],
+      "difficulty": "moderate",
+      "cost_estimate_usd": "$5-20 per capita equivalent ecosystem support",
+      "political_feasibility": "high"
+    },
+    {
+      "id": "vietnam-export-led-industrialization",
+      "name": "Vietnam Export-Led Industrialization Bundle",
+      "short_name": "Vietnam Export",
+      "description": "Combine trade liberalization, FDI-enabled manufacturing expansion, and industrial upgrading to accelerate structural transformation.",
+      "category": "economy",
+      "source": "IMF / World Bank / Brookings",
+      "year": 2007,
+      "target_audience": "Trade ministries, investment agencies, and industrial policy teams",
+      "interventions": [
+        {
+          "indicator_id": "BM.GSR.GNFS.CD",
+          "indicator_name": "Total imports of goods and services",
+          "change_percent": 20,
+          "change_absolute": null,
+          "justification": "Trade integration increases goods/services flows and global value-chain participation.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "NV.IND.MANF.CD",
+          "indicator_name": "Manufacturing Economic Output",
+          "change_percent": 18,
+          "change_absolute": null,
+          "justification": "Manufacturing scale-up is central to export-led growth.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "NW.DOW.TO",
+          "indicator_name": "Total National Wealth Index",
+          "change_percent": 12,
+          "change_absolute": null,
+          "justification": "Produced and financial asset accumulation rises with sustained export growth.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Faster GDP growth through manufacturing and export expansion.",
+        "secondary": [
+          "Poverty reduction through labor reallocation",
+          "Higher FDI-linked productivity transfer",
+          "Agriculture-to-industry structural shift"
+        ],
+        "time_horizon_years": 10
+      },
+      "evidence": {
+        "source": "IMF and World Bank evidence on Viet Nam reform era",
+        "case_study": "Viet Nam\u2019s post-\u0110\u1ed5i M\u1edbi reforms sharply increased export intensity and manufacturing share while reducing poverty.",
+        "citations": [
+          "Baum (2020). IMF WP/20/31.",
+          "Nguyen, Luu, Trinh. Brookings L2C WP No. 19.",
+          "World Bank WDI: Viet Nam exports (% GDP)."
+        ]
+      },
+      "tags": [
+        "export-led-growth",
+        "manufacturing",
+        "fdi",
+        "structural-transformation"
+      ],
+      "difficulty": "hard",
+      "cost_estimate_usd": "multi-year trade and industrial policy package",
+      "political_feasibility": "medium"
+    },
+    {
+      "id": "china-mega-infrastructure-expansion",
+      "name": "China-Style Mega Infrastructure Expansion",
+      "short_name": "China Infra",
+      "description": "Large-scale transport and capital infrastructure push to accelerate connectivity and output growth, with monitoring for diminishing returns.",
+      "category": "infrastructure",
+      "source": "World Bank / JDE",
+      "year": 2012,
+      "target_audience": "Infrastructure ministries and national planning commissions",
+      "interventions": [
+        {
+          "indicator_id": "NW.PCA.TO.EX.CD",
+          "indicator_name": "Produced Capital Value (Excluding Urban Land)",
+          "change_percent": 20,
+          "change_absolute": null,
+          "justification": "Produced-capital accumulation is the direct infrastructure stock channel.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "NW.DOW.TO",
+          "indicator_name": "Total National Wealth Index",
+          "change_percent": 18,
+          "change_absolute": null,
+          "justification": "National wealth index rises with transport and logistics asset buildout.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "NV.IND.MANF.CD",
+          "indicator_name": "Manufacturing Economic Output",
+          "change_percent": 12,
+          "change_absolute": null,
+          "justification": "Connectivity supports industrial output and agglomeration gains.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Short-to-medium term growth acceleration from infrastructure capital deepening.",
+        "secondary": [
+          "Lower travel and logistics times",
+          "Higher interregional mobility",
+          "Improved market integration"
+        ],
+        "time_horizon_years": 9
+      },
+      "evidence": {
+        "source": "China HSR and infrastructure return studies",
+        "case_study": "China\u2019s sustained infrastructure wave coincided with large growth contributions and sharp transport accessibility gains, with later evidence of diminishing marginal returns.",
+        "citations": [
+          "Lawrence, Bullock, Liu (2019). China\u2019s High-Speed Rail Development. World Bank.",
+          "Deng & Shao (2022). Journal of Development Economics.",
+          "Hou, Li, Zhang (2020). Sustainability."
+        ]
+      },
+      "tags": [
+        "infrastructure",
+        "transport",
+        "high-speed-rail",
+        "growth"
+      ],
+      "difficulty": "hard",
+      "cost_estimate_usd": "10-20% of GDP gross infrastructure investment window",
+      "political_feasibility": "medium"
+    },
+    {
+      "id": "ethiopia-road-sector-development",
+      "name": "Ethiopia Road Sector Connectivity Program",
+      "short_name": "Ethiopia Roads",
+      "description": "Expand and upgrade road networks to reduce transport frictions, improve market access, and lift consumption in connected regions.",
+      "category": "infrastructure",
+      "source": "World Bank / IGC",
+      "year": 2010,
+      "target_audience": "Transport ministries and rural development agencies",
+      "interventions": [
+        {
+          "indicator_id": "NW.PCA.TO.EX.CD",
+          "indicator_name": "Produced Capital Value (Excluding Urban Land)",
+          "change_percent": 14,
+          "change_absolute": null,
+          "justification": "Road expansion directly raises produced-capital stock.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "NW.DOW.TO",
+          "indicator_name": "Total National Wealth Index",
+          "change_percent": 10,
+          "change_absolute": null,
+          "justification": "Network upgrades increase wealth through higher productive asset value.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "mexpgoi999",
+          "indicator_name": "Typical Government Spending Per Person",
+          "change_percent": 12,
+          "change_absolute": null,
+          "justification": "Sustained public works spending is required for network expansion and maintenance.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Rural access improves and poverty declines in newly connected areas.",
+        "secondary": [
+          "Higher household consumption growth in treated zones",
+          "Lower transport costs to markets",
+          "More non-farm enterprise formation"
+        ],
+        "time_horizon_years": 8
+      },
+      "evidence": {
+        "source": "World Bank and IGC analyses of Ethiopia road program",
+        "case_study": "Ethiopia\u2019s road expansion period is associated with measurable consumption and poverty improvements in connected localities.",
+        "citations": [
+          "World Bank (2015). Ethiopia transport systems support.",
+          "Shiferaw et al. (2012). IGC Working Paper.",
+          "World Bank (2020). Rural Roads, Poverty, and Resilience: Ethiopia."
+        ]
+      },
+      "tags": [
+        "roads",
+        "rural-connectivity",
+        "poverty-reduction",
+        "infrastructure"
+      ],
+      "difficulty": "hard",
+      "cost_estimate_usd": "$3-6 billion multi-year national road program",
+      "political_feasibility": "high"
+    },
+    {
+      "id": "india-green-revolution-modernization",
+      "name": "India Green Revolution Modernization",
+      "short_name": "India Agri Boost",
+      "description": "Increase agricultural productivity via technology adoption, irrigation support, and income stabilization for farm households.",
+      "category": "environment",
+      "source": "PNAS / IFPRI",
+      "year": 1995,
+      "target_audience": "Agriculture ministries and food security councils",
+      "interventions": [
+        {
+          "indicator_id": "agwfini992",
+          "indicator_name": "Agricultural Wealth and Finance Index",
+          "change_percent": 18,
+          "change_absolute": null,
+          "justification": "Agricultural wealth-finance improvements support input and technology adoption.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "mpwagri999",
+          "indicator_name": "Middle-Class Agricultural Income",
+          "change_percent": 15,
+          "change_absolute": null,
+          "justification": "Middle-income farm households scale output and resilience with better financing.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "EN.GHG.CH4.FE.MT.CE.AR5",
+          "indicator_name": "Methane emissions from oil and gas leaks",
+          "change_percent": -8,
+          "change_absolute": null,
+          "justification": "Modernized practices are paired with methane-intensity reduction targets.",
+          "confidence": "low"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Food production and farm incomes rise with lower vulnerability to food shocks.",
+        "secondary": [
+          "Reduced rural poverty",
+          "Improved food availability",
+          "More stable input-market participation"
+        ],
+        "time_horizon_years": 10
+      },
+      "evidence": {
+        "source": "Green Revolution retrospective literature",
+        "case_study": "India\u2019s cereal yield and output expansion under Green Revolution packages supported food self-sufficiency and broad poverty reduction.",
+        "citations": [
+          "Pingali (2012). PNAS. DOI: 10.1073/pnas.0912953109",
+          "Hazell (2009). IFPRI Discussion Paper 00911.",
+          "Bakalis et al. (2021). Frontiers in Sustainable Food Systems."
+        ]
+      },
+      "tags": [
+        "agriculture",
+        "food-security",
+        "productivity",
+        "rural-development"
+      ],
+      "difficulty": "moderate",
+      "cost_estimate_usd": "$30-60 per hectare equivalent annual support",
+      "political_feasibility": "high"
+    },
+    {
+      "id": "germany-energiewende-transition",
+      "name": "Germany Energiewende Energy Transition",
+      "short_name": "Energiewende",
+      "description": "Accelerate renewable deployment and energy-system decarbonization while managing affordability and reliability trade-offs.",
+      "category": "environment",
+      "source": "IEA / Umweltbundesamt",
+      "year": 2020,
+      "target_audience": "Energy ministries, regulators, and climate agencies",
+      "interventions": [
+        {
+          "indicator_id": "EN.GHG.CO2.PI.MT.CE.AR5",
+          "indicator_name": "CO2 Emissions from Power Plants (million tons)",
+          "change_percent": -22,
+          "change_absolute": null,
+          "justification": "Power-sector decarbonization is a core transition target.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "EN.GHG.CO2.BU.MT.CE.AR5",
+          "indicator_name": "CO2 Emissions from Buildings (million tons)",
+          "change_percent": -15,
+          "change_absolute": null,
+          "justification": "Building-efficiency and electrification reduce stationary emissions.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "EN.GHG.CH4.FE.MT.CE.AR5",
+          "indicator_name": "Methane emissions from oil and gas leaks",
+          "change_percent": -12,
+          "change_absolute": null,
+          "justification": "Methane leakage reduction complements clean-energy pathways.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "NW.PCA.TO.EX.CD",
+          "indicator_name": "Produced Capital Value (Excluding Urban Land)",
+          "change_percent": 8,
+          "change_absolute": null,
+          "justification": "Grid and renewable infrastructure adds long-lived produced capital.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Electricity mix decarbonizes while economy-wide emissions trend downward.",
+        "secondary": [
+          "Lower carbon intensity of power supply",
+          "Increased clean-energy investment",
+          "Reduced local air-pollution burden"
+        ],
+        "time_horizon_years": 12
+      },
+      "evidence": {
+        "source": "German federal emissions and energy reviews",
+        "case_study": "Germany materially increased renewable electricity share over the last decade while reducing total emissions relative to 1990 baselines.",
+        "citations": [
+          "IEA (2020). Germany Energy Policy Review.",
+          "Umweltbundesamt. Renewable Energies in Figures.",
+          "Fell (2021). Renewable Energy and Environmental Sustainability."
+        ]
+      },
+      "tags": [
+        "climate-policy",
+        "renewables",
+        "energy-transition",
+        "emissions-reduction"
+      ],
+      "difficulty": "hard",
+      "cost_estimate_usd": "multi-decade program with high capital and transition costs",
+      "political_feasibility": "medium"
+    },
+    {
+      "id": "south-korea-tertiary-expansion",
+      "name": "South Korea Tertiary Education Expansion",
+      "short_name": "Korea Education",
+      "description": "Scale tertiary enrollment and teacher quality with alignment to industrial upgrading and labor-market demand.",
+      "category": "education",
+      "source": "OECD / UNESCO / World Bank",
+      "year": 2000,
+      "target_audience": "Education ministries and human capital strategy units",
+      "interventions": [
+        {
+          "indicator_id": "MENF.5T8",
+          "indicator_name": "Average Years of Higher Education",
+          "change_percent": 20,
+          "change_absolute": null,
+          "justification": "Higher tertiary attainment supports advanced-industry skill demand.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "ETOIP.1.PR",
+          "indicator_name": "Primary School Teacher Training and Support",
+          "change_percent": 12,
+          "change_absolute": null,
+          "justification": "Teacher quality and support improve learning pipeline quality.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "OE.5T8.40520.M",
+          "indicator_name": "Out-of-School Boys - Lower Secondary Age",
+          "change_percent": -18,
+          "change_absolute": null,
+          "justification": "Reduced secondary-age exclusion expands progression to tertiary levels.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "NW.HCA.TO.CD",
+          "indicator_name": "Human capital value (billions US$)",
+          "change_percent": 15,
+          "change_absolute": null,
+          "justification": "Human-capital stock growth reflects education expansion impacts.",
+          "confidence": "high"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Human-capital deepening supports productivity and income growth.",
+        "secondary": [
+          "Higher advanced-skill labor supply",
+          "Stronger innovation potential",
+          "Improved social mobility via education access"
+        ],
+        "time_horizon_years": 10
+      },
+      "evidence": {
+        "source": "OECD and WDI records on Korean education transition",
+        "case_study": "Korea\u2019s tertiary expansion coincided with rapid industrial upgrading and sustained growth in high-skill sectors.",
+        "citations": [
+          "OECD (2013). Education Reform in Korea.",
+          "OECD (2025). Education at a Glance: Korea.",
+          "World Bank WDI. Tertiary enrollment, Korea, Rep."
+        ]
+      },
+      "tags": [
+        "education",
+        "tertiary-expansion",
+        "human-capital",
+        "industrial-upgrading"
+      ],
+      "difficulty": "hard",
+      "cost_estimate_usd": "4-7% of GDP total education spending envelope",
+      "political_feasibility": "high"
+    },
+    {
+      "id": "india-ssa-universal-elementary",
+      "name": "India Sarva Shiksha Abhiyan Elementary Education",
+      "short_name": "India SSA",
+      "description": "Drive near-universal elementary enrollment with school expansion, teacher support, and dropout reduction interventions.",
+      "category": "education",
+      "source": "UNESCO / Government of India / World Bank",
+      "year": 2008,
+      "target_audience": "Education ministries and state school systems",
+      "interventions": [
+        {
+          "indicator_id": "OE.5T8.40517.M",
+          "indicator_name": "Boys Not in Elementary School (total number)",
+          "change_percent": -25,
+          "change_absolute": null,
+          "justification": "Program target is direct reduction in out-of-school primary-age children.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "OE.5T8.40520.M",
+          "indicator_name": "Out-of-School Boys - Lower Secondary Age",
+          "change_percent": -20,
+          "change_absolute": null,
+          "justification": "Retention at lower-secondary transition is required for universal completion.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "ETOIP.1.PR",
+          "indicator_name": "Primary School Teacher Training and Support",
+          "change_percent": 18,
+          "change_absolute": null,
+          "justification": "Teacher training/support is essential for quality and attendance gains.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "v2edtehire",
+          "indicator_name": "Teacher Hiring Process",
+          "change_percent": 10,
+          "change_absolute": null,
+          "justification": "More transparent teacher hiring supports staffing expansion.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Primary enrollment approaches universality with lower exclusion.",
+        "secondary": [
+          "Improved pupil-teacher ratios",
+          "Narrowed gender and rural gaps",
+          "Stronger transition to upper grades"
+        ],
+        "time_horizon_years": 7
+      },
+      "evidence": {
+        "source": "SSA implementation assessments and UNESCO reviews",
+        "case_study": "SSA scaled school infrastructure and enrollment significantly across India, while highlighting a continuing quality challenge.",
+        "citations": [
+          "UNESCO (2014). Sarva Shiksha Abhiyan: Promising EFA Practices.",
+          "Nandi et al. (2023). International Journal of Educational Development.",
+          "UNESCO (2014). Lessons from implementation of SSA."
+        ]
+      },
+      "tags": [
+        "education-access",
+        "universal-primary",
+        "enrollment",
+        "teacher-support"
+      ],
+      "difficulty": "moderate",
+      "cost_estimate_usd": "$7-10 billion national program over implementation cycle",
+      "political_feasibility": "high"
+    },
+    {
+      "id": "georgia-post-rose-governance",
+      "name": "Georgia Post-Rose Revolution Anti-Corruption Reforms",
+      "short_name": "Georgia Reform",
+      "description": "Implement high-velocity anti-corruption reforms across police, licensing, and public service delivery institutions.",
+      "category": "governance",
+      "source": "OECD / World Bank / Transparency International",
+      "year": 2006,
+      "target_audience": "Anti-corruption agencies and public administration reform teams",
+      "interventions": [
+        {
+          "indicator_id": "v2exembez",
+          "indicator_name": "Executive Branch: Embezzlement and Theft",
+          "change_percent": -35,
+          "change_absolute": null,
+          "justification": "Directly target executive embezzlement and theft through enforcement and institutional redesign.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "v2jucomp_mean",
+          "indicator_name": "Judicial Compensation Adequacy",
+          "change_percent": 18,
+          "change_absolute": null,
+          "justification": "Judicial compensation/integrity improvements support credible enforcement.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "v2medentrain",
+          "indicator_name": "Media Journalist Training and Professionalism",
+          "change_percent": 12,
+          "change_absolute": null,
+          "justification": "Stronger media professionalism supports accountability and public scrutiny.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Administrative corruption falls and state effectiveness rises.",
+        "secondary": [
+          "Higher business confidence and investment",
+          "Faster licensing/registration procedures",
+          "Improved trust in core public institutions"
+        ],
+        "time_horizon_years": 6
+      },
+      "evidence": {
+        "source": "OECD anti-corruption review and TI trend evidence",
+        "case_study": "Georgia\u2019s post-2003 reforms produced a rapid visible decline in petty corruption and major gains in business-environment indicators.",
+        "citations": [
+          "OECD (2022). Anti-Corruption Reforms in Georgia.",
+          "World Bank Doing Business updates (2019).",
+          "Transparency International (2019). Georgia reform trajectory."
+        ]
+      },
+      "tags": [
+        "anti-corruption",
+        "governance-reform",
+        "public-administration",
+        "state-capacity"
+      ],
+      "difficulty": "hard",
+      "cost_estimate_usd": "institutional reform package with moderate fiscal cost",
+      "political_feasibility": "medium"
+    },
+    {
+      "id": "singapore-zero-tolerance-governance",
+      "name": "Singapore Zero-Tolerance Anti-Corruption Framework",
+      "short_name": "Singapore Integrity",
+      "description": "Combine strict anti-corruption enforcement, meritocratic civil service incentives, and institutional accountability.",
+      "category": "governance",
+      "source": "CPIB / Transparency International / World Bank",
+      "year": 2015,
+      "target_audience": "Executive offices, anti-corruption bureaus, and civil service commissions",
+      "interventions": [
+        {
+          "indicator_id": "v2exembez",
+          "indicator_name": "Executive Branch: Embezzlement and Theft",
+          "change_percent": -40,
+          "change_absolute": null,
+          "justification": "Aggressive enforcement and legal deterrence target executive theft and rent extraction.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "v2jucomp_mean",
+          "indicator_name": "Judicial Compensation Adequacy",
+          "change_percent": 20,
+          "change_absolute": null,
+          "justification": "Competitive and credible judicial/institutional compensation reduces corruption incentives.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "v2medentrain",
+          "indicator_name": "Media Journalist Training and Professionalism",
+          "change_percent": 10,
+          "change_absolute": null,
+          "justification": "Professional information ecosystems reinforce accountability norms.",
+          "confidence": "medium"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Sustained low corruption with high administrative credibility.",
+        "secondary": [
+          "Higher investor confidence",
+          "Improved procurement integrity",
+          "Better long-run government effectiveness"
+        ],
+        "time_horizon_years": 10
+      },
+      "evidence": {
+        "source": "Singapore anti-corruption institutional literature",
+        "case_study": "Singapore\u2019s CPIB-centered system, coupled with civil-service incentives and enforcement credibility, maintained persistently low corruption over decades.",
+        "citations": [
+          "Quah (2022). Public Administration and Policy.",
+          "De Graaf & Macaulay (2020). Anti-Corruption Agencies (Springer).",
+          "CPIB Singapore. Corruption Control Framework."
+        ]
+      },
+      "tags": [
+        "anti-corruption",
+        "governance",
+        "civil-service",
+        "institutional-quality"
+      ],
+      "difficulty": "hard",
+      "cost_estimate_usd": "low-to-moderate fiscal cost, high institutional commitment",
+      "political_feasibility": "medium"
+    },
+    {
+      "id": "china-wto-trade-liberalization",
+      "name": "China WTO Accession and Trade Liberalization Package",
+      "short_name": "China WTO",
+      "description": "Use tariff and market-access reforms to expand trade flows, accelerate industrial output, and deepen global value-chain integration.",
+      "category": "economy",
+      "source": "WTO / IMF / Cambridge",
+      "year": 2005,
+      "target_audience": "Trade ministries and macroeconomic reform units",
+      "interventions": [
+        {
+          "indicator_id": "BM.GSR.GNFS.CD",
+          "indicator_name": "Total imports of goods and services",
+          "change_percent": 25,
+          "change_absolute": null,
+          "justification": "Lower trade barriers increase total cross-border goods and service flows.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "NV.IND.MANF.CD",
+          "indicator_name": "Manufacturing Economic Output",
+          "change_percent": 18,
+          "change_absolute": null,
+          "justification": "Manufacturing scales with export-market access and FDI participation.",
+          "confidence": "high"
+        },
+        {
+          "indicator_id": "NW.DOW.TO",
+          "indicator_name": "Total National Wealth Index",
+          "change_percent": 10,
+          "change_absolute": null,
+          "justification": "Wealth accumulation rises with prolonged export-led expansion.",
+          "confidence": "medium"
+        },
+        {
+          "indicator_id": "NW.NFL.TO.CD",
+          "indicator_name": "Foreign Debt and Obligations",
+          "change_percent": -8,
+          "change_absolute": null,
+          "justification": "External-liability pressure can fall with stronger export earnings.",
+          "confidence": "low"
+        }
+      ],
+      "expected_outcomes": {
+        "primary": "Trade integration drives higher output and productivity growth.",
+        "secondary": [
+          "Faster industrial scaling",
+          "Greater legal-regulatory harmonization",
+          "Stronger integration into global supply chains"
+        ],
+        "time_horizon_years": 8
+      },
+      "evidence": {
+        "source": "WTO and IMF accession analyses",
+        "case_study": "Post-accession China experienced very large increases in trade volume and industrial output, with broad institutional adaptation to multilateral trade rules.",
+        "citations": [
+          "WTO (2021). 20 years of China\u2019s WTO membership.",
+          "Rumbaugh & Blancher (2004). IMF WP/04/36.",
+          "China and the WTO (2021). Cambridge University Press."
+        ]
+      },
+      "tags": [
+        "trade-liberalization",
+        "wto",
+        "manufacturing",
+        "export-growth"
+      ],
+      "difficulty": "hard",
+      "cost_estimate_usd": "reform-intensive; moderate direct fiscal cost",
+      "political_feasibility": "medium"
+    }
+  ]
+}

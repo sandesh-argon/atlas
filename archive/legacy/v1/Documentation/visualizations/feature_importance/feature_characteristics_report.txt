@@ -1,0 +1,456 @@
+====================================================================================================
+FEATURE IMPORTANCE ANALYSIS REPORT
+Global Development Indicators - Phase 2 Feature Selection
+====================================================================================================
+
+## OVERVIEW
+----------------------------------------------------------------------------------------------------
+Total Features Analyzed: 200 (25 per metric × 8 metrics)
+Metrics Covered: 8
+
+====================================================================================================
+## LIFE EXPECTANCY
+----------------------------------------------------------------------------------------------------
+
+### Feature Type Distribution:
+  - base: 22 (88.0%)
+  - temporal: 2 (8.0%)
+  - lag_1: 1 (4.0%)
+
+### Domain Distribution:
+  - Population & Demographics: 12 (48.0%)
+  - Agriculture & Food: 11 (44.0%)
+  - Economic Structure & Output: 2 (8.0%)
+
+### Data Quality Metrics:
+  - Mean Observed Rate: 0.9884 (98.84%)
+  - Median Observed Rate: 1.0000 (100.00%)
+  - Range: 0.9407 - 1.0000
+  - Features with <95% data: 2
+  - Features with <90% data: 0
+
+### Importance Distribution:
+  - Mean Importance: 96.47%
+  - Median Importance: 95.55%
+  - Range: 93.94% - 100.00%
+  - Std Dev: 2.02%
+  - Top 5 Avg: 99.43%
+  - Bottom 5 Avg: 94.21%
+  - Importance Drop (Top to Bottom 5): 5.21%
+
+### Top 5 Most Important Features:
+  1. Population, total
+     - Type: base | Domain: Population & Demographics
+     - Importance: 100.00% | Data Rate: 1.0000
+  2. Life expectancy at birth, female (years)
+     - Type: base | Domain: Agriculture & Food
+     - Importance: 99.44% | Data Rate: 0.9832
+  3. Life expectancy at birth, male (years)
+     - Type: base | Domain: Agriculture & Food
+     - Importance: 99.43% | Data Rate: 0.9832
+  4. Survival to age 65, female (% of cohort)
+     - Type: base | Domain: Agriculture & Food
+     - Importance: 99.25% | Data Rate: 0.9833
+  5. Survival to age 65, male (% of cohort)
+     - Type: base | Domain: Agriculture & Food
+     - Importance: 99.01% | Data Rate: 0.9833
+
+====================================================================================================
+## INFANT MORTALITY
+----------------------------------------------------------------------------------------------------
+
+### Feature Type Distribution:
+  - base: 22 (88.0%)
+  - temporal: 2 (8.0%)
+  - lag_1: 1 (4.0%)
+
+### Domain Distribution:
+  - Population & Demographics: 11 (44.0%)
+  - Agriculture & Food: 10 (40.0%)
+  - Economic Structure & Output: 2 (8.0%)
+  - Infrastructure & Transport: 1 (4.0%)
+  - Water & Sanitation: 1 (4.0%)
+
+### Data Quality Metrics:
+  - Mean Observed Rate: 0.9839 (98.39%)
+  - Median Observed Rate: 1.0000 (100.00%)
+  - Range: 0.9364 - 1.0000
+  - Features with <95% data: 5
+  - Features with <90% data: 0
+
+### Importance Distribution:
+  - Mean Importance: 96.53%
+  - Median Importance: 96.50%
+  - Range: 93.21% - 100.00%
+  - Std Dev: 1.93%
+  - Top 5 Avg: 99.01%
+  - Bottom 5 Avg: 93.73%
+  - Importance Drop (Top to Bottom 5): 5.27%
+
+### Top 5 Most Important Features:
+  1. Life expectancy at birth, female (years)
+     - Type: base | Domain: Agriculture & Food
+     - Importance: 100.00% | Data Rate: 0.9832
+  2. Population ages 00-04, female (% of female population)
+     - Type: base | Domain: Population & Demographics
+     - Importance: 99.18% | Data Rate: 1.0000
+  3. Life expectancy at birth, male (years)
+     - Type: base | Domain: Agriculture & Food
+     - Importance: 98.90% | Data Rate: 0.9832
+  4. Birth rate, crude (per 1,000 people)
+     - Type: base | Domain: Population & Demographics
+     - Importance: 98.72% | Data Rate: 0.9833
+  5. health_risk_compound
+     - Type: base | Domain: Infrastructure & Transport
+     - Importance: 98.24% | Data Rate: 1.0000
+
+====================================================================================================
+## GDP PER CAPITA
+----------------------------------------------------------------------------------------------------
+
+### Feature Type Distribution:
+  - base: 22 (88.0%)
+  - lag_1: 2 (8.0%)
+  - temporal: 1 (4.0%)
+
+### Domain Distribution:
+  - Population & Demographics: 14 (56.0%)
+  - Economic Structure & Output: 11 (44.0%)
+
+### Data Quality Metrics:
+  - Mean Observed Rate: 0.9646 (96.46%)
+  - Median Observed Rate: 1.0000 (100.00%)
+  - Range: 0.8956 - 1.0000
+  - Features with <95% data: 9
+  - Features with <90% data: 5
+
+### Importance Distribution:
+  - Mean Importance: 95.16%
+  - Median Importance: 93.96%
+  - Range: 91.47% - 100.00%
+  - Std Dev: 2.95%
+  - Top 5 Avg: 99.62%
+  - Bottom 5 Avg: 91.92%
+  - Importance Drop (Top to Bottom 5): 7.70%
+
+### Top 5 Most Important Features:
+  1. Population ages 15-19, female (% of female population)
+     - Type: base | Domain: Population & Demographics
+     - Importance: 100.00% | Data Rate: 1.0000
+  2. Population ages 10-14, female (% of female population)
+     - Type: base | Domain: Population & Demographics
+     - Importance: 99.98% | Data Rate: 1.0000
+  3. Population ages 15-19, male (% of male population)
+     - Type: base | Domain: Population & Demographics
+     - Importance: 99.66% | Data Rate: 1.0000
+  4. Population ages 50-54, male (% of male population)
+     - Type: base | Domain: Population & Demographics
+     - Importance: 99.64% | Data Rate: 1.0000
+  5. gdp_x_technology
+     - Type: base | Domain: Economic Structure & Output
+     - Importance: 98.84% | Data Rate: 1.0000
+
+====================================================================================================
+## MEAN YEARS OF SCHOOLING
+----------------------------------------------------------------------------------------------------
+
+### Feature Type Distribution:
+  - base: 18 (72.0%)
+  - lag_1: 4 (16.0%)
+  - temporal: 3 (12.0%)
+
+### Domain Distribution:
+  - Agriculture & Food: 11 (44.0%)
+  - Population & Demographics: 9 (36.0%)
+  - Economic Structure & Output: 3 (12.0%)
+  - Infrastructure & Transport: 1 (4.0%)
+  - Financial Services: 1 (4.0%)
+
+### Data Quality Metrics:
+  - Mean Observed Rate: 0.9878 (98.78%)
+  - Median Observed Rate: 1.0000 (100.00%)
+  - Range: 0.9407 - 1.0000
+  - Features with <95% data: 3
+  - Features with <90% data: 0
+
+### Importance Distribution:
+  - Mean Importance: 95.80%
+  - Median Importance: 95.54%
+  - Range: 92.71% - 100.00%
+  - Std Dev: 2.29%
+  - Top 5 Avg: 99.12%
+  - Bottom 5 Avg: 93.25%
+  - Importance Drop (Top to Bottom 5): 5.87%
+
+### Top 5 Most Important Features:
+  1. Life expectancy at birth, male (years)
+     - Type: base | Domain: Agriculture & Food
+     - Importance: 100.00% | Data Rate: 0.9832
+  2. Life expectancy at birth, female (years)
+     - Type: base | Domain: Agriculture & Food
+     - Importance: 99.40% | Data Rate: 0.9832
+  3. year_linear
+     - Type: temporal | Domain: Economic Structure & Output
+     - Importance: 99.11% | Data Rate: 1.0000
+  4. year_squared
+     - Type: temporal | Domain: Economic Structure & Output
+     - Importance: 98.68% | Data Rate: 1.0000
+  5. Population ages 75-79, female
+     - Type: base | Domain: Population & Demographics
+     - Importance: 98.39% | Data Rate: 1.0000
+
+====================================================================================================
+## GINI COEFFICIENT
+----------------------------------------------------------------------------------------------------
+
+### Feature Type Distribution:
+  - base: 25 (100.0%)
+
+### Domain Distribution:
+  - Population & Demographics: 20 (80.0%)
+  - Agriculture & Food: 2 (8.0%)
+  - Government & Institutions: 1 (4.0%)
+  - Infrastructure & Transport: 1 (4.0%)
+  - Financial Services: 1 (4.0%)
+
+### Data Quality Metrics:
+  - Mean Observed Rate: 0.9969 (99.69%)
+  - Median Observed Rate: 1.0000 (100.00%)
+  - Range: 0.9715 - 1.0000
+  - Features with <95% data: 0
+  - Features with <90% data: 0
+
+### Importance Distribution:
+  - Mean Importance: 95.70%
+  - Median Importance: 95.80%
+  - Range: 91.73% - 100.00%
+  - Std Dev: 2.18%
+  - Top 5 Avg: 98.81%
+  - Bottom 5 Avg: 92.83%
+  - Importance Drop (Top to Bottom 5): 5.97%
+
+### Top 5 Most Important Features:
+  1. Population ages 00-04, male (% of male population)
+     - Type: base | Domain: Population & Demographics
+     - Importance: 100.00% | Data Rate: 1.0000
+  2. Population ages 0-14 (% of total population)
+     - Type: base | Domain: Population & Demographics
+     - Importance: 99.12% | Data Rate: 1.0000
+  3. inequality_x_safety
+     - Type: base | Domain: Government & Institutions
+     - Importance: 99.09% | Data Rate: 1.0000
+  4. health_risk_compound
+     - Type: base | Domain: Infrastructure & Transport
+     - Importance: 97.92% | Data Rate: 1.0000
+  5. Mortality rate, adult, female (per 1,000 female adults)
+     - Type: base | Domain: Agriculture & Food
+     - Importance: 97.90% | Data Rate: 0.9715
+
+====================================================================================================
+## HOMICIDE RATE
+----------------------------------------------------------------------------------------------------
+
+### Feature Type Distribution:
+  - base: 22 (88.0%)
+  - lag_1: 3 (12.0%)
+
+### Domain Distribution:
+  - Population & Demographics: 24 (96.0%)
+  - Government & Institutions: 1 (4.0%)
+
+### Data Quality Metrics:
+  - Mean Observed Rate: 1.0000 (100.00%)
+  - Median Observed Rate: 1.0000 (100.00%)
+  - Range: 1.0000 - 1.0000
+  - Features with <95% data: 0
+  - Features with <90% data: 0
+
+### Importance Distribution:
+  - Mean Importance: 94.09%
+  - Median Importance: 93.27%
+  - Range: 90.45% - 100.00%
+  - Std Dev: 2.98%
+  - Top 5 Avg: 98.49%
+  - Bottom 5 Avg: 90.99%
+  - Importance Drop (Top to Bottom 5): 7.50%
+
+### Top 5 Most Important Features:
+  1. Population ages 10-14, female
+     - Type: base | Domain: Population & Demographics
+     - Importance: 100.00% | Data Rate: 1.0000
+  2. Population ages 10-14, male
+     - Type: base | Domain: Population & Demographics
+     - Importance: 99.28% | Data Rate: 1.0000
+  3. Population ages 05-09, male
+     - Type: base | Domain: Population & Demographics
+     - Importance: 98.21% | Data Rate: 1.0000
+  4. Age population, age 12, female, interpolated
+     - Type: base | Domain: Population & Demographics
+     - Importance: 97.93% | Data Rate: 1.0000
+  5. Age population, age 08, male, interpolated
+     - Type: base | Domain: Population & Demographics
+     - Importance: 97.04% | Data Rate: 1.0000
+
+====================================================================================================
+## UNDERNOURISHMENT
+----------------------------------------------------------------------------------------------------
+
+### Feature Type Distribution:
+  - base: 23 (92.0%)
+  - lag_1: 2 (8.0%)
+
+### Domain Distribution:
+  - Population & Demographics: 12 (48.0%)
+  - Agriculture & Food: 10 (40.0%)
+  - Infrastructure & Transport: 1 (4.0%)
+  - Financial Services: 1 (4.0%)
+  - Economic Structure & Output: 1 (4.0%)
+
+### Data Quality Metrics:
+  - Mean Observed Rate: 0.9798 (97.98%)
+  - Median Observed Rate: 0.9833 (98.33%)
+  - Range: 0.9165 - 1.0000
+  - Features with <95% data: 5
+  - Features with <90% data: 0
+
+### Importance Distribution:
+  - Mean Importance: 95.52%
+  - Median Importance: 95.78%
+  - Range: 90.69% - 100.00%
+  - Std Dev: 2.80%
+  - Top 5 Avg: 99.25%
+  - Bottom 5 Avg: 91.58%
+  - Importance Drop (Top to Bottom 5): 7.67%
+
+### Top 5 Most Important Features:
+  1. Birth rate, crude (per 1,000 people)
+     - Type: base | Domain: Population & Demographics
+     - Importance: 100.00% | Data Rate: 0.9833
+  2. Fertility rate, total (births per woman)
+     - Type: base | Domain: Population & Demographics
+     - Importance: 99.53% | Data Rate: 0.9833
+  3. Population ages 00-04, female (% of female population)
+     - Type: base | Domain: Population & Demographics
+     - Importance: 99.28% | Data Rate: 1.0000
+  4. Life expectancy at birth, female (years)
+     - Type: base | Domain: Agriculture & Food
+     - Importance: 99.13% | Data Rate: 0.9832
+  5. Survival to age 65, female (% of cohort)
+     - Type: base | Domain: Agriculture & Food
+     - Importance: 98.32% | Data Rate: 0.9833
+
+====================================================================================================
+## INTERNET USERS
+----------------------------------------------------------------------------------------------------
+
+### Feature Type Distribution:
+  - base: 19 (76.0%)
+  - temporal: 3 (12.0%)
+  - lag_1: 3 (12.0%)
+
+### Domain Distribution:
+  - Population & Demographics: 16 (64.0%)
+  - Economic Structure & Output: 6 (24.0%)
+  - Agriculture & Food: 2 (8.0%)
+  - International Trade: 1 (4.0%)
+
+### Data Quality Metrics:
+  - Mean Observed Rate: 0.9826 (98.26%)
+  - Median Observed Rate: 1.0000 (100.00%)
+  - Range: 0.9004 - 1.0000
+  - Features with <95% data: 5
+  - Features with <90% data: 0
+
+### Importance Distribution:
+  - Mean Importance: 94.31%
+  - Median Importance: 92.94%
+  - Range: 90.72% - 100.00%
+  - Std Dev: 3.01%
+  - Top 5 Avg: 99.01%
+  - Bottom 5 Avg: 91.28%
+  - Importance Drop (Top to Bottom 5): 7.73%
+
+### Top 5 Most Important Features:
+  1. Population ages 80 and above, female
+     - Type: base | Domain: Population & Demographics
+     - Importance: 100.00% | Data Rate: 1.0000
+  2. Population ages 65 and above, female
+     - Type: base | Domain: Population & Demographics
+     - Importance: 99.95% | Data Rate: 1.0000
+  3. Population ages 65 and above, male
+     - Type: base | Domain: Population & Demographics
+     - Importance: 98.72% | Data Rate: 1.0000
+  4. Population ages 65 and above, total
+     - Type: base | Domain: Population & Demographics
+     - Importance: 98.62% | Data Rate: 1.0000
+  5. year_squared
+     - Type: temporal | Domain: Economic Structure & Output
+     - Importance: 97.75% | Data Rate: 1.0000
+
+====================================================================================================
+## CROSS-METRIC ANALYSIS
+----------------------------------------------------------------------------------------------------
+
+### Features Appearing in Multiple Metrics (3+ occurrences):
+
+Total cross-metric features: 22
+
+Most Universal Features:
+  - Life expectancy at birth, female (years) (SP.DYN.LE00.FE.IN)
+    Appears in 5 metrics: life_expectancy, infant_mortality, mean_years_schooling, undernourishment, internet_users
+  - year_squared (year_squared)
+    Appears in 5 metrics: life_expectancy, infant_mortality, gdp_per_capita, mean_years_schooling, internet_users
+  - Population ages 80 and above, female (SP.POP.80UP.FE)
+    Appears in 5 metrics: life_expectancy, infant_mortality, mean_years_schooling, undernourishment, internet_users
+  - Life expectancy at birth, male (years) (SP.DYN.LE00.MA.IN)
+    Appears in 4 metrics: life_expectancy, infant_mortality, mean_years_schooling, undernourishment
+  - Survival to age 65, female (% of cohort) (SP.DYN.TO65.FE.ZS)
+    Appears in 4 metrics: life_expectancy, infant_mortality, mean_years_schooling, undernourishment
+  - Population ages 65 and above, total (SP.POP.65UP.TO)
+    Appears in 4 metrics: life_expectancy, mean_years_schooling, undernourishment, internet_users
+  - year_linear (year_linear)
+    Appears in 4 metrics: life_expectancy, infant_mortality, mean_years_schooling, internet_users
+  - Birth rate, crude (per 1,000 people) (SP.DYN.CBRT.IN)
+    Appears in 4 metrics: life_expectancy, infant_mortality, undernourishment, internet_users
+  - Mortality rate, under-5, male (per 1,000 live births) (SH.DYN.MORT.MA)
+    Appears in 4 metrics: life_expectancy, infant_mortality, mean_years_schooling, undernourishment
+  - Mortality rate, under-5 (per 1,000 live births) (SH.DYN.MORT)
+    Appears in 4 metrics: life_expectancy, infant_mortality, mean_years_schooling, undernourishment
+  - Population ages 00-04, female (% of female population) (SP.POP.0004.FE.5Y)
+    Appears in 4 metrics: infant_mortality, gini, undernourishment, internet_users
+  - Population ages 0-14 (% of total population) (SP.POP.0014.TO.ZS)
+    Appears in 4 metrics: infant_mortality, gdp_per_capita, gini, undernourishment
+  - Mortality rate, under-5, female (per 1,000 live births) (SH.DYN.MORT.FE)
+    Appears in 4 metrics: infant_mortality, mean_years_schooling, undernourishment, internet_users
+  - Population, total (SP.POP.TOTL)
+    Appears in 3 metrics: life_expectancy, mean_years_schooling, internet_users
+  - Survival to age 65, male (% of cohort) (SP.DYN.TO65.MA.ZS)
+    Appears in 3 metrics: life_expectancy, gini, undernourishment
+
+### Feature Type Summary Across All Metrics:
+
+Total feature-metric combinations: 200
+  - base: 173 (86.5%)
+  - lag_1: 16 (8.0%)
+  - temporal: 11 (5.5%)
+
+### Domain Summary Across All Metrics:
+  - Population & Demographics: 118 (59.0%)
+  - Agriculture & Food: 46 (23.0%)
+  - Economic Structure & Output: 25 (12.5%)
+  - Infrastructure & Transport: 4 (2.0%)
+  - Financial Services: 3 (1.5%)
+  - Government & Institutions: 2 (1.0%)
+  - Water & Sanitation: 1 (0.5%)
+  - International Trade: 1 (0.5%)
+
+### Overall Data Quality:
+  - Mean Observed Data Rate: 0.9855 (98.55%)
+  - Median Observed Data Rate: 1.0000 (100.00%)
+  - Features with <95% data: 29 (14.5%)
+  - Features with <90% data: 5 (2.5%)
+  - Features with 100% data: 130 (65.0%)
+
+====================================================================================================
+END OF REPORT
+====================================================================================================

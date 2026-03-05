@@ -1,0 +1,57 @@
+name: Release Safety Checks
+
+on:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Personal absolute path scan
+        run: |
+          python - <<'PY'
+          import pathlib, re, sys
+          root = pathlib.Path('.')
+          patterns = [
+              re.compile('/' + 'home/' + r'[A-Za-z0-9._-]+/'),
+              re.compile('/' + 'Users/' + r'[A-Za-z0-9._-]+/'),
+              re.compile('C:' + r'\\' + 'Users' + r'\\' + r'[A-Za-z0-9._-]+' + r'\\'),
+          ]
+          exts = {'.py','.js','.ts','.tsx','.md','.yml','.yaml','.json','.txt','.sh','.toml','.ini','.cfg'}
+          hits = []
+          for p in root.rglob('*'):
+              if not p.is_file() or p.suffix not in exts:
+                  continue
+              try:
+                  text = p.read_text(errors='ignore')
+              except Exception:
+                  continue
+              for i, line in enumerate(text.splitlines(), start=1):
+                  if any(r.search(line) for r in patterns):
+                      hits.append(f"{p}:{i}:{line[:180]}")
+                      if len(hits) > 50:
+                          break
+          if hits:
+              print('\n'.join(hits[:50]))
+              sys.exit(1)
+          print('No personal absolute paths found')
+          PY
+
+      - name: Secret-like pattern scan
+        run: |
+          ! rg -n 'AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z-_]{35}|ghp_[0-9A-Za-z]{36}|-----BEGIN (RSA|OPENSSH|EC|DSA) PRIVATE KEY-----|xox[baprs]-' . || (echo 'secret-like token found' && exit 1)
+
+      - name: Large tracked file scan (>10MB)
+        run: |
+          python - <<'PY'
+          import os, subprocess, sys
+          files = subprocess.check_output(['git', 'ls-files'], text=True).splitlines()
+          large = [f for f in files if os.path.getsize(f) > 10 * 1024 * 1024]
+          if large:
+              print('Large tracked files:')
+              for f in large:
+                  print(f)
+              sys.exit(1)
+          print('No large tracked files found')
+          PY

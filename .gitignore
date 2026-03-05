@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+.venv*/
+venv/
+.eggs/
+*.egg-info/
+
+# Node / frontend
+node_modules/
+.vite/
+dist/
+build/
+coverage/
+
+# Environments and secrets
+.env
+.env.*
+*.key
+*.pem
+*.p12
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs/temp
+logs/
+*.log
+tmp/
+temp/
+scratch/
+
+# Data and large artifacts
+data/raw/
+data/processed/
+*.parquet
+*.h5
+*.pkl
+*.joblib
+*.pt
+*.bin
+*.tar
+*.tar.gz
+*.zip
+
+# CSV handling:
+# ignore generic CSV by default...
+*.csv
+# ...but keep curated registry CSV files
+!data/registries/*.csv
+
+# Keep sample data explicitly tracked
+!data/sample/
+!data/sample/**

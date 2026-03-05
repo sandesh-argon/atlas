@@ -1,0 +1,25 @@
+{
+  "description": "Atlas sample panel (deterministic synthetic subset)",
+  "countries": [
+    "IND",
+    "NGA",
+    "BRA",
+    "USA",
+    "ETH"
+  ],
+  "years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "indicator_count": 50,
+  "row_count": 1250,
+  "schema": [
+    "country_code",
+    "year",
+    "indicator_code",
+    "value"
+  ]
+}

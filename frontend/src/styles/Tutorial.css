@@ -1,0 +1,327 @@
+/* ============================================
+   Tutorial Overlay — 7-step guided walkthrough
+   ============================================ */
+
+/* Dark scrim covering the entire viewport */
+.tutorial-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1300;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.tutorial-scrim--hidden {
+  opacity: 0;
+}
+
+/* Spotlight cutout — positioned absolutely within the scrim */
+.tutorial-spotlight {
+  position: fixed;
+  border-radius: 50%;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+  z-index: 1300;
+  pointer-events: none;
+  transition: top 0.4s ease, left 0.4s ease, width 0.4s ease, height 0.4s ease;
+}
+
+.tutorial-spotlight--pulse {
+  animation: tutorial-pulse 2s ease-in-out infinite;
+}
+
+@keyframes tutorial-pulse {
+  0%, 100% { box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(0, 229, 255, 0.4); }
+  50% { box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5), 0 0 20px 8px rgba(0, 229, 255, 0.3); }
+}
+
+@keyframes tutorial-bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.tutorial-spotlight--bounce {
+  animation: tutorial-bounce 0.6s ease-in-out;
+}
+
+/* Text card — floating above nav bar */
+.tutorial-card {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 520px;
+  width: calc(100% - 48px);
+  background: rgba(15, 15, 25, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 28px 32px;
+  z-index: 1301;
+  color: #fff;
+  text-align: center;
+  pointer-events: none;
+  animation: tutorial-card-enter 0.3s ease-out backwards;
+}
+
+@keyframes tutorial-card-enter {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes tutorial-card-enter-mobile {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tutorial-card__headline {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.tutorial-card__body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+/* Raised position for simulation steps — avoids covering the QoL node */
+.tutorial-card--raised {
+  bottom: auto;
+  top: 48px;
+}
+
+/* Flush to top on desktop for "Zoom into any country" step */
+.tutorial-card--top {
+  bottom: auto;
+  top: 12px;
+}
+
+/* Hidden state — used on mobile to fade card before sim actions */
+.tutorial-card--hidden {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+/* Navigation bar — fixed bottom center */
+.tutorial-nav {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(15, 15, 25, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px 24px;
+  z-index: 1301;
+  animation: tutorial-card-enter 0.3s ease-out both;
+}
+
+.tutorial-nav__skip {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.tutorial-nav__skip:hover {
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tutorial-nav__progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tutorial-nav__dots {
+  display: flex;
+  gap: 6px;
+}
+
+.tutorial-nav__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.2s;
+}
+
+.tutorial-nav__dot--active {
+  background: #00E5FF;
+}
+
+.tutorial-nav__next {
+  background: #00E5FF;
+  color: #0a0a14;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  white-space: nowrap;
+}
+
+.tutorial-nav__next:hover {
+  background: #33ebff;
+}
+
+.tutorial-nav__next:active {
+  transform: scale(0.97);
+}
+
+/* Position nav on top of timeline during sim playback — desktop covers it */
+.tutorial-nav--above-timeline {
+  bottom: 10px;
+}
+
+/* Dim nav during simulation playback so graph animation is visible */
+.tutorial-nav--dimmed {
+  animation: none;
+  opacity: 0.05;
+  transition: opacity 0.6s ease;
+}
+
+.tutorial-nav--dimmed:hover,
+.tutorial-nav--dimmed:focus-within {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Map click ripple — expanding ring at click point */
+.tutorial-map-ripple {
+  position: fixed;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid #00E5FF;
+  z-index: 1300;
+  pointer-events: none;
+  animation: tutorial-ripple 0.8s ease-out forwards;
+}
+
+@keyframes tutorial-ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    border-width: 3px;
+  }
+  100% {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+/* Input blocker — applied to app root */
+.tutorial-active {
+  pointer-events: none !important;
+}
+
+/* ── Mobile (< 768px) ── */
+@media (max-width: 767px) {
+  .tutorial-card {
+    bottom: 125px;
+    padding: 18px 20px;
+    border-radius: 12px;
+  }
+
+  .tutorial-card--raised {
+    bottom: auto;
+    top: 56px;
+  }
+
+  .tutorial-card__headline {
+    font-size: 17px;
+  }
+
+  .tutorial-card__body {
+    font-size: 12px;
+  }
+
+  .tutorial-nav {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    transform: none;
+    padding: 14px 20px;
+    animation: tutorial-card-enter-mobile 0.3s ease-out both;
+  }
+
+  .tutorial-nav--above-timeline {
+    bottom: 100px;
+  }
+
+  .tutorial-nav--above-map {
+    bottom: 50%;
+  }
+
+  .tutorial-card--above-nav {
+    bottom: 200px;
+  }
+
+}
+
+/* ── Small mobile (< 480px) ── */
+@media (max-width: 479px) {
+  .tutorial-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .tutorial-nav__progress {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .tutorial-spotlight--pulse {
+    animation: none;
+  }
+
+  .tutorial-spotlight--bounce {
+    animation: none;
+  }
+
+  .tutorial-card {
+    animation: none;
+  }
+
+  .tutorial-nav {
+    animation: none;
+  }
+
+  .tutorial-spotlight {
+    transition: none;
+  }
+
+  .tutorial-map-ripple {
+    animation: none;
+  }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Atlas</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #060b18;
+    --cyan: #00E5FF;
+    --cyan-dim: rgba(0,229,255,0.15);
+    --text: #f0f4ff;
+    --text-muted: #9daac8;
+    --text-subtle: #6678a0;
+    --border: rgba(0,229,255,0.12);
+  }
+  html, body { height: 100%; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+  }
+  .container { max-width: 480px; }
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .label::before, .label::after {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--cyan-dim);
+  }
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: 16px; line-height: 1.7;
+    color: var(--text-muted); margin-bottom: 36px;
+  }
+  a {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    background: var(--cyan); color: var(--navy);
+    padding: 14px 32px; border-radius: 2px;
+    transition: all 0.2s; font-weight: 500;
+    box-shadow: 0 0 24px rgba(0,229,255,0.25);
+    display: inline-block;
+  }
+  a:hover { box-shadow: 0 0 40px rgba(0,229,255,0.5); transform: translateY(-1px); }
+  a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="label">404</div>
+  <h1>Page not found.</h1>
+  <p>The page you're looking for doesn't exist or has been moved.</p>
+  <a href="/">Back to Atlas</a>
+</div>
+</body>
+</html>

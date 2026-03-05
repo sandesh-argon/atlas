@@ -1,0 +1,258 @@
+/**
+ * Regional Constants for 11-Region Hybrid Taxonomy
+ *
+ * Static mapping from ISO3 country codes to 11 region keys,
+ * derived from simulation/region_mapping.py.
+ */
+
+export type RegionKey =
+  | 'east_asia_pacific'
+  | 'europe_central_asia'
+  | 'latin_america_caribbean'
+  | 'middle_east_north_africa'
+  | 'north_america'
+  | 'south_asia'
+  | 'sub_saharan_africa'
+  | 'western_europe'
+  | 'eastern_europe'
+  | 'central_asia'
+  | 'southeast_asia';
+
+export const REGION_KEYS: readonly RegionKey[] = [
+  'east_asia_pacific',
+  'europe_central_asia',
+  'latin_america_caribbean',
+  'middle_east_north_africa',
+  'north_america',
+  'south_asia',
+  'sub_saharan_africa',
+  'western_europe',
+  'eastern_europe',
+  'central_asia',
+  'southeast_asia',
+] as const;
+
+export const REGION_DISPLAY_NAMES: Record<RegionKey, string> = {
+  east_asia_pacific: 'East Asia & Pacific',
+  europe_central_asia: 'Europe & Central Asia',
+  latin_america_caribbean: 'Latin America & Caribbean',
+  middle_east_north_africa: 'Middle East & North Africa',
+  north_america: 'North America',
+  south_asia: 'South Asia',
+  sub_saharan_africa: 'Sub-Saharan Africa',
+  western_europe: 'Western Europe',
+  eastern_europe: 'Eastern Europe',
+  central_asia: 'Central Asia',
+  southeast_asia: 'Southeast Asia',
+};
+
+/** Distinctive emoji icons for each region. */
+export const REGION_ICONS: Record<RegionKey, string> = {
+  east_asia_pacific: '🏯',
+  europe_central_asia: '⚙️',
+  latin_america_caribbean: '🌴',
+  middle_east_north_africa: '🕌',
+  north_america: '🗽',
+  south_asia: '🪷',
+  sub_saharan_africa: '🌍',
+  western_europe: '🏰',
+  eastern_europe: '⛪',
+  central_asia: '🐎',
+  southeast_asia: '🛕',
+};
+
+/**
+ * ISO3 → RegionKey mapping for 174 countries with temporal graph data.
+ * Generated from simulation/region_mapping.py + income_classifications.json.
+ */
+export const ISO3_TO_REGION: Record<string, RegionKey> = {
+  AFG: 'south_asia',
+  AGO: 'sub_saharan_africa',
+  ALB: 'eastern_europe',
+  ARE: 'middle_east_north_africa',
+  ARG: 'latin_america_caribbean',
+  ARM: 'europe_central_asia',
+  AUS: 'east_asia_pacific',
+  AUT: 'western_europe',
+  AZE: 'europe_central_asia',
+  BDI: 'sub_saharan_africa',
+  BEL: 'western_europe',
+  BEN: 'sub_saharan_africa',
+  BFA: 'sub_saharan_africa',
+  BGD: 'south_asia',
+  BGR: 'eastern_europe',
+  BHR: 'middle_east_north_africa',
+  BIH: 'eastern_europe',
+  BLR: 'eastern_europe',
+  BOL: 'latin_america_caribbean',
+  BRA: 'latin_america_caribbean',
+  BRB: 'latin_america_caribbean',
+  BTN: 'south_asia',
+  BWA: 'sub_saharan_africa',
+  CAF: 'sub_saharan_africa',
+  CAN: 'north_america',
+  CHE: 'western_europe',
+  CHL: 'latin_america_caribbean',
+  CHN: 'east_asia_pacific',
+  CIV: 'sub_saharan_africa',
+  CMR: 'sub_saharan_africa',
+  COD: 'sub_saharan_africa',
+  COG: 'sub_saharan_africa',
+  COL: 'latin_america_caribbean',
+  COM: 'sub_saharan_africa',
+  CPV: 'sub_saharan_africa',
+  CRI: 'latin_america_caribbean',
+  CUB: 'latin_america_caribbean',
+  CYP: 'western_europe',
+  CZE: 'eastern_europe',
+  DEU: 'western_europe',
+  DJI: 'sub_saharan_africa',
+  DNK: 'western_europe',
+  DOM: 'latin_america_caribbean',
+  DZA: 'middle_east_north_africa',
+  ECU: 'latin_america_caribbean',
+  EGY: 'middle_east_north_africa',
+  ERI: 'sub_saharan_africa',
+  ESP: 'western_europe',
+  EST: 'europe_central_asia',
+  ETH: 'sub_saharan_africa',
+  FIN: 'western_europe',
+  FJI: 'east_asia_pacific',
+  FRA: 'western_europe',
+  GAB: 'sub_saharan_africa',
+  GBR: 'western_europe',
+  GEO: 'europe_central_asia',
+  GHA: 'sub_saharan_africa',
+  GIN: 'sub_saharan_africa',
+  GMB: 'sub_saharan_africa',
+  GNB: 'sub_saharan_africa',
+  GNQ: 'sub_saharan_africa',
+  GRC: 'western_europe',
+  GTM: 'latin_america_caribbean',
+  GUY: 'latin_america_caribbean',
+  HKG: 'east_asia_pacific',
+  HND: 'latin_america_caribbean',
+  HRV: 'eastern_europe',
+  HTI: 'latin_america_caribbean',
+  HUN: 'eastern_europe',
+  IDN: 'southeast_asia',
+  IND: 'south_asia',
+  IRL: 'western_europe',
+  IRN: 'middle_east_north_africa',
+  IRQ: 'middle_east_north_africa',
+  ISL: 'western_europe',
+  ISR: 'middle_east_north_africa',
+  ITA: 'western_europe',
+  JAM: 'latin_america_caribbean',
+  JOR: 'middle_east_north_africa',
+  JPN: 'east_asia_pacific',
+  KAZ: 'central_asia',
+  KEN: 'sub_saharan_africa',
+  KGZ: 'central_asia',
+  KHM: 'southeast_asia',
+  KOR: 'east_asia_pacific',
+  KWT: 'middle_east_north_africa',
+  LAO: 'southeast_asia',
+  LBN: 'middle_east_north_africa',
+  LBR: 'sub_saharan_africa',
+  LBY: 'middle_east_north_africa',
+  LKA: 'south_asia',
+  LSO: 'sub_saharan_africa',
+  LTU: 'europe_central_asia',
+  LUX: 'western_europe',
+  LVA: 'europe_central_asia',
+  MAR: 'middle_east_north_africa',
+  MDA: 'eastern_europe',
+  MDG: 'sub_saharan_africa',
+  MDV: 'south_asia',
+  MEX: 'latin_america_caribbean',
+  MKD: 'europe_central_asia',
+  MLI: 'sub_saharan_africa',
+  MLT: 'western_europe',
+  MNE: 'eastern_europe',
+  MNG: 'east_asia_pacific',
+  MOZ: 'sub_saharan_africa',
+  MRT: 'sub_saharan_africa',
+  MUS: 'sub_saharan_africa',
+  MWI: 'sub_saharan_africa',
+  MYS: 'southeast_asia',
+  NAM: 'sub_saharan_africa',
+  NER: 'sub_saharan_africa',
+  NGA: 'sub_saharan_africa',
+  NIC: 'latin_america_caribbean',
+  NLD: 'western_europe',
+  NOR: 'western_europe',
+  NPL: 'south_asia',
+  NZL: 'east_asia_pacific',
+  OMN: 'middle_east_north_africa',
+  PAK: 'south_asia',
+  PAN: 'latin_america_caribbean',
+  PER: 'latin_america_caribbean',
+  PHL: 'southeast_asia',
+  PNG: 'east_asia_pacific',
+  POL: 'eastern_europe',
+  PRK: 'east_asia_pacific',
+  PRT: 'western_europe',
+  PRY: 'latin_america_caribbean',
+  QAT: 'middle_east_north_africa',
+  ROU: 'eastern_europe',
+  RUS: 'europe_central_asia',
+  RWA: 'sub_saharan_africa',
+  SAU: 'middle_east_north_africa',
+  SDN: 'sub_saharan_africa',
+  SEN: 'sub_saharan_africa',
+  SGP: 'southeast_asia',
+  SLB: 'east_asia_pacific',
+  SLE: 'sub_saharan_africa',
+  SLV: 'latin_america_caribbean',
+  SOM: 'sub_saharan_africa',
+  SRB: 'eastern_europe',
+  SSD: 'sub_saharan_africa',
+  STP: 'sub_saharan_africa',
+  SUR: 'latin_america_caribbean',
+  SVK: 'eastern_europe',
+  SVN: 'eastern_europe',
+  SWE: 'western_europe',
+  SWZ: 'sub_saharan_africa',
+  SYC: 'sub_saharan_africa',
+  SYR: 'middle_east_north_africa',
+  TCD: 'sub_saharan_africa',
+  TGO: 'sub_saharan_africa',
+  THA: 'southeast_asia',
+  TJK: 'central_asia',
+  TKM: 'central_asia',
+  TLS: 'southeast_asia',
+  TTO: 'latin_america_caribbean',
+  TUN: 'middle_east_north_africa',
+  TUR: 'europe_central_asia',
+  TWN: 'east_asia_pacific',
+  TZA: 'sub_saharan_africa',
+  UGA: 'sub_saharan_africa',
+  UKR: 'europe_central_asia',
+  URY: 'latin_america_caribbean',
+  USA: 'north_america',
+  UZB: 'central_asia',
+  VEN: 'latin_america_caribbean',
+  VNM: 'southeast_asia',
+  VUT: 'east_asia_pacific',
+  XKX: 'europe_central_asia',
+  YEM: 'middle_east_north_africa',
+  ZAF: 'sub_saharan_africa',
+  ZMB: 'sub_saharan_africa',
+  ZWE: 'sub_saharan_africa',
+};
+
+/** Reverse mapping: RegionKey → sorted ISO3 codes in that region. Built at module load. */
+export const REGION_TO_ISO3S: Record<RegionKey, string[]> = (() => {
+  const result = {} as Record<RegionKey, string[]>;
+  for (const key of REGION_KEYS) {
+    result[key] = [];
+  }
+  for (const [iso3, region] of Object.entries(ISO3_TO_REGION)) {
+    result[region].push(iso3);
+  }
+  for (const key of REGION_KEYS) {
+    result[key].sort();
+  }
+  return result;
+})();

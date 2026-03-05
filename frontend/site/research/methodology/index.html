@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Methodology — Atlas by Argon Analytics</title>
+<meta name="description" content="Atlas methodology: 16-section deep dive into the causal discovery pipeline, validation architecture, failure registry, and evidence governance behind Atlas.">
+<meta property="og:title" content="Atlas Methodology — From Panel Data to Policy-Ready Evidence">
+<meta property="og:description" content="Full methodology narrative: pipeline design, SHAP analysis, simulation engine, validation protocols, and claim-level evidence traceability.">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://atlas.argonanalytics.org/research/methodology">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../research-base.css">
+<style>
+  /* ── Pipeline diagram ── */
+  .pipeline-diagram {
+    margin: 48px 0 56px;
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 32px 24px;
+  }
+  .pipeline-diagram svg { width: 100%; height: auto; display: block; }
+  .pipeline-diagram .stage-link {
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .pipeline-diagram .stage-link:hover { opacity: 0.75; }
+
+  /* ── Evidence refs inline ── */
+  .evidence-group {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-subtle);
+    margin-top: -8px;
+    margin-bottom: 20px;
+  }
+  .evidence-group::before {
+    content: 'Evidence: ';
+    color: var(--text-subtle);
+    opacity: 0.6;
+  }
+
+  /* ── Validation bars container ── */
+  .validation-bars {
+    margin: 24px 0 32px;
+  }
+
+  /* ── Section number ── */
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* ── Assumption register list ── */
+  .assumption-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 24px;
+  }
+  .assumption-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+  .assumption-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan-dim);
+    border: 1px solid var(--cyan);
+  }
+
+  /* ── Human gates ── */
+  .gate-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0 32px;
+  }
+  .gate-card {
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 20px;
+  }
+  .gate-card .gate-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--cyan);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .gate-card p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  /* ── Registry file list ── */
+  .registry-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 20px 0 28px;
+  }
+  .registry-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .gate-list { grid-template-columns: 1fr; }
+    .registry-list { grid-template-columns: 1fr; }
+    .pipeline-diagram { padding: 20px 12px; overflow-x: auto; }
+    .pipeline-diagram svg { min-width: 560px; }
+  }
+</style>
+</head>
+<body>
+<a href="#introduction" class="skip-link">Skip to content</a>
+
+<!-- READING PROGRESS -->
+<div class="reading-progress" id="reading-progress"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="36" height="36" aria-label="Atlas logo" style="margin-right:6px;flex-shrink:0;"><line x1="8" y1="8" x2="8" y2="2.5" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round"/><line x1="8" y1="8" x2="2.8" y2="11.5" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round"/><line x1="8" y1="8" x2="13.2" y2="11.5" stroke="#00E5FF" stroke-width="1.2" stroke-linecap="round"/><circle cx="8" cy="2.5" r="1.5" fill="#00E5FF"/><circle cx="2.8" cy="11.5" r="1.5" fill="#00E5FF"/><circle cx="13.2" cy="11.5" r="1.5" fill="#00E5FF"/><circle cx="8" cy="8" r="2" fill="none" stroke="#00E5FF" stroke-width="1.2"/><circle cx="8" cy="8" r="0.8" fill="#00E5FF"/></svg>Atlas &nbsp;<span>by Argon Analytics</span></a>
+  <div class="nav-links">
+    <a href="/#what">What It Does</a>
+    <a href="/#method">Methodology</a>
+    <a href="/#findings">Findings</a>
+    <a href="/research" class="active">Research</a>
+  </div>
+  <a href="/explore" class="nav-cta">Launch Atlas &rarr;</a>
+</nav>
+
+<!-- MOBILE TOC TOGGLE -->
+<button class="mobile-toc-toggle" id="mobile-toc-toggle" aria-expanded="false" aria-controls="mobile-toc-dropdown">Contents</button>
+<div class="mobile-toc-dropdown" id="mobile-toc-dropdown" role="navigation" aria-label="Table of contents (mobile)">
+  <ol>
+    <li><a href="#introduction">1. Introduction</a></li>
+    <li><a href="#data-sources">2. Data Sources</a></li>
+    <li><a href="#pipeline">3. Causal Discovery Pipeline</a></li>
+    <li><a href="#shap">4. SHAP Analysis</a></li>
+    <li><a href="#simulation">5. Simulation Engine</a></li>
+    <li><a href="#validation">6. Validation &amp; Robustness</a></li>
+    <li><a href="#limitations">7. Limitations</a></li>
+    <li><a href="#ai-workflow">8. AI-Assisted Workflow</a></li>
+    <li><a href="#reproducibility">9. Reproducibility</a></li>
+    <li><a href="#statistical">10. Statistical Formulation</a></li>
+    <li><a href="#validation-catalog">11. Validation Catalog</a></li>
+    <li><a href="#findings-governance">12. Findings Governance</a></li>
+    <li><a href="#replication">13. Replication Workflow</a></li>
+    <li><a href="#validity-threats">14. Validity Threats</a></li>
+    <li><a href="#stage-rationale">15. Decision Rationale</a></li>
+    <li><a href="#publication-controls">16. Publication Controls</a></li>
+  </ol>
+</div>
+
+<main>
+<div class="article-layout">
+
+  <!-- SIDEBAR TOC -->
+  <aside class="sidebar-toc" id="sidebar-toc" aria-label="Table of contents">
+    <h4>Contents</h4>
+    <ol>
+      <li><a href="#introduction">1. Introduction</a>
+        <ol class="toc-sub">
+          <li><a href="#research-questions">1.1 Research Questions</a></li>
+          <li><a href="#origins">1.2 Origins</a></li>
+        </ol>
+      </li>
+      <li><a href="#data-sources">2. Data Sources</a>
+        <ol class="toc-sub">
+          <li><a href="#source-families">2.1 Source Families</a></li>
+          <li><a href="#integration-workflow">2.2 Integration</a></li>
+          <li><a href="#data-governance">2.3 Governance</a></li>
+        </ol>
+      </li>
+      <li><a href="#pipeline">3. Causal Pipeline</a>
+        <ol class="toc-sub">
+          <li><a href="#stage-a2">3.1 Granger (A2)</a></li>
+          <li><a href="#stage-a3">3.2 PC-Stable (A3)</a></li>
+          <li><a href="#stage-a4">3.3 Bootstrap (A4)</a></li>
+          <li><a href="#why-three">3.4 Why Three Stages</a></li>
+        </ol>
+      </li>
+      <li><a href="#shap">4. SHAP Analysis</a>
+        <ol class="toc-sub">
+          <li><a href="#shap-policy">4.1 Policy Context</a></li>
+        </ol>
+      </li>
+      <li><a href="#simulation">5. Simulation Engine</a>
+        <ol class="toc-sub">
+          <li><a href="#scope-modes">5.1 Scope Modes</a></li>
+          <li><a href="#sim-uncertainty">5.2 Uncertainty</a></li>
+        </ol>
+      </li>
+      <li><a href="#validation">6. Validation</a>
+        <ol class="toc-sub">
+          <li><a href="#findings-robustness">6.1 Findings Robustness</a></li>
+        </ol>
+      </li>
+      <li><a href="#limitations">7. Limitations</a>
+        <ol class="toc-sub">
+          <li><a href="#interpretation-limits">7.1 Interpretation</a></li>
+        </ol>
+      </li>
+      <li><a href="#ai-workflow">8. AI Workflow</a></li>
+      <li><a href="#reproducibility">9. Reproducibility</a></li>
+      <li><a href="#statistical">10. Statistical</a>
+        <ol class="toc-sub">
+          <li><a href="#a2-formulation">10.1 A2 Formulation</a></li>
+          <li><a href="#a3-logic">10.2 A3 Logic</a></li>
+          <li><a href="#a4-bootstrap">10.3 A4 Bootstrap</a></li>
+          <li><a href="#assumption-register">10.4 Assumptions</a></li>
+        </ol>
+      </li>
+      <li><a href="#validation-catalog">11. Validation Catalog</a>
+        <ol class="toc-sub">
+          <li><a href="#cert-checks">11.1 Certification</a></li>
+          <li><a href="#panel-checks">11.2 Panel Integrity</a></li>
+          <li><a href="#runtime-checks">11.3 Runtime Assets</a></li>
+          <li><a href="#citation-checks">11.4 Citation Checks</a></li>
+        </ol>
+      </li>
+      <li><a href="#findings-governance">12. Findings Gov.</a>
+        <ol class="toc-sub">
+          <li><a href="#candidate-generation">12.1 Candidates</a></li>
+          <li><a href="#diversity-constraint">12.2 Diversity</a></li>
+          <li><a href="#finding-reliability">12.3 Reliability</a></li>
+        </ol>
+      </li>
+      <li><a href="#replication">13. Replication</a>
+        <ol class="toc-sub">
+          <li><a href="#reproducer-needs">13.1 Requirements</a></li>
+          <li><a href="#replication-sequence">13.2 Sequence</a></li>
+          <li><a href="#repro-boundaries">13.3 Boundaries</a></li>
+        </ol>
+      </li>
+      <li><a href="#validity-threats">14. Validity Threats</a>
+        <ol class="toc-sub">
+          <li><a href="#internal-validity">14.1 Internal</a></li>
+          <li><a href="#external-validity">14.2 External</a></li>
+          <li><a href="#construct-validity">14.3 Construct</a></li>
+          <li><a href="#validity-conclusion">14.4 Conclusion</a></li>
+        </ol>
+      </li>
+      <li><a href="#stage-rationale">15. Rationale</a></li>
+      <li><a href="#publication-controls">16. Pub. Controls</a></li>
+    </ol>
+  </aside>
+
+  <!-- ARTICLE BODY -->
+  <article class="article-body">
+
+    <!-- TOP MATTER -->
+    <div class="article-top">
+      <div class="eyebrow">Methodology</div>
+      <h1>Atlas Methodology: From Panel Data to Policy-Ready Evidence</h1>
+      <div class="meta">Argon Analytics Research Team</div>
+      <div class="meta">March 2026</div>
+      <div class="keywords">
+        <span>Causal Discovery</span>
+        <span>Granger Causality</span>
+        <span>PC-Stable</span>
+        <span>Bootstrap Validation</span>
+        <span>SHAP</span>
+        <span>Policy Simulation</span>
+        <span>Evidence Governance</span>
+      </div>
+    </div>
+
+    <!-- ═══════════════ 1. INTRODUCTION ═══════════════ -->
+    <section id="introduction" class="reveal">
+      <span class="section-num">Section 1</span>
+      <h2>Introduction</h2>
+
+      <p>Atlas is a longitudinal causal-discovery and policy-simulation system built to move from large observational development panels to scenario guidance without hiding uncertainty. The system was developed over multiple generations (V1 through V3.1), and the current publication corpus is anchored to a production-certified runtime and a claim-level evidence ledger. The certification state is <code>CERTIFIED</code> and <code>PRODUCTION_READY</code>, meaning data artifacts, runtime interfaces, and validation checks all passed release criteria before narrative conversion began (<span class="evidence-ref">CLM-0001<span class="tooltip">Production certification status</span></span>, <span class="evidence-ref">CLM-0002<span class="tooltip">Production readiness confirmation</span></span>).</p>
+
+      <p>The audited panel contains <strong>18,296,578 rows</strong>, <strong>893 country entities</strong>, and <strong>3,122 indicators</strong>. Runtime serving assets include 5,054 temporal graph files, 5,053 temporal SHAP files, and 5,026 baseline files. Regional serving adds 286 graph files, 286 SHAP files, and 11 regional indicator-stat files, with country-to-region mapping validated at 178/178 canonical countries (<span class="evidence-ref">CLM-0005<span class="tooltip">Panel integrity counts</span></span>, <span class="evidence-ref">CLM-0006<span class="tooltip">Panel integrity counts</span></span>, <span class="evidence-ref">CLM-0007<span class="tooltip">Panel integrity counts</span></span>, <span class="evidence-ref">CLM-0014<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0015<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0016<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0017<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0018<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0019<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0057<span class="tooltip">Regional mapping coverage</span></span>).</p>
+
+      <p>The contribution is an integrated workflow where every numerical statement in public-facing documents traces to a registered claim, a concrete evidence anchor, and a known artifact path. Atlas treats provenance, contradiction handling, and uncertainty language as part of the scientific method, not as compliance afterthoughts.</p>
+    </section>
+
+    <!-- PIPELINE DIAGRAM -->
+    <div class="pipeline-diagram reveal" aria-label="Causal discovery pipeline showing three stages from 2.1M tests to 4,976 validated edges">
+      <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background grid lines -->
+        <line x1="0" y1="60" x2="680" y2="60" stroke="rgba(0,229,255,0.06)" stroke-width="1"/>
+        <line x1="0" y1="120" x2="680" y2="120" stroke="rgba(0,229,255,0.06)" stroke-width="1"/>
+
+        <!-- Stage connectors -->
+        <line x1="200" y1="42" x2="230" y2="42" stroke="rgba(0,229,255,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="200" y1="42" x2="230" y2="100" stroke="rgba(0,229,255,0.15)" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="430" y1="100" x2="460" y2="100" stroke="rgba(0,229,255,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
+        <line x1="430" y1="100" x2="460" y2="158" stroke="rgba(0,229,255,0.15)" stroke-width="1" stroke-dasharray="4 3"/>
+
+        <!-- Input bar -->
+        <a class="stage-link" href="#stage-a2">
+          <rect x="10" y="22" width="190" height="40" rx="3" fill="rgba(0,229,255,0.06)" stroke="rgba(0,229,255,0.2)" stroke-width="1"/>
+          <text x="105" y="38" text-anchor="middle" fill="#00E5FF" font-family="DM Mono, monospace" font-size="11" font-weight="500">Stage A2: Granger</text>
+          <text x="105" y="53" text-anchor="middle" fill="#9daac8" font-family="DM Mono, monospace" font-size="10">2,159,672 tests</text>
+        </a>
+
+        <!-- Arrow down: pruned -->
+        <text x="215" y="68" fill="#6678a0" font-family="Inter, sans-serif" font-size="10">73.9% pruned</text>
+
+        <!-- A2 output / A3 input -->
+        <a class="stage-link" href="#stage-a3">
+          <rect x="230" y="80" width="200" height="40" rx="3" fill="rgba(0,229,255,0.10)" stroke="rgba(0,229,255,0.3)" stroke-width="1"/>
+          <text x="330" y="96" text-anchor="middle" fill="#00E5FF" font-family="DM Mono, monospace" font-size="11" font-weight="500">Stage A3: PC-Stable</text>
+          <text x="330" y="111" text-anchor="middle" fill="#9daac8" font-family="DM Mono, monospace" font-size="10">564,545 &rarr; 58,837</text>
+        </a>
+
+        <!-- Arrow down: pruned -->
+        <text x="445" y="128" fill="#6678a0" font-family="Inter, sans-serif" font-size="10">89.6% pruned</text>
+
+        <!-- A4 output -->
+        <a class="stage-link" href="#stage-a4">
+          <rect x="460" y="138" width="210" height="40" rx="3" fill="rgba(0,229,255,0.18)" stroke="var(--cyan)" stroke-width="1.5"/>
+          <text x="565" y="154" text-anchor="middle" fill="#00E5FF" font-family="DM Mono, monospace" font-size="11" font-weight="500">Stage A4: Bootstrap</text>
+          <text x="565" y="169" text-anchor="middle" fill="#f0f4ff" font-family="DM Mono, monospace" font-size="11" font-weight="500">4,976 validated edges</text>
+        </a>
+
+        <!-- Labels -->
+        <text x="10" y="14" fill="#6678a0" font-family="DM Mono, monospace" font-size="9" letter-spacing="0.12em" text-transform="uppercase">CAUSAL DISCOVERY PIPELINE</text>
+        <text x="10" y="194" fill="#6678a0" font-family="Inter, sans-serif" font-size="10">Click a stage to jump to its section</text>
+      </svg>
+    </div>
+
+    <!-- 1.1 Research Questions -->
+    <section id="research-questions" class="reveal">
+      <h3>1.1 Research Questions and Scope</h3>
+
+      <p>Three research questions structure this work. First, <strong>methodological</strong>: can a multi-stage causal discovery pipeline preserve interpretability at Atlas scale while staying auditable end to end? Second, <strong>substantive</strong>: do high-coverage relationships reveal mechanism classes that matter for policy design -- cross-strata reversals, threshold effects, mediated transmission chains? Third, <strong>operational</strong>: can those findings be translated into policy-ready prose without breaking evidence fidelity?</p>
+
+      <p>Atlas separates concerns accordingly. Discovery stages estimate directional structure under explicit assumptions. Runtime layers serve artifacts with scope-aware fallback. Narrative synthesis converts validated evidence into documents reviewable by technical and non-technical audiences without changing underlying numbers.</p>
+
+      <p>Scope boundaries are explicit: no new model training, no causal re-estimation, and no external claims not already represented in repository artifacts. The narrative documents are an evidence-grounded synthesis pass over validated outputs, not a new statistical experiment.</p>
+    </section>
+
+    <!-- 1.2 Origins -->
+    <section id="origins" class="reveal">
+      <h3>1.2 Origins and Early Failure Context</h3>
+
+      <p>Atlas V1 targeted 174 countries across 65 years and 2,480 indicators. Early exports produced a combined graph with 162 nodes and 204 edges -- the first complete ingestion-to-graph loop, but also the beginning of identified limits in sample retention and temporal coverage (<span class="evidence-ref">CLM-0023<span class="tooltip">V1 original outputs</span></span>, <span class="evidence-ref">CLM-0024<span class="tooltip">V1 original outputs</span></span>).</p>
+
+      <p>The most consequential early failure was a data-coverage cascade. Under naive temporal-completeness handling, usable sample collapsed after filtering, making structure learning brittle. That failure (FAIL-0004) was resolved by reworking feature engineering around explicit panel-density constraints before causal estimation.</p>
+
+      <p>Atlas documents pipeline changes as responses to specific breakages, not abstract improvements.</p>
+    </section>
+
+    <!-- ═══════════════ 2. DATA SOURCES ═══════════════ -->
+    <section id="data-sources" class="reveal">
+      <span class="section-num">Section 2</span>
+      <h2>Data Sources and Integration</h2>
+
+      <p>The active reproducibility registry contains 11 datasets with canonical and archival URLs, each linked to ingestion lineage. Only active rows (those with complete reproducibility metadata) are used for public claims, preventing citation drift between narrative text and fetchable source artifacts (<span class="evidence-ref">CLM-0054<span class="tooltip">Citation audit results</span></span>).</p>
+
+      <p>Atlas integrates institutional datasets with different definitions, update cycles, and country coverage conventions. Instead of forcing one universal source hierarchy, Atlas uses a controlled harmonization layer that preserves source identity while normalizing country keys, indicator IDs, and yearly indices for model compatibility.</p>
+    </section>
+
+    <!-- 2.1 Source Families -->
+    <section id="source-families" class="reveal">
+      <h3>2.1 Active Source Families</h3>
+
+      <div class="table-wrapper">
+        <div class="table-caption">Table 1 &mdash; Active source families with dataset IDs</div>
+        <table class="research-table" id="sources-table">
+          <thead>
+            <tr>
+              <th class="sortable">Source</th>
+              <th class="sortable">Provider</th>
+              <th class="sortable num">Indicators</th>
+              <th class="sortable">Dataset ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>International Comparison Program</td><td>World Bank</td><td class="num">91</td><td>DS-0019</td></tr>
+            <tr><td>Penn World Table 10.0</td><td>U. of Groningen</td><td class="num">10</td><td>DS-0023</td></tr>
+            <tr><td>Quality of Government</td><td>QoG Institute</td><td class="num">85</td><td>DS-0025</td></tr>
+            <tr><td>UNESCO Institute for Statistics</td><td>UNESCO</td><td class="num">446</td><td>DS-0033</td></tr>
+            <tr><td>V-Dem Dataset</td><td>V-Dem Institute</td><td class="num">456</td><td>DS-0039</td></tr>
+            <tr><td>World Bank Open Data</td><td>World Bank</td><td class="num">68</td><td>DS-0045</td></tr>
+            <tr><td>World Development Indicators</td><td>World Bank</td><td class="num">169</td><td>DS-0047</td></tr>
+            <tr><td>Global Health Observatory</td><td>WHO</td><td class="num">2</td><td>DS-0048</td></tr>
+            <tr><td>World Inequality Database</td><td>WID</td><td class="num">296</td><td>DS-0049</td></tr>
+            <tr><td>Atlas Income Classifications</td><td>Atlas (internal)</td><td class="num">&mdash;</td><td>DS-9001</td></tr>
+            <tr><td>Atlas Regional Groups</td><td>Atlas (internal)</td><td class="num">&mdash;</td><td>DS-9002</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>All nine institutional sources and two internal classification datasets carry canonical and archival URLs. Indicator counts reflect v2.1 labels. Each source is treated as reproducible for public claims only when required provenance fields are complete (<span class="evidence-ref">CLM-0054<span class="tooltip">Citation audit results</span></span>).</p>
+    </section>
+
+    <!-- 2.2 Integration Workflow -->
+    <section id="integration-workflow" class="reveal">
+      <h3>2.2 Integration Workflow</h3>
+
+      <p>Integration proceeds in four controlled passes. <strong>Pass 1</strong> is structural normalization, parsing source files into a common schema with country, indicator, year, value, and source columns. <strong>Pass 2</strong> is semantic normalization, reconciling indicator IDs to prevent duplicate semantics in causal neighborhoods. <strong>Pass 3</strong> is temporal compatibility filtering, excluding trajectories failing minimum continuity constraints. <strong>Pass 4</strong> is registry synchronization, linking ingest outputs to dataset and evidence registries before downstream use.</p>
+
+      <p>Atlas treats missingness handling as a causal-risk control, not a preprocessing convenience. Naive handling can overrepresent well-observed country-year pockets while suppressing structurally important low-coverage signals. The current policy filters with transparency and carries exclusions into audit logs.</p>
+
+      <p>Documentation drift checks are part of integration QC. In this cycle, one artifact reported 9,926 outputs while a table reported 9,928. The contradiction was resolved through structured audit policy: frozen release claims must use structured validation artifacts, not prose headers. The contradiction register is closed to zero unresolved items (<span class="evidence-ref">CLM-0021<span class="tooltip">Documentation drift resolution</span></span>, <span class="evidence-ref">CLM-0022<span class="tooltip">Documentation drift resolution</span></span>, <span class="evidence-ref">CLM-0051<span class="tooltip">Contradiction closure</span></span>).</p>
+    </section>
+
+    <!-- 2.3 Data Governance -->
+    <section id="data-governance" class="reveal">
+      <h3>2.3 Data Governance and Reproducibility Controls</h3>
+
+      <p>Atlas uses three linked registries: <strong>dataset registry</strong> (source identity and access links), <strong>ingestion registry</strong> (fetch/parse lineage and version alignment), and <strong>evidence ledger</strong> (claim-to-artifact binding). Narrative conversion is allowed only when claim-evidence linkage is complete. If a value cannot be traced to a registered claim, it is excluded -- claims are removed, not softened, when traceability fails.</p>
+
+      <p>The same governance rule applies to contextual citations: only references already in repository artifacts are permitted. New external claims are prohibited in this narrative phase.</p>
+    </section>
+
+    <!-- ═══════════════ 3. CAUSAL DISCOVERY PIPELINE ═══════════════ -->
+    <section id="pipeline" class="reveal">
+      <span class="section-num">Section 3</span>
+      <h2>Causal Discovery Pipeline</h2>
+
+      <p>Atlas uses a staged pipeline because each stage answers a different statistical question and failure mode. A2 tests temporal precedence at scale. A3 removes conditionally spurious edges under multivariate constraints. A4 estimates effect sizes with bootstrap retention and significance filters. Keeping stages separate enables targeted diagnosis when claims are challenged.</p>
+
+      <p>A single-stage approach at this dimensionality tends to produce either dense-uninterpretable or sparse-brittle graphs. Atlas avoids that by allowing A2 to be broad, A3 structurally selective, and A4 reliability-selective. Pipeline lineage is anchored to V2.1 A2/A3/A4 outputs carried into V3.1/v31 serving artifacts via standardized schemas (<span class="evidence-ref">CLM-0008<span class="tooltip">Granger causality test counts</span></span>, <span class="evidence-ref">CLM-0009<span class="tooltip">Granger causality test counts</span></span>, <span class="evidence-ref">CLM-0011<span class="tooltip">PC-Stable edge reduction</span></span>, <span class="evidence-ref">CLM-0012<span class="tooltip">Bootstrap retention results</span></span>, <span class="evidence-ref">CLM-0013<span class="tooltip">Bootstrap retention results</span></span>).</p>
+    </section>
+
+    <!-- 3.1 Stage A2 -->
+    <section id="stage-a2" class="reveal">
+      <h3>3.1 Stage A2: Granger Causality Prefiltering</h3>
+
+      <p>A2 ran <strong>2,159,672 pairwise Granger causality tests</strong> (max lag 5 years), asking whether lagged history of candidate X improves prediction of target Y beyond Y's own history. FDR control at q&lt;0.05 yielded <strong>564,545 retained edges</strong> (26.1% retention, 73.9% pruning) -- expected in high-dimensional settings where many pairwise correlations are weak or temporally non-predictive (<span class="evidence-ref">CLM-0008<span class="tooltip">Granger causality test counts</span></span>, <span class="evidence-ref">CLM-0009<span class="tooltip">Granger causality test counts</span></span>, <span class="evidence-ref">CLM-0010<span class="tooltip">Granger causality test counts</span></span>).</p>
+
+      <p>A2 is intentionally permissive. The goal is to avoid discarding plausible temporal candidates before structural testing. A2 output is a screened candidate pool, not publishable causal claims.</p>
+    </section>
+
+    <!-- 3.2 Stage A3 -->
+    <section id="stage-a3" class="reveal">
+      <h3>3.2 Stage A3: Structure Learning with PC-Stable</h3>
+
+      <p>A3 applies PC-Stable conditional-independence logic to remove edges explainable by confounder structures, reducing to <strong>58,837 edges</strong> (10.4% of A2 survivors). Where A2 asks temporal precedence, A3 asks whether X still contributes when candidate confounders are conditioned on (<span class="evidence-ref">CLM-0011<span class="tooltip">PC-Stable edge reduction</span></span>).</p>
+
+      <p>The key limitation: conditional-independence decisions depend on observed variables. Unmeasured confounding can still distort orientation and adjacency. Atlas treats A3 as structural pruning, not final certainty, and requires A4 stability checks before narrative promotion.</p>
+    </section>
+
+    <!-- 3.3 Stage A4 -->
+    <section id="stage-a4" class="reveal">
+      <h3>3.3 Stage A4: Bootstrap Effect Estimation and Retention</h3>
+
+      <p>A4 estimates effect sizes and stability using <strong>100 bootstrap iterations</strong>, retaining <strong>4,976 edges</strong> (8.5% of A3). Edges failing retention or interval-sign coherence criteria are removed. This favors edges persistent across resamples over those strong in a single fit but unstable under perturbation (<span class="evidence-ref">CLM-0012<span class="tooltip">Bootstrap retention results</span></span>, <span class="evidence-ref">CLM-0013<span class="tooltip">Bootstrap retention results</span></span>).</p>
+
+      <p>Bootstrap output is not treated as absolute uncertainty truth. Atlas documents known miscalibration risks and applies conservative caveat policy where confidence intervals are sparse or missing.</p>
+    </section>
+
+    <!-- 3.4 Why Three Stages -->
+    <section id="why-three" class="reveal">
+      <h3>3.4 Why Three Stages</h3>
+
+      <p>Each stage adds a specific evidence layer: <strong>temporal order</strong>, <strong>structural plausibility</strong>, and <strong>stability under perturbation</strong>. This layered logic is easier to explain and audit than one opaque end-to-end estimator. For policy audiences, each finding can be framed with mechanism class and uncertainty class. For researchers, replication can proceed stage by stage rather than only checking final outputs.</p>
+    </section>
+
+    <!-- ═══════════════ 4. SHAP ═══════════════ -->
+    <section id="shap" class="reveal">
+      <span class="section-num">Section 4</span>
+      <h2>SHAP Importance Analysis</h2>
+
+      <p>Atlas uses SHAP (SHapley Additive exPlanations) as contribution diagnostics for model interpretation. A SHAP value measures how much a feature contributes to a prediction relative to a baseline. Atlas uses these values for explanatory ranking, not policy causation claims.</p>
+
+      <p>The serving corpus includes <strong>5,053 temporal SHAP files</strong> and <strong>286 regional SHAP files</strong>, near parity with graph files (<span class="evidence-ref">CLM-0014<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0015<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0017<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0018<span class="tooltip">Runtime asset counts</span></span>).</p>
+
+      <p>SHAP and causal edges are interpreted jointly. When concentration and edge stability align, mechanism confidence improves. When they diverge, Atlas elevates uncertainty language -- preventing misrepresentation of feature importance as intervention effect size.</p>
+    </section>
+
+    <!-- 4.1 SHAP in Policy Context -->
+    <section id="shap-policy" class="reveal">
+      <h3>4.1 SHAP in Policy Context</h3>
+
+      <p>Policy teams ask which variables "matter most." SHAP answers in a model-relative way through two checks: <strong>persistence</strong> (do high-contribution signals remain across years?) and <strong>concentration</strong> (is contribution narrowly focused or distributed?). A concentrated profile aids prioritization but risks overfitting interpretation; a distributed profile indicates resilient multi-factor dynamics but complicates targeting.</p>
+
+      <p>SHAP-based statements must be paired with causal-stage context and uncertainty statements when promoted into findings.</p>
+    </section>
+
+    <!-- ═══════════════ 5. SIMULATION ═══════════════ -->
+    <section id="simulation" class="reveal">
+      <span class="section-num">Section 5</span>
+      <h2>Simulation Engine</h2>
+
+      <p>Atlas simulation propagates interventions through validated directed graphs with damping, horizon control, and optional nonlinear handling. Output is comparative scenario movement, not absolute point forecasts -- a distinction learned through failure when V3.0 forecasting framing failed validation (<span class="evidence-ref">FAIL-0001<span class="tooltip">Absolute forecasting framing failed predictive checks. Replaced by comparative scenario framing.</span></span>).</p>
+    </section>
+
+    <!-- 5.1 Scope Modes -->
+    <section id="scope-modes" class="reveal">
+      <h3>5.1 Scope Modes and Regional Capability</h3>
+
+      <p>Runtime supports unified, stratified, country, and regional scopes. Regional capability includes dedicated graphs, SHAP files, and regional statistics. Mapping coverage is <strong>178/178 canonical countries</strong>, with North America mapped as Canada and United States (Mexico assigned to Latin America and Caribbean) (<span class="evidence-ref">CLM-0017<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0018<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0019<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0057<span class="tooltip">Regional mapping coverage</span></span>, <span class="evidence-ref">CLM-0058<span class="tooltip">Regional mapping coverage</span></span>).</p>
+
+      <p>Regional analysis introduces aggregation risk: edge union can inflate graph density. Atlas mitigates this with explicit warnings, year-scope fallbacks, and contributor coverage reporting. A regional audit counted <strong>1,093,922 edges</strong>, confirming large-scale nonlinearity while requiring per-finding caveat checks for CI sparsity (<span class="evidence-ref">CLM-0056<span class="tooltip">Regional audit edge count</span></span>).</p>
+    </section>
+
+    <!-- 5.2 Uncertainty -->
+    <section id="sim-uncertainty" class="reveal">
+      <h3>5.2 Uncertainty Handling in Simulation Outputs</h3>
+
+      <p>Simulation uncertainty is represented through bootstrap-informed intervals, edge-level confidence metadata, and scenario caveats. Atlas does not collapse to a single confidence score because uncertainty sources are heterogeneous: coverage gaps, directional instability, nonlinear regime shifts, and sparse interval fields affect interpretation differently.</p>
+
+      <p>Direction-only claims are blocked from high-confidence framing without corroboration (FAIL-0002). Overly narrow intervals are treated as potentially miscalibrated (FAIL-0003). Scenario outputs are structured hypotheses for local validation, not standalone policy guarantees.</p>
+    </section>
+
+    <!-- ═══════════════ 6. VALIDATION ═══════════════ -->
+    <section id="validation" class="reveal">
+      <span class="section-num">Section 6</span>
+      <h2>Validation and Robustness</h2>
+
+      <p>Validation is anchored to <code>CERTIFIED</code> / <code>PRODUCTION_READY</code> status: Phase 2A validated 4,749/4,767 files (99.6%) and Phase 2B validated 4,680/4,768 files (98.2%). These are system-level readiness checks spanning data integrity, artifact structure, and serving consistency (<span class="evidence-ref">CLM-0001<span class="tooltip">Production certification status</span></span>, <span class="evidence-ref">CLM-0002<span class="tooltip">Production readiness confirmation</span></span>, <span class="evidence-ref">CLM-0003<span class="tooltip">Phase 2A validation pass rates</span></span>, <span class="evidence-ref">CLM-0004<span class="tooltip">Phase 2B validation pass rates</span></span>).</p>
+
+      <div class="validation-bars">
+        <div class="validation-bar">
+          <div class="bar-label"><span>Phase 2A</span><span>99.6%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="99.6%"></div></div>
+        </div>
+        <div class="validation-bar">
+          <div class="bar-label"><span>Phase 2B</span><span>98.2%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-width="98.2%"></div></div>
+        </div>
+      </div>
+
+      <p>Robustness is evaluated on cross-layer coherence: <strong>panel-level</strong> (scale and coverage), <strong>runtime-level</strong> (file presence and schema compliance), <strong>findings-level</strong> (robustness across years and scopes), and <strong>contradiction-level</strong> (conflicts resolved before publication). Contradiction closure reached zero unresolved items; citation audits reported zero missing and zero unknown evidence links (<span class="evidence-ref">CLM-0051<span class="tooltip">Contradiction closure</span></span>, <span class="evidence-ref">CLM-0054<span class="tooltip">Citation audit results</span></span>).</p>
+    </section>
+
+    <!-- 6.1 Findings Robustness -->
+    <section id="findings-robustness" class="reveal">
+      <h3>6.1 Findings Robustness Layer</h3>
+
+      <p>The findings package evaluated <strong>11,632 candidates</strong> across 140 graphs and 35 years. The ranked top-10 was diversified by class: 4 reversals, 3 mediations, 2 thresholds, and 1 outcome-surprise. The public top-4 preserved one per class family to avoid overrepresenting a single mechanism pattern (<span class="evidence-ref">CLM-0026<span class="tooltip">Findings extraction governance</span></span>, <span class="evidence-ref">CLM-0027<span class="tooltip">Findings extraction governance</span></span>, <span class="evidence-ref">CLM-0028<span class="tooltip">Findings extraction governance</span></span>, <span class="evidence-ref">CLM-0029<span class="tooltip">Findings extraction governance</span></span>, <span class="evidence-ref">CLM-0030<span class="tooltip">Findings extraction governance</span></span>, <span class="evidence-ref">CLM-0031<span class="tooltip">Findings extraction governance</span></span>, <span class="evidence-ref">CLM-0032<span class="tooltip">Findings extraction governance</span></span>).</p>
+
+      <p>Anchor findings F01, F02, F06, and F08 were selected for full temporal and graph availability while representing different interpretive risks and policy use cases.</p>
+    </section>
+
+    <!-- ═══════════════ 7. LIMITATIONS ═══════════════ -->
+    <section id="limitations" class="reveal">
+      <span class="section-num">Section 7</span>
+      <h2>Limitations and Failure Modes</h2>
+
+      <p>Atlas documents limitations as first-class outputs because omission of known failure modes misleads readers more than model error itself. Four failures are maintained in the failure registry:</p>
+
+      <div class="fail-card">
+        <div class="fail-id">FAIL-0001</div>
+        <p>Absolute forecasting framing failed predictive checks. Replaced by comparative scenario framing.</p>
+      </div>
+
+      <div class="fail-card">
+        <div class="fail-id">FAIL-0002</div>
+        <p>Direction-only claims unstable under resampling. Now require corroboration.</p>
+      </div>
+
+      <div class="fail-card">
+        <div class="fail-id">FAIL-0003</div>
+        <p>Confidence intervals showed miscalibration risk. Conservative caveat policy adopted.</p>
+      </div>
+
+      <div class="fail-card">
+        <div class="fail-id">FAIL-0004</div>
+        <p>V1 coverage handling caused sample-dropout cascades. Stricter panel-density filtering implemented.</p>
+      </div>
+
+      <p>A separate archival limitation remains: a v2.1 prefilter survivor artifact is absent in the current snapshot while a v2.0 counterpart exists. Atlas prohibits asserting exact v2.1 survivor counts as artifact-verified until recovery (<span class="evidence-ref">CLM-0059<span class="tooltip">Archival limitation note</span></span>).</p>
+    </section>
+
+    <!-- 7.1 Interpretation Limits -->
+    <section id="interpretation-limits" class="reveal">
+      <h3>7.1 Practical Interpretation Limits</h3>
+
+      <p>High availability does not imply universal transportability. <strong>Threshold findings</strong> are sensitive to institutional history and measurement. <strong>Mediation findings</strong> are sensitive to omitted mediators and data sparsity. <strong>Reversal findings</strong> are sensitive to stratification boundaries and within-stratum heterogeneity. Atlas recommends using findings for hypothesis prioritization, then validating with local data before high-cost deployment.</p>
+    </section>
+
+    <!-- ═══════════════ 8. AI WORKFLOW ═══════════════ -->
+    <section id="ai-workflow" class="reveal">
+      <span class="section-num">Section 8</span>
+      <h2>AI-Assisted Workflow and Validation Safeguards</h2>
+
+      <p>This narrative used AI assistance for prose drafting, restructuring, and readability editing. AI was not used to rerun discovery stages, compute new coefficients, or modify the causal corpus. All quantitative statements originate from registered claims and findings artifacts.</p>
+
+      <p>AI use is bounded by five safeguards: evidence-linkage checks, numeric integrity checks, uncertainty-caveat checks, failure-transparency checks, and cross-document consistency checks. Any claim failing these checks is revised or removed.</p>
+
+      <p>Human review remains final authority through three gates:</p>
+
+      <div class="gate-list">
+        <div class="gate-card">
+          <div class="gate-id">H1</div>
+          <p>Findings-strength: are effect claims warranted by evidence coverage and stability?</p>
+        </div>
+        <div class="gate-card">
+          <div class="gate-id">H2</div>
+          <p>Scientific framing: are caveats adequate and uncertainty language proportional?</p>
+        </div>
+        <div class="gate-card">
+          <div class="gate-id">H3</div>
+          <p>Publication-readiness: fresh-reader trust check before release.</p>
+        </div>
+      </div>
+
+      <p>Declaring AI assistance is a scientific integrity requirement: prose quality does not raise evidence quality, and Atlas documents this boundary so readers evaluate conclusions on evidence strength rather than rhetorical fluency.</p>
+    </section>
+
+    <!-- ═══════════════ 9. REPRODUCIBILITY ═══════════════ -->
+    <section id="reproducibility" class="reveal">
+      <span class="section-num">Section 9</span>
+      <h2>Reproducibility and Artifact Map</h2>
+
+      <p>Reproducibility depends on seven linked files:</p>
+
+      <div class="registry-list">
+        <div class="registry-item">Claim Registry</div>
+        <div class="registry-item">Evidence Ledger</div>
+        <div class="registry-item">Dataset Registry</div>
+        <div class="registry-item">Ingestion Registry</div>
+        <div class="registry-item">Failure Registry</div>
+        <div class="registry-item">Contradiction Log</div>
+        <div class="registry-item">Open Questions</div>
+      </div>
+
+      <p>Generated outputs add an evidence-map file and QA reports so reviewers can move from paragraph-level claims to source anchors.</p>
+
+      <p>Unresolved contradictions: <strong>0</strong>. Orchestrated task closure: <strong>8 tasks</strong>. API surface: router=45, app=2, total=<strong>47</strong> (<span class="evidence-ref">CLM-0051<span class="tooltip">Contradiction closure</span></span>, <span class="evidence-ref">CLM-0060<span class="tooltip">API surface counts</span></span>).</p>
+    </section>
+
+    <!-- ═══════════════ 10. STATISTICAL ═══════════════ -->
+    <section id="statistical" class="reveal">
+      <span class="section-num">Section 10</span>
+      <h2>Statistical Formulation and Assumption Register</h2>
+    </section>
+
+    <!-- 10.1 -->
+    <section id="a2-formulation" class="reveal">
+      <h3>10.1 Stage A2 Test Formulation</h3>
+
+      <p>A2 uses a vector-autoregressive framing of pairwise Granger causality: comparing a restricted model (Y on its own lags) with an unrestricted model (adding lagged X). FDR control via Benjamini-Hochberg at q&lt;0.05 protects against noise-dominated candidate pools while preserving medium-strength signals (<span class="evidence-ref">CLM-0008<span class="tooltip">Granger causality test counts</span></span>, <span class="evidence-ref">CLM-0009<span class="tooltip">Granger causality test counts</span></span>, <span class="evidence-ref">CLM-0010<span class="tooltip">Granger causality test counts</span></span>).</p>
+
+      <p>A2 assumptions:</p>
+      <ul class="assumption-list">
+        <li>Lagged dependence captures useful temporal ordering</li>
+        <li>The lag horizon captures medium-run dependencies without collapsing sparse series</li>
+        <li>Unobserved confounding does not fully explain all observed predictive gains</li>
+      </ul>
+    </section>
+
+    <!-- 10.2 -->
+    <section id="a3-logic" class="reveal">
+      <h3>10.2 Stage A3 Structural Testing Logic</h3>
+
+      <p>A3 applies conditional-independence reasoning: if X and Y are no longer associated conditioning on separator set S, the direct edge is less plausible. PC-Stable controls orientation updates to reduce order dependence. A3 bridges predictive precedence and graph structure -- removing edges that are predictive but not structurally direct (<span class="evidence-ref">CLM-0011<span class="tooltip">PC-Stable edge reduction</span></span>).</p>
+
+      <p>A3 assumptions: adequate confounder representation in observed variables and stable partial-correlation behavior under finite samples. When these fail, A3 can retain spurious edges or remove weak true edges -- addressed by A4 resampling and uncertainty-class reporting.</p>
+    </section>
+
+    <!-- 10.3 -->
+    <section id="a4-bootstrap" class="reveal">
+      <h3>10.3 Stage A4 Bootstrap Retention</h3>
+
+      <p>A4 estimates coefficients over bootstrap samples and computes retention and interval summaries. Bootstrap captures variability from finite sample composition but does not add information about unobserved confounding, measurement error, or implementation shocks (<span class="evidence-ref">CLM-0012<span class="tooltip">Bootstrap retention results</span></span>, <span class="evidence-ref">CLM-0013<span class="tooltip">Bootstrap retention results</span></span>).</p>
+
+      <p>Atlas documents CI miscalibration history: earlier phases produced intervals too narrow for deployment-grade confidence. Interval claims must now be conservative when findings carry CI sparsity flags (FAIL-0003).</p>
+    </section>
+
+    <!-- 10.4 -->
+    <section id="assumption-register" class="reveal">
+      <h3>10.4 Assumption Register</h3>
+
+      <p>Every major stage has assumptions that can fail. Instead of burying these in code, Atlas presents them in prose so reviewers can evaluate whether claims overreach support. The most important guardrail is the <strong>comparative-use rule</strong>: simulation outputs are not absolute forecasts (FAIL-0001).</p>
+    </section>
+
+    <!-- ═══════════════ 11. VALIDATION CATALOG ═══════════════ -->
+    <section id="validation-catalog" class="reveal">
+      <span class="section-num">Section 11</span>
+      <h2>Validation Protocol Catalog</h2>
+    </section>
+
+    <!-- 11.1 -->
+    <section id="cert-checks" class="reveal">
+      <h3>11.1 System Certification Checks</h3>
+
+      <p>Phase 2A and 2B pass rates exceed 98%, covering schema validity, file integrity, cross-reference completeness, and value-range sanity. Discovery pipelines can fail silently at scale; structural checks serve as hard gates with auditable outcomes (<span class="evidence-ref">CLM-0003<span class="tooltip">Phase 2A validation pass rates</span></span>, <span class="evidence-ref">CLM-0004<span class="tooltip">Phase 2B validation pass rates</span></span>).</p>
+    </section>
+
+    <!-- 11.2 -->
+    <section id="panel-checks" class="reveal">
+      <h3>11.2 Panel Integrity Checks</h3>
+
+      <p>Panel checks verify row, entity, and indicator counts against frozen expectations -- detecting sample shifts that change model behavior. Panel integrity must be monitored after every major transformation, not only at ingest (<span class="evidence-ref">CLM-0005<span class="tooltip">Panel integrity counts</span></span>, <span class="evidence-ref">CLM-0006<span class="tooltip">Panel integrity counts</span></span>, <span class="evidence-ref">CLM-0007<span class="tooltip">Panel integrity counts</span></span>).</p>
+    </section>
+
+    <!-- 11.3 -->
+    <section id="runtime-checks" class="reveal">
+      <h3>11.3 Runtime Asset Coherence Checks</h3>
+
+      <p>Coherence checks ensure graph, SHAP, and baseline assets align by scope and year. If exact-year assets are unavailable, runtime uses nearest-year fallback with warnings (<span class="evidence-ref">CLM-0014<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0015<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0016<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0017<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0018<span class="tooltip">Runtime asset counts</span></span>, <span class="evidence-ref">CLM-0019<span class="tooltip">Runtime asset counts</span></span>).</p>
+    </section>
+
+    <!-- 11.4 -->
+    <section id="citation-checks" class="reveal">
+      <h3>11.4 Citation and Contradiction Checks</h3>
+
+      <p>Citation checks verify narrative claims map to registered evidence IDs -- zero missing and zero unknown in this cycle. Contradiction checks compare values across artifacts; current unresolved count is <strong>zero</strong> (<span class="evidence-ref">CLM-0051<span class="tooltip">Contradiction closure</span></span>, <span class="evidence-ref">CLM-0054<span class="tooltip">Citation audit results</span></span>).</p>
+    </section>
+
+    <!-- ═══════════════ 12. FINDINGS GOVERNANCE ═══════════════ -->
+    <section id="findings-governance" class="reveal">
+      <span class="section-num">Section 12</span>
+      <h2>Findings Extraction Governance</h2>
+    </section>
+
+    <!-- 12.1 -->
+    <section id="candidate-generation" class="reveal">
+      <h3>12.1 Candidate Generation and Coverage</h3>
+
+      <p>Extraction evaluated <strong>11,632 candidates</strong> over a 140-graph, 35-year frame under robustness-first scoring. Coverage is strict: a surprising finding is demoted if coverage is weak (<span class="evidence-ref">CLM-0026<span class="tooltip">Findings extraction governance</span></span>, <span class="evidence-ref">CLM-0028<span class="tooltip">Findings extraction governance</span></span>, <span class="evidence-ref">CLM-0029<span class="tooltip">Findings extraction governance</span></span>).</p>
+    </section>
+
+    <!-- 12.2 -->
+    <section id="diversity-constraint" class="reveal">
+      <h3>12.2 Diversity Constraint and Public Subset Policy</h3>
+
+      <p>Top-10 composition: 4 reversals, 3 mediations, 2 thresholds, 1 outcome-surprise. The public top-4 preserves one per class: <strong>F02</strong> reversal, <strong>F08</strong> mediation, <strong>F06</strong> threshold, <strong>F01</strong> outcome-surprise (<span class="evidence-ref">CLM-0030<span class="tooltip">Findings extraction governance</span></span>, <span class="evidence-ref">CLM-0031<span class="tooltip">Findings extraction governance</span></span>, <span class="evidence-ref">CLM-0032<span class="tooltip">Findings extraction governance</span></span>).</p>
+    </section>
+
+    <!-- 12.3 -->
+    <section id="finding-reliability" class="reveal">
+      <h3>12.3 Finding-Level Reliability Practices</h3>
+
+      <p>Each public finding includes four minimum evidence fields: <strong>availability</strong>, <strong>effect summary</strong>, <strong>uncertainty flags</strong>, and <strong>caveat language</strong>. Without availability, readers overgeneralize. Without uncertainty flags, readers overtrust fluent prose. Without caveats, policy translation becomes headline-driven.</p>
+    </section>
+
+    <!-- ═══════════════ 13. REPLICATION ═══════════════ -->
+    <section id="replication" class="reveal">
+      <span class="section-num">Section 13</span>
+      <h2>Replication Workflow</h2>
+    </section>
+
+    <!-- 13.1 -->
+    <section id="reproducer-needs" class="reveal">
+      <h3>13.1 What a Reproducer Needs</h3>
+
+      <p>An independent reproducer needs the registry set, findings package JSON, and runtime validation artifacts. Narrative numbers can be validated without recomputing the causal pipeline. For full computational replication, stage-level scripts from V2.1/V3.1 lineage are provided.</p>
+    </section>
+
+    <!-- 13.2 -->
+    <section id="replication-sequence" class="reveal">
+      <h3>13.2 Replication Sequence</h3>
+
+      <ol>
+        <li>Validate claim registry metrics against evidence IDs.</li>
+        <li>Verify F01/F02/F06/F08 values from findings package against narrative sections.</li>
+        <li>Run cross-document consistency checks.</li>
+        <li>Complete human gate reviews before publication.</li>
+      </ol>
+    </section>
+
+    <!-- 13.3 -->
+    <section id="repro-boundaries" class="reveal">
+      <h3>13.3 Reproducibility Boundaries</h3>
+
+      <p>Reproducibility here is document-reproducibility: regenerating narrative outputs from frozen claims. If model reruns are performed later, Atlas recommends new claim snapshots rather than editing historical values.</p>
+    </section>
+
+    <!-- ═══════════════ 14. VALIDITY THREATS ═══════════════ -->
+    <section id="validity-threats" class="reveal">
+      <span class="section-num">Section 14</span>
+      <h2>Extended Validity Threats</h2>
+    </section>
+
+    <!-- 14.1 -->
+    <section id="internal-validity" class="reveal">
+      <h3>14.1 Internal Validity</h3>
+
+      <p>Threats include unmeasured confounding, measurement noise, and finite-sample instability. Atlas mitigates through staged filtering, bootstrap retention, and uncertainty-forward reporting, but does not claim elimination. A critical threat is interpretation drift when predictive contribution signals are treated as direct intervention effects.</p>
+    </section>
+
+    <!-- 14.2 -->
+    <section id="external-validity" class="reveal">
+      <h3>14.2 External Validity</h3>
+
+      <p>Even high-coverage findings can change behavior across institutional systems. Threshold and reversal findings are especially sensitive -- their value lies in identifying where linear transfer assumptions are unsafe, not in supplying universal constants.</p>
+    </section>
+
+    <!-- 14.3 -->
+    <section id="construct-validity" class="reveal">
+      <h3>14.3 Construct Validity</h3>
+
+      <p>Construct risk appears when indicator codes are treated as direct proxies for complex social constructs. Policy teams should validate construct meaning with local domain knowledge before implementation.</p>
+    </section>
+
+    <!-- 14.4 -->
+    <section id="validity-conclusion" class="reveal">
+      <h3>14.4 Conclusion on Validity</h3>
+
+      <p>Atlas presents layered evidence state: <strong>robust</strong> where coverage and persistence are high, <strong>cautious</strong> where uncertainty flags exist, <strong>explicit</strong> where known failures constrain interpretation.</p>
+    </section>
+
+    <!-- ═══════════════ 15. STAGE RATIONALE ═══════════════ -->
+    <section id="stage-rationale" class="reveal">
+      <span class="section-num">Section 15</span>
+      <h2>Stage-by-Stage Decision Rationale</h2>
+
+      <p>A2 is kept broad because early over-pruning creates irreversible information loss. A3 and A4 are separated because combining structure and stability filters hides failure origin -- reviewers should know whether an edge failed conditional-independence logic or bootstrap stability. Class diversity in findings is enforced because robustness-only ranking over-selects reversals, reducing the policy utility of outputs.</p>
+    </section>
+
+    <!-- ═══════════════ 16. PUBLICATION CONTROLS ═══════════════ -->
+    <section id="publication-controls" class="reveal">
+      <span class="section-num">Section 16</span>
+      <h2>Documentation and Publication Controls</h2>
+
+      <p>Narrative conversion follows strict controls: section-bounded drafting, evidence-bounded claims, and caveat-completeness review. Three human gates serve distinct purposes: <strong>H1</strong> (finding strength), <strong>H2</strong> (scientific framing and caveat adequacy), <strong>H3</strong> (publication readiness and fresh-reader trust).</p>
+
+      <p>Freeze policy requires contradiction closure, citation integrity, and stable claim snapshots before publication. If claims change after freeze, a new snapshot and rerun are required -- preventing silent drift where prose stays fixed but underlying numbers change.</p>
+    </section>
+
+  </article>
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>Atlas</span> &middot; Argon Analytics</div>
+  <div class="footer-links">
+    <a href="/explore">Launch Tool</a>
+    <a href="/research">Research</a>
+    <a href="mailto:sandesh@argonanalytics.org">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 Argon Analytics</div>
+</footer>
+
+<script>
+// ── Reading progress bar ──
+(function() {
+  const bar = document.getElementById('reading-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', function() {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  }, { passive: true });
+})();
+
+// ── Mobile TOC toggle ──
+(function() {
+  const btn = document.getElementById('mobile-toc-toggle');
+  const dropdown = document.getElementById('mobile-toc-dropdown');
+  if (!btn || !dropdown) return;
+  btn.addEventListener('click', function() {
+    const isOpen = dropdown.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+  });
+  dropdown.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      dropdown.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+
+// ── Sidebar TOC scroll spy ──
+(function() {
+  var sections = document.querySelectorAll('section[id]');
+  var tocLinks = document.querySelectorAll('.sidebar-toc a');
+  if (!sections.length || !tocLinks.length) return;
+
+  var linkMap = {};
+  tocLinks.forEach(function(a) {
+    var id = a.getAttribute('href');
+    if (id && id.startsWith('#')) linkMap[id.slice(1)] = a;
+  });
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(function(a) { a.classList.remove('active'); });
+        var active = linkMap[entry.target.id];
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
+
+  sections.forEach(function(s) { observer.observe(s); });
+})();
+
+// ── Scroll reveal ──
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+})();
+
+// ── Validation bar animation (animate width when visible) ──
+(function() {
+  var fills = document.querySelectorAll('.bar-fill[data-width]');
+  if (!fills.length) return;
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.getAttribute('data-width');
+        e.target.classList.add('animated');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  fills.forEach(function(f) { observer.observe(f); });
+})();
+
+// ── Table sort ──
+(function() {
+  document.querySelectorAll('.research-table').forEach(function(table) {
+    var headers = table.querySelectorAll('thead th.sortable');
+    headers.forEach(function(th, colIdx) {
+      th.addEventListener('click', function() {
+        var tbody = table.querySelector('tbody');
+        var rows = Array.from(tbody.querySelectorAll('tr'));
+        var isAsc = th.classList.contains('sort-asc');
+        headers.forEach(function(h) { h.classList.remove('sort-asc', 'sort-desc'); });
+        var dir = isAsc ? -1 : 1;
+        th.classList.add(isAsc ? 'sort-desc' : 'sort-asc');
+        rows.sort(function(a, b) {
+          var aVal = a.cells[colIdx].textContent.trim();
+          var bVal = b.cells[colIdx].textContent.trim();
+          var aNum = parseFloat(aVal.replace(/,/g, ''));
+          var bNum = parseFloat(bVal.replace(/,/g, ''));
+          if (!isNaN(aNum) && !isNaN(bNum)) return (aNum - bNum) * dir;
+          return aVal.localeCompare(bVal) * dir;
+        });
+        rows.forEach(function(row) { tbody.appendChild(row); });
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

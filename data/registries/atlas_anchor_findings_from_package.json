@@ -1,0 +1,822 @@
+{
+  "generated_from": "<repo-root>/viz/docs/reports/atlas-causal-findings-2026-03-04/atlas_findings_package.json",
+  "anchors": {
+    "F01": {
+      "class": "outcome_surprise",
+      "title": "Strong upstream predictor for gdp_income: Average Adult Government Benefits -> Average Accumulated Income Per Person",
+      "variables": {
+        "source": {
+          "code": "agmxhoi992",
+          "label": "Average Adult Government Benefits"
+        },
+        "mediator": null,
+        "target": {
+          "code": "accmhoi999",
+          "label": "Average Accumulated Income Per Person"
+        }
+      },
+      "edge_type": "linear",
+      "availability": {
+        "years_active": "35/35",
+        "graphs_active": "140/140"
+      },
+      "stratum_betas": {
+        "unified": {
+          "beta": 0.984133485461276,
+          "ci_lower": 0.9201213491571344,
+          "ci_upper": 1.0545694666788854,
+          "years_active": 35
+        },
+        "developing": {
+          "beta": 0.9843257287644913,
+          "ci_lower": 0.9309103081987437,
+          "ci_upper": 1.0418340736556573,
+          "years_active": 35
+        },
+        "emerging": {
+          "beta": 0.944641423920972,
+          "ci_lower": 0.8473390006120024,
+          "ci_upper": 1.0504541540095087,
+          "years_active": 35
+        },
+        "advanced": {
+          "beta": 0.9399200178455633,
+          "ci_lower": 0.8434986569562934,
+          "ci_upper": 1.034566205847073,
+          "years_active": 35
+        }
+      },
+      "temporal_profile": {
+        "1990s": {
+          "count": 40,
+          "beta_mean": 0.9768659249676258,
+          "sign": "positive"
+        },
+        "2000s": {
+          "count": 40,
+          "beta_mean": 0.9592073193904396,
+          "sign": "positive"
+        },
+        "2010s": {
+          "count": 40,
+          "beta_mean": 0.9688678631709502,
+          "sign": "positive"
+        },
+        "2020s": {
+          "count": 20,
+          "beta_mean": 0.9329039329284983,
+          "sign": "positive"
+        }
+      },
+      "directionality": {
+        "reversal": false,
+        "reverse_edge_presence": "0/140"
+      },
+      "nonlinearity": {
+        "threshold": null,
+        "beta_low": null,
+        "beta_high": null,
+        "flip_years": 0
+      },
+      "caveats": [
+        "Outcome candidate selected by robustness and effect-size ranking among interpretable incoming edges."
+      ],
+      "plain_language": "Average Adult Government Benefits is one of the strongest consistent upstream predictors of Average Accumulated Income Per Person in this corpus.",
+      "academic_summary": "For outcome concept gdp_income, edge agmxhoi992->accmhoi999 ranks highest by coverage/effect composite (graphs=140/140, min_years=35/35).",
+      "confidence": "medium",
+      "_score_inputs": {
+        "graphs_active": 140,
+        "years_active": 35,
+        "beta_magnitude": 0.9632551639980756,
+        "ci_coverage": 1.0,
+        "reversal_strength": 0.044405710918927976,
+        "class": "outcome_surprise",
+        "decade_consistency": 1.0
+      },
+      "outcome_concept": "gdp_income",
+      "scores": {
+        "robustness": 1.0,
+        "public_clarity": 0.6785714285714286,
+        "academic_weight": 0.9823416848713018,
+        "class_diversity_bonus": 1.0,
+        "total": 0.9312997069321112
+      },
+      "finding_id": "F01",
+      "lineage": {
+        "v2_v21_status": "confirmed_same_edge",
+        "notes": "agmxhoi992->accmhoi999: Exact source/target codes found in v2.1 edge set.",
+        "edge_statuses": [
+          {
+            "source": "agmxhoi992",
+            "target": "accmhoi999",
+            "status": "confirmed_same_edge"
+          }
+        ]
+      },
+      "uncertainty_flags": [],
+      "public_rank": 4
+    },
+    "F02": {
+      "class": "reversal",
+      "title": "College Enrollment Gender Gap changes direction across development strata for Birth Rate",
+      "variables": {
+        "source": {
+          "code": "GER.5T8.GPIA",
+          "label": "College Enrollment Gender Gap"
+        },
+        "mediator": null,
+        "target": {
+          "code": "wdi_birth",
+          "label": "Birth Rate"
+        }
+      },
+      "edge_type": "threshold",
+      "availability": {
+        "years_active": "35/35",
+        "graphs_active": "140/140"
+      },
+      "stratum_betas": {
+        "unified": {
+          "beta": -0.6740267225215214,
+          "ci_lower": -0.7040712119067075,
+          "ci_upper": -0.6430866643415515,
+          "years_active": 35,
+          "pos_years": 0,
+          "neg_years": 35
+        },
+        "developing": {
+          "beta": -0.66474586023363,
+          "ci_lower": -0.7122052471437128,
+          "ci_upper": -0.6161043893373037,
+          "years_active": 35,
+          "pos_years": 0,
+          "neg_years": 35
+        },
+        "emerging": {
+          "beta": -0.5536414415678012,
+          "ci_lower": -0.6494623533238985,
+          "ci_upper": -0.45873028275439826,
+          "years_active": 35,
+          "pos_years": 0,
+          "neg_years": 35
+        },
+        "advanced": {
+          "beta": 0.25514157104566765,
+          "ci_lower": 0.12820724245759132,
+          "ci_upper": 0.360587820055119,
+          "years_active": 35,
+          "pos_years": 34,
+          "neg_years": 1
+        }
+      },
+      "temporal_profile": {
+        "unified": {
+          "1990s": {
+            "mean": -0.6425983755502844,
+            "pos": 0,
+            "neg": 10,
+            "count": 10
+          },
+          "2000s": {
+            "mean": -0.6694492699520331,
+            "pos": 0,
+            "neg": 10,
+            "count": 10
+          },
+          "2010s": {
+            "mean": -0.6956499148068953,
+            "pos": 0,
+            "neg": 10,
+            "count": 10
+          },
+          "2020s": {
+            "mean": -0.7027919370322238,
+            "pos": 0,
+            "neg": 5,
+            "count": 5
+          }
+        },
+        "developing": {
+          "1990s": {
+            "mean": -0.6944049979439315,
+            "pos": 0,
+            "neg": 10,
+            "count": 10
+          },
+          "2000s": {
+            "mean": -0.6802324539616823,
+            "pos": 0,
+            "neg": 10,
+            "count": 10
+          },
+          "2010s": {
+            "mean": -0.6342876244113318,
+            "pos": 0,
+            "neg": 10,
+            "count": 10
+          },
+          "2020s": {
+            "mean": -0.6353708690015188,
+            "pos": 0,
+            "neg": 5,
+            "count": 5
+          }
+        },
+        "emerging": {
+          "1990s": {
+            "mean": -0.5197737446259028,
+            "pos": 0,
+            "neg": 10,
+            "count": 10
+          },
+          "2000s": {
+            "mean": -0.5041002109903214,
+            "pos": 0,
+            "neg": 10,
+            "count": 10
+          },
+          "2010s": {
+            "mean": -0.6003674647949041,
+            "pos": 0,
+            "neg": 10,
+            "count": 10
+          },
+          "2020s": {
+            "mean": -0.6270072501523509,
+            "pos": 0,
+            "neg": 5,
+            "count": 5
+          }
+        },
+        "advanced": {
+          "1990s": {
+            "mean": 0.35441062415273566,
+            "pos": 9,
+            "neg": 1,
+            "count": 10
+          },
+          "2000s": {
+            "mean": 0.29483114362590335,
+            "pos": 10,
+            "neg": 0,
+            "count": 10
+          },
+          "2010s": {
+            "mean": 0.18393095167956114,
+            "pos": 10,
+            "neg": 0,
+            "count": 10
+          },
+          "2020s": {
+            "mean": 0.11964555840327333,
+            "pos": 5,
+            "neg": 0,
+            "count": 5
+          }
+        }
+      },
+      "directionality": {
+        "reversal": true,
+        "reverse_edge_presence": "0/140",
+        "beta_spread": 0.929168293567189
+      },
+      "nonlinearity": {
+        "threshold": null,
+        "beta_low": null,
+        "beta_high": null,
+        "flip_years": 0
+      },
+      "caveats": [
+        "Sign reversal is based on mean yearly beta by stratum; some decades may still show mixed signs."
+      ],
+      "plain_language": "College Enrollment Gender Gap is associated with opposite directional effects on Birth Rate depending on development stage.",
+      "academic_summary": "Edge GER.5T8.GPIA->wdi_birth exhibits cross-strata sign heterogeneity with means {'unified': -0.6740267225215214, 'developing': -0.66474586023363, 'emerging': -0.5536414415678012, 'advanced': 0.25514157104566765}.",
+      "confidence": "medium",
+      "_score_inputs": {
+        "graphs_active": 140,
+        "years_active": 35,
+        "beta_magnitude": 0.929168293567189,
+        "ci_coverage": 1.0,
+        "reversal_strength": 0.929168293567189,
+        "class": "reversal",
+        "decade_consistency": 0.9375
+      },
+      "scores": {
+        "robustness": 1.0,
+        "public_clarity": 0.7857142857142857,
+        "academic_weight": 0.9003477645223964,
+        "class_diversity_bonus": 0.5876412187606984,
+        "total": 0.8291401029636308
+      },
+      "finding_id": "F02",
+      "lineage": {
+        "v2_v21_status": "confirmed_same_edge",
+        "notes": "GER.5T8.GPIA->wdi_birth: Exact source/target codes found in v2.1 edge set.",
+        "edge_statuses": [
+          {
+            "source": "GER.5T8.GPIA",
+            "target": "wdi_birth",
+            "status": "confirmed_same_edge"
+          }
+        ]
+      },
+      "uncertainty_flags": [
+        "cross_strata_sign_instability"
+      ],
+      "public_rank": 1
+    },
+    "F06": {
+      "class": "threshold",
+      "title": "Elections: Local Government Power has robust threshold dynamics for Local Election Quality Index",
+      "variables": {
+        "source": {
+          "code": "v2ellocpwr_ord",
+          "label": "Elections: Local Government Power"
+        },
+        "mediator": null,
+        "target": {
+          "code": "e_v2xel_locelec_4C",
+          "label": "Local Election Quality Index"
+        }
+      },
+      "edge_type": "threshold",
+      "availability": {
+        "years_active": "35/35",
+        "graphs_active": "140/140"
+      },
+      "stratum_betas": {
+        "unified": {
+          "beta": 0.8806117971191815,
+          "ci_lower": null,
+          "ci_upper": null,
+          "years_active": 35
+        },
+        "developing": {
+          "beta": 0.8638473237332442,
+          "ci_lower": null,
+          "ci_upper": null,
+          "years_active": 14
+        },
+        "emerging": {
+          "beta": 0.8478376365430251,
+          "ci_lower": null,
+          "ci_upper": null,
+          "years_active": 26
+        },
+        "advanced": {
+          "beta": 0.8504013322948607,
+          "ci_lower": null,
+          "ci_upper": null,
+          "years_active": 35
+        }
+      },
+      "temporal_profile": {
+        "1990s": "active",
+        "2000s": "active",
+        "2010s": "active",
+        "2020s": "active"
+      },
+      "directionality": {
+        "reversal": false,
+        "reverse_edge_presence": "0/140"
+      },
+      "nonlinearity": {
+        "threshold": 3.0,
+        "threshold_latest_year": 2024,
+        "threshold_latest_year_value": 3.0,
+        "beta_low": 0.2187008775621328,
+        "beta_high": 0.08726327695656574,
+        "flip_years": 0,
+        "primary_stratum": "unified",
+        "threshold_years_by_stratum": {
+          "unified": 35,
+          "developing": 14,
+          "emerging": 26,
+          "advanced": 35
+        },
+        "threshold_details_by_stratum": {
+          "unified": {
+            "years_threshold_active": 35,
+            "threshold": 3.0,
+            "beta_low": 0.2187008775621328,
+            "beta_high": 0.08726327695656574,
+            "flip_years": 0
+          },
+          "developing": {
+            "years_threshold_active": 14,
+            "threshold": 3.0,
+            "beta_low": 0.2239771079737955,
+            "beta_high": 0.08525008702591406,
+            "flip_years": 1
+          },
+          "emerging": {
+            "years_threshold_active": 26,
+            "threshold": 2.9524299408797887,
+            "beta_low": 0.25428934815971166,
+            "beta_high": 0.07683383922745834,
+            "flip_years": 1
+          },
+          "advanced": {
+            "years_threshold_active": 35,
+            "threshold": 3.0,
+            "beta_low": 0.05870978575973159,
+            "beta_high": 0.012846379814651372,
+            "flip_years": 15
+          }
+        },
+        "threshold_variable": "v2ellocpwr_ord",
+        "reverted_recently": false,
+        "country_split_latest": {
+          "year": 2024,
+          "threshold_variable": "v2ellocpwr_ord",
+          "threshold_value": 3.0,
+          "coverage_countries": 174,
+          "below_count": 66,
+          "above_count": 108,
+          "missing_count": 4,
+          "below_countries": [
+            "Afghanistan",
+            "Algeria",
+            "Angola",
+            "Armenia",
+            "Azerbaijan",
+            "Bahrain",
+            "Bangladesh",
+            "Belarus",
+            "Botswana",
+            "Burkina Faso",
+            "Burundi",
+            "Cambodia",
+            "Cameroon",
+            "Central African Republic",
+            "China",
+            "Cuba",
+            "Djibouti",
+            "Egypt, Arab Rep.",
+            "Equatorial Guinea",
+            "Eritrea",
+            "Ethiopia",
+            "German Democratic Republic",
+            "Ghana",
+            "Guinea",
+            "Guinea-Bissau",
+            "Guyana",
+            "Iran, Islamic Rep.",
+            "Jordan",
+            "Kazakhstan",
+            "Kenya",
+            "Kyrgyzstan",
+            "Lebanon",
+            "Libya",
+            "Luxembourg",
+            "Madagascar",
+            "Malaysia",
+            "Mali",
+            "Mauritania",
+            "Mongolia",
+            "Morocco",
+            "Namibia",
+            "Nicaragua",
+            "Niger",
+            "North Korea",
+            "Romania",
+            "Russia",
+            "Rwanda",
+            "Saudi Arabia",
+            "Seychelles",
+            "Singapore",
+            "Solomon Islands",
+            "Somalia",
+            "South Yemen",
+            "Sudan",
+            "Suriname",
+            "Swaziland",
+            "Syria",
+            "Tajikistan",
+            "Thailand",
+            "Turkmenistan",
+            "T\u00fcrkiye",
+            "Uganda",
+            "United Arab Emirates",
+            "Uzbekistan",
+            "Yemen",
+            "Zanzibar"
+          ],
+          "above_countries": [
+            "Albania",
+            "Argentina",
+            "Australia",
+            "Austria",
+            "Belgium",
+            "Benin",
+            "Bhutan",
+            "Bolivia",
+            "Bosnia and Herzegovina",
+            "Brazil",
+            "Bulgaria",
+            "Canada",
+            "Cape Verde",
+            "Chad",
+            "Chile",
+            "Colombia",
+            "Comoros",
+            "Congo, Dem. Rep.",
+            "Costa Rica",
+            "Croatia",
+            "Cyprus",
+            "Czech Republic",
+            "Denmark",
+            "Dominican Republic",
+            "Ecuador",
+            "El Salvador",
+            "Estonia",
+            "Fiji",
+            "Finland",
+            "France",
+            "Gabon",
+            "Georgia",
+            "Germany",
+            "Greece",
+            "Guatemala",
+            "Haiti",
+            "Honduras",
+            "Hungary",
+            "Iceland",
+            "India",
+            "Indonesia",
+            "Iraq",
+            "Ireland",
+            "Israel",
+            "Italy",
+            "Ivory Coast",
+            "Jamaica",
+            "Japan",
+            "Korea, Rep.",
+            "Kosovo",
+            "Laos",
+            "Latvia",
+            "Lesotho",
+            "Liberia",
+            "Lithuania",
+            "Malawi",
+            "Maldives",
+            "Malta",
+            "Mauritius",
+            "Mexico",
+            "Moldova",
+            "Montenegro",
+            "Mozambique",
+            "Nepal",
+            "Netherlands",
+            "New Zealand",
+            "Nigeria",
+            "North Macedonia",
+            "Norway",
+            "Oman",
+            "Pakistan",
+            "Panama",
+            "Papua New Guinea",
+            "Paraguay",
+            "Peru",
+            "Philippines",
+            "Poland",
+            "Portugal",
+            "Republic of the Congo",
+            "Sao Tome and Principe",
+            "Senegal",
+            "Serbia",
+            "Sierra Leone",
+            "Slovakia",
+            "Slovenia",
+            "Somaliland",
+            "South Africa",
+            "South Sudan",
+            "Spain",
+            "Sri Lanka",
+            "Sweden",
+            "Switzerland",
+            "Taiwan",
+            "Tanzania",
+            "The Gambia",
+            "Timor-Leste",
+            "Togo",
+            "Trinidad and Tobago",
+            "Tunisia",
+            "Ukraine",
+            "United Kingdom",
+            "United States",
+            "Uruguay",
+            "Vanuatu",
+            "Venezuela, RB",
+            "Vietnam",
+            "Zambia",
+            "Zimbabwe"
+          ],
+          "missing_countries": [
+            "Barbados",
+            "Hong Kong",
+            "Kuwait",
+            "Qatar"
+          ],
+          "below_count_by_income_stratum": {
+            "Advanced": 9,
+            "Developing": 35,
+            "Emerging": 17,
+            "Unknown": 5
+          },
+          "above_count_by_income_stratum": {
+            "Advanced": 42,
+            "Developing": 36,
+            "Emerging": 28,
+            "Unknown": 2
+          }
+        }
+      },
+      "caveats": [
+        "Threshold parameters are edge-level and may vary year-to-year."
+      ],
+      "policy_relevance": {
+        "is_policy_relevant_lever": true,
+        "lever_variable": {
+          "code": "v2ellocpwr_ord",
+          "label": "Elections: Local Government Power"
+        }
+      },
+      "plain_language": "The effect of Elections: Local Government Power on Local Election Quality Index changes by regime around a learned threshold in unified.",
+      "academic_summary": "Edge v2ellocpwr_ord->e_v2xel_locelec_4C is classified as threshold in 35/35 years for unified; beta_low=0.2187008775621328, beta_high=0.08726327695656574.",
+      "confidence": "high",
+      "_score_inputs": {
+        "graphs_active": 140,
+        "years_active": 35,
+        "beta_magnitude": 0.8806117971191815,
+        "ci_coverage": 0.0,
+        "reversal_strength": 0.13143760060556706,
+        "class": "threshold",
+        "decade_consistency": 1.0,
+        "policy_relevance": 1.0
+      },
+      "scores": {
+        "robustness": 1.0,
+        "public_clarity": 0.7142857142857143,
+        "academic_weight": 0.5934822121406349,
+        "class_diversity_bonus": 0.4281068127353646,
+        "total": 0.6982543990761426
+      },
+      "finding_id": "F06",
+      "lineage": {
+        "v2_v21_status": "confirmed_same_edge",
+        "notes": "v2ellocpwr_ord->e_v2xel_locelec_4C: Exact source/target codes found in v2.1 edge set.",
+        "edge_statuses": [
+          {
+            "source": "v2ellocpwr_ord",
+            "target": "e_v2xel_locelec_4C",
+            "status": "confirmed_same_edge"
+          }
+        ]
+      },
+      "uncertainty_flags": [
+        "ci_missing_or_sparse"
+      ],
+      "public_rank": 3
+    },
+    "F08": {
+      "class": "mediation",
+      "title": "Average Spending per Person influences Agricultural Income Distribution via Average Pre-tax Government Income (All Groups)",
+      "variables": {
+        "source": {
+          "code": "acfcfci999",
+          "label": "Average Spending per Person"
+        },
+        "mediator": {
+          "code": "aptxgoi999",
+          "label": "Average Pre-tax Government Income (All Groups)"
+        },
+        "target": {
+          "code": "agninci999",
+          "label": "Agricultural Income Distribution"
+        }
+      },
+      "edge_type": "mixed",
+      "availability": {
+        "years_active": "35/35",
+        "graphs_active": "140/140"
+      },
+      "direct_edge_availability": "0/140",
+      "indirect_path_availability": "140/140",
+      "indirect_path_years_by_stratum": {
+        "unified": 35,
+        "developing": 35,
+        "emerging": 35,
+        "advanced": 35
+      },
+      "stratum_betas": {
+        "unified": {
+          "beta_ab": 0.8186247578610527,
+          "beta_bc": 0.7055434602175795,
+          "indirect_beta_product": 0.5775753442810653,
+          "ci_lower_ab": 0.5492260181746462,
+          "ci_upper_ab": 1.083206980139014,
+          "ci_lower_bc": 0.4346684285399813,
+          "ci_upper_bc": 0.9257372212768907,
+          "direct_beta_ac": null
+        },
+        "developing": {
+          "beta_ab": 0.8350227338014649,
+          "beta_bc": 0.8255631383838082,
+          "indirect_beta_product": 0.6893639887389647,
+          "ci_lower_ab": 0.6424544371938096,
+          "ci_upper_ab": 1.0199677351135323,
+          "ci_lower_bc": 0.6027819271760854,
+          "ci_upper_bc": 1.007565864465823,
+          "direct_beta_ac": null
+        },
+        "emerging": {
+          "beta_ab": 0.8214516180769273,
+          "beta_bc": 0.7394283157942585,
+          "indirect_beta_product": 0.6074045864610909,
+          "ci_lower_ab": 0.619418851824455,
+          "ci_upper_ab": 1.022009861296885,
+          "ci_lower_bc": 0.5661089825704021,
+          "ci_upper_bc": 0.9628883669824597,
+          "direct_beta_ac": null
+        },
+        "advanced": {
+          "beta_ab": 0.9217171056372976,
+          "beta_bc": 0.9769131653597842,
+          "indirect_beta_product": 0.900437575234391,
+          "ci_lower_ab": 0.8329491709383007,
+          "ci_upper_ab": 1.0611040591992187,
+          "ci_lower_bc": 0.8958038984416837,
+          "ci_upper_bc": 1.0788216998522617,
+          "direct_beta_ac": null
+        }
+      },
+      "temporal_profile": {
+        "1990s": "active",
+        "2000s": "active",
+        "2010s": "active",
+        "2020s": "active"
+      },
+      "directionality": {
+        "reversal": false,
+        "reverse_edge_presence": "0/280"
+      },
+      "nonlinearity": {
+        "threshold": null,
+        "beta_low": null,
+        "beta_high": null,
+        "flip_years": 0
+      },
+      "caveats": [
+        "Mediation candidate is based on directed path persistence, not path-level experimental identification."
+      ],
+      "outcome_priority": {
+        "is_outcome_target": true,
+        "outcome_concept": "gdp_income"
+      },
+      "plain_language": "Changes in Average Spending per Person are linked to Agricultural Income Distribution through Average Pre-tax Government Income (All Groups), with most of the effect carried by the indirect path.",
+      "academic_summary": "Directed mediation path acfcfci999->aptxgoi999->agninci999 is active in 140/140 graphs; direct edge acfcfci999->agninci999 appears in 0/140 graphs.",
+      "confidence": "high",
+      "_score_inputs": {
+        "graphs_active": 140,
+        "years_active": 35,
+        "beta_magnitude": 0.693695373678878,
+        "ci_coverage": 1.0,
+        "reversal_strength": 0.0,
+        "class": "mediation",
+        "decade_consistency": 1.0,
+        "outcome_priority": 1.0,
+        "direct_edge_graphs": 0,
+        "indirect_graphs": 140
+      },
+      "scores": {
+        "robustness": 1.0,
+        "public_clarity": 0.6,
+        "academic_weight": 0.8774781494715511,
+        "class_diversity_bonus": 0.0,
+        "total": 0.6393695373678878
+      },
+      "finding_id": "F08",
+      "lineage": {
+        "v2_v21_status": "confirmed_same_edge",
+        "notes": "acfcfci999->aptxgoi999: Exact source/target codes found in v2.1 edge set. | aptxgoi999->agninci999: Exact source/target codes found in v2.1 edge set.",
+        "edge_statuses": [
+          {
+            "source": "acfcfci999",
+            "target": "aptxgoi999",
+            "status": "confirmed_same_edge"
+          },
+          {
+            "source": "aptxgoi999",
+            "target": "agninci999",
+            "status": "confirmed_same_edge"
+          }
+        ]
+      },
+      "uncertainty_flags": [
+        "ci_missing_or_sparse"
+      ],
+      "public_rank": 2
+    }
+  }
+}

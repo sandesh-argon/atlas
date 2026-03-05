@@ -1,0 +1,13 @@
+B3 METADATA AVAILABILITY REPORT
+================================================================================
+
+Expected Coverage: 50.5%
+
+Source     Status          Path
+--------------------------------------------------------------------------------
+WDI        ✅ AVAILABLE     <repo-root>/v2.0/phaseA/A0_data_acquisition/metadata/wdi_metadata.json
+VDEM       ✅ AVAILABLE     <repo-root>/v2.0/phaseA/A0_data_acquisition/metadata/vdem_codebook.json
+UNESCO     ✅ AVAILABLE     <repo-root>/v2.0/phaseA/A0_data_acquisition/metadata/unesco_metadata.json
+QOG        ❌ MISSING       <repo-root>/v2.0/phaseA/A0_data_acquisition/metadata/qog_codebook.json
+PENN       ✅ AVAILABLE     <repo-root>/v2.0/phaseA/A0_data_acquisition/metadata/pwt_metadata.json
+FALLBACK   ✅ AVAILABLE     <repo-root>/v2.0/phaseA/A0_data_acquisition/metadata/fallback_metadata.json
